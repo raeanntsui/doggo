@@ -19,7 +19,10 @@ class Product(db.Model):
     # relationship
     # 1 product can only belong to 1 user
     user = db.relationship("User", back_populates="product")
-    review = db.relationship("Review", back_populates='product', cascade='all, delete')
+    # review = db.relationship("Review", back_populates='product', cascade='all, delete')
+
+
+
 
     # 1 product can have many images
     # img_urls = db.relationship("ProductImage", back_populates="spot", lazy=True, cascade='all, delete' )
