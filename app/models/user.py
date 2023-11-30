@@ -16,6 +16,9 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String, nullable=False)
     hashed_password = db.Column(db.String(255), nullable=False)
 
+    # relationship to Product
+    product = db.relationship("Product", back_populates="user", cascade="all, delete")
+
     @property
     def password(self):
         return self.hashed_password
