@@ -27,5 +27,5 @@ class Product(db.Model):
             'product_price': self.product_price,
             'product_image': self.product_image,
             'user': self.user.to_dict() if self.user else None,
-            'review': [review.to_dict() for review in self.review],
+            # 'review': [review.to_dict() for review in self.review],
         }

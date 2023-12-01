@@ -5,7 +5,7 @@ from app.forms import ProductForm
 from .auth_routes import validation_errors_to_error_messages
 
 
-products_route = Blueprint("products", __name__)
+products_route = Blueprint('products', __name__)
 
 @products_route.route("/")
 def get_products():
@@ -36,8 +36,8 @@ def create_product():
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        product_params = product(
-            product_owner_id=form.data["product_owner_id"],
+        product_params = Product(
+            product_owner_id=current_user.id,
             product_name=form.data["product_name"],
             product_description=form.data["product_description"],
             product_category=form.data["product_category"],
@@ -69,7 +69,7 @@ def update_product(id):
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        product.product_owner_id = form.data["product_owner_id"]
+        product.product_owner_id = current_user.id
         product.product_name = form.data["product_name"]
         product.product_description = form.data["product_description"]
         product.product_category = form.data["product_category"]
