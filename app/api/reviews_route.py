@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, redirect, request
 from flask_login import login_required, current_user
 from app.models import db, Review, User
 from app.forms import ReviewForm
-# from .auth_routes import validation_errors_to_error_messages
+from .auth_routes import validation_errors_to_error_messages
 
 
 reviews_route = Blueprint('reviews', __name__)
@@ -34,12 +34,18 @@ def create_review(product_id):
         review_description = form.data["review_description"]
         review_image = form.data["review_image"]
 
-        new_review = Review(product_id=product_id, review_description=review_description, rating=rating, review_image=review_image, user_id=current_user.id)
+        new_review = Review(
+            user_id=current_user.id,
+            product_id=product_id, 
+            rating=rating, 
+            review_description=review_description, 
+            review_image=review_image, 
+        )
 
         db.session.add(new_review)
         db.session.commit()
 
-        return {"newReview": new_review.to_dict()}
+        return {"new_review": new_review.to_dict()}
     else:
 
         errors = form.errors
@@ -49,7 +55,7 @@ def create_review(product_id):
 @login_required
 def update_review(review_id):
     '''
-    update an existing review
+    Update an existing review
     '''
     form = ReviewForm(request.form)
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -60,9 +66,14 @@ def update_review(review_id):
         if not review:
             return (jsonify({"error": "Review not found"}), 404)
 
-        review.description = form.description.data
-        review.rating = form.rating.data
+        review.rating = form.data["rating"]
+        review.review_description = form.data["review_description"]
+        review.review_image = form.data["review_image"]
 
+        # rating = form.rating.data
+        # review_description = form.review_description.data
+        # review_image = form.review_image.data
+        db.session.add(review)
         db.session.commit()
 
         return {"updateReview": review.to_dict()}
