@@ -5,21 +5,24 @@ def seed_products():
     product1 = Product(
         product_owner_id=1,
         product_name="Dog Tags",
-        description="Welcome to the Dog Tag Emporium, where canine fashion meets functionality! Our specialized store is dedicated to providing a wide array of dog tags for our four-legged friends. These tags are not just stylish accessories; they serve a crucial purpose in ensuring the safety and well-being of our beloved pets.",
-        category="accessory",
-        price=15)
+        product_description="Welcome to the Dog Tag Emporium, where canine fashion meets functionality! Our specialized store is dedicated to providing a wide array of dog tags for our four-legged friends. These tags are not just stylish accessories; they serve a crucial purpose in ensuring the safety and well-being of our beloved pets.",
+        product_category="accessory",
+        product_price=15,
+        product_image="https://i5.walmartimages.com/asr/f342c594-8428-4740-a217-5d64e8e0b279.aef898b7f24b34fc7538d5121c31c2a5.jpeg")
     product2 = Product(
         product_owner_id=2,
         product_name="Dog Hoodie",
-        description="Introducing our Pawsome Comfort Hoodie—a must-have for your canine companion's wardrobe. This dog hoodie combines fashion and function to provide unparalleled comfort and style for your furry friend.",
-        category="clothing",
-        price=50)
+        product_description="Introducing our Pawsome Comfort Hoodie—a must-have for your canine companion's wardrobe. This dog hoodie combines fashion and function to provide unparalleled comfort and style for your furry friend.",
+        product_category="clothing",
+        product_price=50,
+        product_image="https://m.media-amazon.com/images/I/61aNP5iRTSL._AC_UF1000,1000_QL80_.jpg")
     product3 = Product(
         product_owner_id=3,
         product_name="Dog Boots",
-        description="Introducing our PawsGuard Booties—an essential accessory for your adventurous canine companion. These dog booties are designed to provide protection, comfort, and style for your furry friend's paws during various outdoor activities.",
-        category="shoes",
-        price=25)
+        product_description="Introducing our PawsGuard Booties—an essential accessory for your adventurous canine companion. These dog booties are designed to provide protection, comfort, and style for your furry friend's paws during various outdoor activities.",
+        product_category="shoes",
+        product_price=25,
+        product_image="https://footwearnews.com/wp-content/uploads/2020/04/dog-shoes.jpg")
 
     db.session.add(product1)
     db.session.add(product2)

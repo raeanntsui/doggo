@@ -8,10 +8,22 @@ def seed_users():
         username='Maddie', email='maddie@aa.io', password='password', first_name='Maddie', last_name='Tsui')
     lily = User(
         username='lily', email='lily@aa.io', password='password', first_name='Lily', last_name='Tsui')
+    daisy = User(
+        username='daisy', email='daisy@aa.io', password='password', first_name='Daisy', last_name='Tsui')
+    rose = User(
+        username='rose', email='rose@aa.io', password='password', first_name='Rose', last_name='Mary')
+    jasmine = User(
+        username='jasmine', email='jasmine@aa.io', password='password', first_name='Jasmine', last_name='Jones')
+    violet = User(
+        username='violet', email='violet@aa.io', password='password', first_name='Violet', last_name='Smith')
 
     db.session.add(demo)
     db.session.add(maddie)
     db.session.add(lily)
+    db.session.add(daisy)
+    db.session.add(rose)
+    db.session.add(jasmine)
+    db.session.add(violet)
     db.session.commit()
 
 
