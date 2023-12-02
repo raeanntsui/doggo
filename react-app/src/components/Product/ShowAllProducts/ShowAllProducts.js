@@ -10,8 +10,8 @@ function ShowAllProducts() {
   const products = useSelector((state) => state.products.allProducts);
   console.log("🚀🚀🚀🚀🚀🚀 ~ products:", products);
 
-  const productsObject = Object.values(products);
-  console.log("🚀🚀🚀🚀🚀🚀 ~ productsObject:", productsObject);
+  const allProductsObject = Object.values(products);
+  console.log("🚀🚀🚀🚀🚀🚀 ~ productsObject:", allProductsObject);
 
   const currentUser = useSelector((state) => state.session.user);
   console.log("🚀🚀🚀🚀🚀🚀 ~ currentUser:", currentUser);
@@ -22,13 +22,20 @@ function ShowAllProducts() {
 
   return (
     <>
-      <h1>Hello ShowAllProducts</h1>
-      {/* <div>
-        {productsObject.map(product => (
-            <NavLink to={`/products/${product.id}`}>
-
-        ))}
-      </div> */}
+      <div>
+        {allProductsObject.length > 0 ? (
+          allProductsObject.map((product) => (
+            <NavLink key={product.id} to={`/products/${product.id}`}>
+              <h1>Product ID: {product.id}</h1>
+              <h2>Owner ID: {product.product_owner_id}</h2>
+              <h2>{product.product_name}</h2>
+              <h2>{product.product_description}</h2>
+            </NavLink>
+          ))
+        ) : (
+          <h1>No products to show</h1>
+        )}
+      </div>
     </>
   );
 }
