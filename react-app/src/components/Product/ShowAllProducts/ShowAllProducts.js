@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllProductsThunk } from "../../../store/products";
 import "./ShowAllProducts.css";
+import ReviewForm from "../../Reviews/CreateReview/ReviewForm";
 
 function ShowAllProducts() {
   const dispatch = useDispatch();
@@ -33,9 +34,10 @@ function ShowAllProducts() {
             </NavLink>
           ))
         ) : (
-          <h1>No products to show</h1>
+          <h1>Loading or no product information available?</h1>
         )}
       </div>
+      <div>{/* <ReviewForm /> */}</div>
     </>
   );
 }

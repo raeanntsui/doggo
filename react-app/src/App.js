@@ -24,11 +24,11 @@ function App() {
           <Route exact path="/products">
             <ShowAllProducts />
           </Route>
-          <Route path="/products/:productId">
-            <ShowOneProduct />
-          </Route>
           <Route path="/products/new">
             <CreateNewProduct />
+          </Route>
+          <Route path="/products/:productId">
+            <ShowOneProduct />
           </Route>
           <Route path="/login">
             <LoginFormPage />

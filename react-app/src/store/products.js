@@ -70,6 +70,7 @@ export const createProductThunk = (newProduct) => async (dispatch) => {
       body: newProduct,
     });
     const createdProduct = await res.json();
+    console.log("Created Product:", createdProduct);
     dispatch(createProduct(createdProduct));
     return createdProduct;
   } catch (error) {

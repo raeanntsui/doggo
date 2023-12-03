@@ -3,14 +3,15 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getOneProductThunk } from "../../../store/products";
 import "./ShowOneProduct.css";
+import DeleteProduct from "../DeleteProduct/DeleteProduct";
 
 function ShowOneProduct() {
   const dispatch = useDispatch();
   const { productId } = useParams();
   const product = useSelector((state) => state.products.allProducts[productId]);
   console.log("🚀🚀🚀🚀🚀🚀 ~ one product:", product);
-  //   const currentUser = useSelector((state) => state.session.user);
-  //   console.log("🚀🚀🚀🚀🚀🚀 ~ currentUser:", currentUser);
+  const currentUser = useSelector((state) => state.session.user);
+  console.log("🚀🚀🚀🚀🚀🚀 ~ currentUser:", currentUser);
 
   useEffect(() => {
     dispatch(getOneProductThunk(productId));
@@ -31,8 +32,19 @@ function ShowOneProduct() {
           <img src={product.product_image} />
         </div>
       ) : (
-        <h1>No product information available</h1>
+        <h1>
+          Loading product information or no product information available?
+        </h1>
       )}
+      <div>
+        {currentUser.id === product.product_owner_id ? (
+          <>
+            <DeleteProduct />
+          </>
+        ) : (
+          <h1>Don't show Delete button (not owner of listing)</h1>
+        )}
+      </div>
     </>
   );
 }

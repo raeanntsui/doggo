@@ -10,11 +10,32 @@ function CreateNewProduct() {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
-  const [productImage, setProductImage] = useState("");
-  const [submit, setSubmit] = useState("false");
+  const [productImage, setProductImage] = useState(null);
+  const [submit, setSubmit] = useState(false);
+  const [createdProduct, setCreatedProduct] = useState(null);
 
   const history = useHistory();
   const dispatch = useDispatch();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("Form Data:", name, description, category, price, productImage);
+    const formData = new FormData();
+    formData.append("product_name", name);
+    formData.append("description", description);
+    formData.append("category", category);
+    formData.append("price", price);
+    formData.append("productImage", productImage);
+
+    try {
+      const response = await dispatch(createProductThunk(formData));
+      setCreatedProduct(response);
+
+      history.push(`/products/`);
+    } catch (error) {
+      console.error("Error creating a new product:", error);
+    }
+  };
 
   useEffect(() => {
     let errorsObject = {};
@@ -22,7 +43,7 @@ function CreateNewProduct() {
     if (!description) errorsObject.description = "Description is required";
     if (description && description.length > 1000)
       errorsObject.description =
-        "Description character over limit of 1000 characters";
+        "Description character over the limit of 1000 characters";
     if (description && description.length < 10)
       errorsObject.description =
         "Description must be longer than 10 characters long";
@@ -33,31 +54,11 @@ function CreateNewProduct() {
     if (price && price > 100000)
       errorsObject.price = "Price cannot exceed $100,000";
     setValidationErrors(errorsObject);
-  }, [name, description, category, price, productImage]);
+  }, [name, description, category, price]);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setSubmit(true);
-
-    const CreateNewProductOnSubmit = {
-      product_name: name,
-      product_description: description,
-      product_category: category,
-      product_price: price,
-      product_image: productImage,
-    };
-
-    if (Object.keys(validationErrors).length === 0) {
-      const res = await dispatch(createProductThunk(CreateNewProductOnSubmit));
-      if (!res.errors) {
-        history.push(`/spots/${res.id}`);
-      }
-      setSubmit(false);
-    }
-  };
   return (
     <>
-      <form obSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <div>
           <h1>Create a new product here</h1>
         </div>
@@ -71,6 +72,9 @@ function CreateNewProduct() {
               placeholder="Name"
             />
           </div>
+          {submit && validationErrors.name && (
+            <p id="p-error">{validationErrors.name}</p>
+          )}
           <div>
             <label>Description</label>
             <input
@@ -101,15 +105,28 @@ function CreateNewProduct() {
           <div>
             <label>Image</label>
             <input
-              type="text"
-              value={productImage}
-              onChange={(e) => setProductImage(e.target.value)}
-              placeholder="Image"
+              type="file"
+              onChange={(e) => setProductImage(e.target.files[0])}
             />
           </div>
         </div>
-        <button type="submit">Create New Product</button>
+        <button
+          type="submit"
+          disabled={Object.keys(validationErrors).length > 0}>
+          Create New Product
+        </button>
       </form>
+
+      {createdProduct && (
+        <div>
+          <h2>Details of Created Product:</h2>
+          <p>Name: {createdProduct.product_name}</p>
+          <p>Description: {createdProduct.product_description}</p>
+          <p>Category: {createdProduct.product_category}</p>
+          <p>Price: ${createdProduct.product_price}</p>
+          <p>Picture: {createdProduct.product_image}</p>
+        </div>
+      )}
     </>
   );
 }
