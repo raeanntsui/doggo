@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import ShowAllProducts from "./components/Product/ShowAllProducts/ShowAllProducts";
 import ShowOneProduct from "./components/Product/OneProduct/ShowOneProduct";
 import CreateNewProduct from "./components/Product/CreateProduct/CreateProduct";
+import UpdateProduct from "./components/Product/UpdateProduct/UpdateProduct";
 
 function App() {
   const dispatch = useDispatch();
@@ -23,6 +24,9 @@ function App() {
         <Switch>
           <Route exact path="/products">
             <ShowAllProducts />
+          </Route>
+          <Route path="/products/:productId/update">
+            <UpdateProduct />
           </Route>
           <Route path="/products/new">
             <CreateNewProduct />

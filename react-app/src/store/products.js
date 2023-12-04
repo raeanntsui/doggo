@@ -85,8 +85,8 @@ export const updateProductThunk = (formData, productId) => async (dispatch) => {
   });
   if (res.ok) {
     const product = await res.json();
-    dispatch(updateProduct(product));
-    return product;
+    dispatch(updateProduct(product.resUpdateproduct));
+    return product.resUpdateproduct;
   } else {
     const data = await res.json();
     return data;

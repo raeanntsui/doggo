@@ -5,6 +5,7 @@ import { getOneProductThunk } from "../../../store/products";
 import "./ShowOneProduct.css";
 import DeleteProduct from "../DeleteProduct/DeleteProduct";
 import GetAllReviews from "../../Reviews/GetAllReviews/GetAllReviews";
+import UpdateProduct from "../UpdateProduct/UpdateProduct";
 
 function ShowOneProduct() {
   const dispatch = useDispatch();
@@ -37,13 +38,14 @@ function ShowOneProduct() {
           Loading product information or no product information available?
         </h1>
       )}
-      {/* <div>
+      <div>
         <GetAllReviews />
-      </div> */}
+      </div>
       <div>
         {currentUser.id === product.product_owner_id ? (
           <>
             <DeleteProduct />
+            <UpdateProduct />
           </>
         ) : (
           <h1>Don't show Delete button (not owner of listing)</h1>
