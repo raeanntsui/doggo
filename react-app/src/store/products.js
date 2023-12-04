@@ -69,12 +69,11 @@ export const createProductThunk = (newProduct) => async (dispatch) => {
       method: "POST",
       body: newProduct,
     });
-    const createdProduct = await res.json();
-    console.log("Created Product:", createdProduct);
-    dispatch(createProduct(createdProduct));
-    return createdProduct;
+    const newListing = await res.json();
+    dispatch(createProduct(newListing));
+    return newListing;
   } catch (error) {
-    console.error("Error creating new product:", error);
+    console.error("Error creating new listing:", error);
   }
 };
 

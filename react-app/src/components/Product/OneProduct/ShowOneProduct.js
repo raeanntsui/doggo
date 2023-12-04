@@ -38,9 +38,9 @@ function ShowOneProduct() {
           Loading product information or no product information available?
         </h1>
       )}
-      <div>
+      {/* <div>
         <GetAllReviews />
-      </div>
+      </div> */}
       <div>
         {currentUser.id === product.product_owner_id ? (
           <>

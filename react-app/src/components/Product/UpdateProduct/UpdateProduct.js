@@ -20,12 +20,10 @@ const UpdateProduct = () => {
   const product = products[productId];
   console.log("🚀🚀🚀🚀🚀🚀 ~ product:", product);
 
-  const [name, setName] = useState(product?.product_name || "");
-  const [description, setDescription] = useState(
-    product?.product_description || ""
-  );
-  const [category, setCategory] = useState(product?.product_category || "");
-  const [price, setPrice] = useState(product?.product_price || "");
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("");
+  const [price, setPrice] = useState("");
   const [productImage, setProductImage] = useState(null);
   const [validationErrors, setValidationErrors] = useState({});
   const [errors, setErrors] = useState([]);
@@ -146,7 +144,7 @@ const UpdateProduct = () => {
       {createdProduct && (
         <div>
           <h2>Details of Created Product:</h2>
-          <p>Name: {createdProduct.product_name}</p>
+          <p>Name: {createdProduct.name}</p>
           <p>Description: {createdProduct.product_description}</p>
           <p>Category: {createdProduct.product_category}</p>
           <p>Price: ${createdProduct.product_price}</p>
