@@ -22,10 +22,10 @@ function CreateNewProduct() {
     console.log("Form Data:", name, description, category, price, productImage);
     const formData = new FormData();
     formData.append("product_name", name);
-    formData.append("description", description);
-    formData.append("category", category);
-    formData.append("price", price);
-    formData.append("productImage", productImage);
+    formData.append("product_description", description);
+    formData.append("product_category", category);
+    formData.append("product_price", price);
+    formData.append("product_image", productImage);
 
     try {
       const response = await dispatch(createProductThunk(formData));
@@ -105,8 +105,8 @@ function CreateNewProduct() {
           <div>
             <label>Image</label>
             <input
-              type="file"
-              onChange={(e) => setProductImage(e.target.files[0])}
+              type="text"
+              onChange={(e) => setProductImage(e.target.value)}
             />
           </div>
         </div>

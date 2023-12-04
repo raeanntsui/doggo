@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getOneProductThunk } from "../../../store/products";
 import "./ShowOneProduct.css";
 import DeleteProduct from "../DeleteProduct/DeleteProduct";
+import GetAllReviews from "../../Reviews/GetAllReviews/GetAllReviews";
 
 function ShowOneProduct() {
   const dispatch = useDispatch();
@@ -36,6 +37,9 @@ function ShowOneProduct() {
           Loading product information or no product information available?
         </h1>
       )}
+      {/* <div>
+        <GetAllReviews />
+      </div> */}
       <div>
         {currentUser.id === product.product_owner_id ? (
           <>
