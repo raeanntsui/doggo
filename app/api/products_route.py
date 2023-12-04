@@ -67,7 +67,10 @@ def update_product(id):
 
     form = ProductForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-
+    
+    print("Form Data", form.data)
+    print("Hello this is the update product backend route")
+    
     if form.validate_on_submit():
         product.product_owner_id = current_user.id
         product.product_name = form.data["product_name"]
@@ -75,6 +78,7 @@ def update_product(id):
         product.product_category = form.data["product_category"]
         product.product_price = form.data["product_price"]
         product.product_image = form.data["product_image"]
+        
 
         db.session.commit()
 
