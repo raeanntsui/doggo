@@ -13,19 +13,29 @@ function GetAllReviews() {
   const dispatch = useDispatch();
 
   const currentSessionUser = useSelector((state) => state.session.user);
-  // console.log("🚀🚀🚀🚀🚀🚀 ~ currentSessionUser:", currentSessionUser);
-  const products = useSelector((state) => state.products.allProducts);
-  const allReviewsObject = useSelector((state) => state.reviews.allReviews);
-  const reviewArr = Object.values(allReviewsObject);
+  console.log("🚀🚀🚀🚀🚀🚀 ~ currentSessionUser:", currentSessionUser);
 
+  const currentProduct = useSelector(
+    (state) => state.products.allProducts[productId]
+  );
+  console.log("🚀🚀🚀🚀🚀🚀 ~ current product:", currentProduct);
+
+  const allReviewsObject = useSelector((state) => state.reviews.allReviews);
+  console.log("🚀🚀🚀🚀🚀🚀 ~ allReviewsObject:", allReviewsObject);
+
+  const reviewArr = Object.values(allReviewsObject);
+  console.log("🚀🚀🚀🚀🚀🚀 ~ reviewArr:", reviewArr);
+
+  const reviewWriter = reviewArr[0].user.id;
+  console.log("🚀🚀🚀🚀🚀🚀 ~ reviewWriter:", reviewWriter);
   useEffect(() => {
     dispatch(getOneProductThunk(productId));
     dispatch(getAllReviewsThunk(productId));
   }, [dispatch, productId, reviewArr.length]);
 
   if (
-    !products ||
-    Object.keys(products).length === 0 ||
+    !currentProduct ||
+    Object.keys(currentProduct).length === 0 ||
     !allReviewsObject ||
     !reviewArr
   ) {
@@ -35,32 +45,21 @@ function GetAllReviews() {
   let counter = 1;
   let existingReview;
 
-  if (currentSessionUser) {
-    existingReview = reviewArr.find(
-      (review) => review.User.id === currentSessionUser.id
-    );
-  }
+  // check if the current session user wrote a review or not
+  // check if review id === currentSessionUser.id
+
   return (
     <>
-      {reviewArr.reverse().map((singleReview) => (
-        <div key={singleReview.id} id="single-review">
-          {singleReview.User && singleReview.User.firstName}
-          <h9>{singleReview.review}</h9>
-          {currentSessionUser &&
-          currentSessionUser.id === singleReview.User.id ? (
-            <h1>Delete review button here</h1>
-          ) : // <div id="delete-button">
-          //   <OpenModalButton
-          //     buttonText="Delete Review"
-          //     modalComponent={
-          //       <DeleteReview
-          //         review={existingReview}
-          //         product={productId}
-          //       />
-          //     }
-          //   />
-          // </div>
-          null}
+      {reviewArr.reverse().map((oneReview) => (
+        <div key={oneReview.id}>
+          <h2>Review ID:{oneReview.id}</h2>
+          <h2>Stars: {oneReview.rating}</h2>
+          <h2>{oneReview.review_description}</h2>
+          {oneReview.review_image ? (
+            <img src={oneReview.review_image} />
+          ) : (
+            <h2>No review image to show</h2>
+          )}
         </div>
       ))}
     </>

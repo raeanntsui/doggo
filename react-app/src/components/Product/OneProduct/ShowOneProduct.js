@@ -11,9 +11,9 @@ function ShowOneProduct() {
   const dispatch = useDispatch();
   const { productId } = useParams();
   const product = useSelector((state) => state.products.allProducts[productId]);
-  console.log("🚀🚀🚀🚀🚀🚀 ~ one product:", product);
+  // console.log("🚀🚀🚀🚀🚀🚀 ~ one product:", product);
   const currentUser = useSelector((state) => state.session.user);
-  console.log("🚀🚀🚀🚀🚀🚀 ~ currentUser:", currentUser);
+  // console.log("🚀🚀🚀🚀🚀🚀 ~ currentUser:", currentUser);
 
   useEffect(() => {
     dispatch(getOneProductThunk(productId));
@@ -38,9 +38,9 @@ function ShowOneProduct() {
           Loading product information or no product information available?
         </h1>
       )}
-      {/* <div>
+      <div>
         <GetAllReviews />
-      </div> */}
+      </div>
       <div>
         {currentUser.id === product.product_owner_id ? (
           <>
