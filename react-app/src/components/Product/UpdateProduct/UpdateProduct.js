@@ -135,8 +135,7 @@ const UpdateProduct = () => {
         </div>
         <button
           type="submit"
-          //   disabled={Object.keys(validationErrors).length > 0}
-        >
+          disabled={Object.keys(validationErrors).length > 0}>
           Update listing
         </button>
       </form>

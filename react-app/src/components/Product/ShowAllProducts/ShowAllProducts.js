@@ -21,12 +21,14 @@ function ShowAllProducts() {
     dispatch(getAllProductsThunk());
   }, [dispatch]);
 
+  if (!products) return null;
   return (
     <>
       <div>
         {allProductsObject.length > 0 ? (
           allProductsObject.map((product) => (
             <NavLink key={product.id} to={`/products/${product.id}`}>
+              <img src={product.product_image} />
               <h1>Product ID: {product.id}</h1>
               <h2>Owner ID: {product.product_owner_id}</h2>
               <h2>{product.product_name}</h2>
