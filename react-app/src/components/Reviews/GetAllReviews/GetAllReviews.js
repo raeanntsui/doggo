@@ -26,8 +26,6 @@ function GetAllReviews() {
   const reviewArr = Object.values(allReviewsObject);
   console.log("🚀🚀🚀🚀🚀🚀 ~ reviewArr:", reviewArr);
 
-  const reviewWriter = reviewArr[0].user.id;
-  console.log("🚀🚀🚀🚀🚀🚀 ~ reviewWriter:", reviewWriter);
   useEffect(() => {
     dispatch(getOneProductThunk(productId));
     dispatch(getAllReviewsThunk(productId));
@@ -48,6 +46,17 @@ function GetAllReviews() {
   // check if the current session user wrote a review or not
   // check if review id === currentSessionUser.id
 
+  // if (currentSessionUser) {
+  //   reviewArr.map((review) => {
+  //     review.user_id === currentSessionUser.id;
+  //   });
+  // }
+
+  const userReview = Object.values(allReviewsObject).filter(
+    (review) => review.user_id === currentSessionUser.id
+  );
+  console.log("🚀🚀🚀🚀🚀🚀 ~ userReview:", userReview);
+
   return (
     <>
       {reviewArr.reverse().map((oneReview) => (
@@ -62,6 +71,15 @@ function GetAllReviews() {
           )}
         </div>
       ))}
+      <div>
+        <h1>Check if a session user can create a review or not</h1>
+        {/* {currentSessionUser && currentSessionUser.id === product.user_id ? (
+          <h1>Create a review button here</h1>
+        ) : (
+          <h1>You 
+          already left a review</h1>
+        )} */}
+      </div>
     </>
   );
 }

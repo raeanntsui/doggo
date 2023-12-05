@@ -1,22 +1,28 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { useModal } from "../../../context/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { createReviewThunk } from "../../../store/reviews";
 
-function ReviewForm({ product }) {
+function ReviewForm() {
+  const { productId } = useParams();
   const [description, setDescription] = useState("");
   const [starRating, setStarRating] = useState(0);
   const [reviewImage, setReviewImage] = useState(null);
   const [hover, setHover] = useState(0);
   const [errors, setErrors] = useState({});
   const [submit, setSubmit] = useState(false);
-
   const dispatch = useDispatch();
   const { closeModal } = useModal();
-  const user = useSelector((state) => state.session.user);
+  const currentSessionUser = useSelector((state) => state.session.user);
+  console.log("🚀🚀🚀🚀🚀🚀 ~ currentSessionUser:", currentSessionUser);
+  const currentProduct = useSelector(
+    (state) => state.products.allProducts[productId]
+  );
+  console.log("🚀🚀🚀🚀🚀🚀 ~ currentProduct:", currentProduct);
 
   const checkValidation = () => {
-    return description.length > 10 && starRating;
+    return description.length > 10 && description.length < 500 && starRating;
   };
 
   useEffect(() => {
@@ -24,14 +30,19 @@ function ReviewForm({ product }) {
     if (!description || description.length < 10)
       errorsObject.description =
         "Please write at least 10 characters for your review";
-
+    if (description && description.length > 500)
+      errorsObject.description = "Review exceeds 500 character limit";
+    if (!starRating)
+      errorsObject.starRating =
+        "Please select a rating before submitting your review!";
     setErrors(errorsObject);
-  }, [description]);
+  }, [description, starRating]);
 
   const handleSubmit = async (e) => {
-    if (!product.id) {
+    if (!productId) {
       return null;
     }
+
     e.preventDefault();
     setSubmit(true);
 
@@ -42,7 +53,7 @@ function ReviewForm({ product }) {
     };
 
     if (Object.keys(errors).length === 0) {
-      dispatch(createReviewThunk(submitReview, product.id));
+      dispatch(createReviewThunk(submitReview, productId));
       closeModal();
       setSubmit(false);
       return null;
@@ -55,12 +66,10 @@ function ReviewForm({ product }) {
       <textarea
         value={description}
         onChange={(e) => setDescription(e.target.value)}
-        placeholder="Leave your review here..."
+        placeholder="What did you think about this item?"
       />
       <p>{submit && errors.description}</p>
-      <label>Image</label>
-      <input type="file" onChange={(e) => setReviewImage(e.target.files[0])} />
-      <p>{submit && errors.user_img}</p>
+
       <div className="stars">
         <i
           className={
@@ -113,11 +122,16 @@ function ReviewForm({ product }) {
           onClick={() => setStarRating(5)}
         />
       </div>
+      <p>{submit && errors.starRating}</p>
+      <label>Image</label>
+      <input type="text" onChange={(e) => setReviewImage(e.target.value)} />
       <button
         type="submit"
         onClick={handleSubmit}
-        disabled={!checkValidation()}>
-        Submit Your Review
+        // disabled={!checkValidation()}
+        // disabled={Object.keys(errors).length > 0}
+      >
+        Post Your Review
       </button>
     </form>
   );
