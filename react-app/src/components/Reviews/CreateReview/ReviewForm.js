@@ -125,12 +125,7 @@ function ReviewForm() {
       <p>{submit && errors.starRating}</p>
       <label>Image</label>
       <input type="text" onChange={(e) => setReviewImage(e.target.value)} />
-      <button
-        type="submit"
-        onClick={handleSubmit}
-        // disabled={!checkValidation()}
-        // disabled={Object.keys(errors).length > 0}
-      >
+      <button type="submit" onClick={handleSubmit}>
         Post Your Review
       </button>
     </form>

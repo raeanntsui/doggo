@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./CreateReview.css";
 import { createReviewThunk } from "../../../store/reviews";
 import ReviewForm from "./ReviewForm";
+import OpenModalButton from "../../OpenModalButton";
 
 function CreateNewReview({ product }) {
   const [validationErrors, setValidationErrors] = useState({});

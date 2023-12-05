@@ -67,12 +67,12 @@ function ShowOneProduct() {
       </div>
       <div>
         {/* <CreateNewReview /> */}
-        {/* <OpenModalButton
-          buttonText="Update Listing"
+        <OpenModalButton
+          buttonText="Create a review"
           modalComponent={<ReviewForm />}
-        /> */}
-        <button>Post your review</button>
-        <ReviewForm />
+        />
+        {/* <button>Post your review</button> */}
+        {/* <ReviewForm /> */}
       </div>
     </>
   );
