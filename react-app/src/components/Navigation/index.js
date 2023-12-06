@@ -9,33 +9,37 @@ function Navigation({ isLoaded }) {
   console.log("🚀🚀🚀🚀🚀🚀 ~ sessionUser:", sessionUser);
 
   return (
-    <div id="nav-bar">
-      <ul>
-        <li>
+    <>
+      <div id="nav-bar">
+        <div>
           <NavLink exact to="/">
             Home
           </NavLink>
-        </li>
-        <li>
+        </div>
+        <div>
           <NavLink exact to="/products">
             Products
           </NavLink>
-        </li>
-        {isLoaded && (
-          <li>
-            <ProfileButton user={sessionUser} />
-          </li>
-        )}
-        {sessionUser ? (
-          <>
-            <h1>Hello, {sessionUser.first_name}</h1>
-            <h1>sessionUser.id: {sessionUser.id}</h1>
-          </>
-        ) : (
-          <h1>You are not logged in</h1>
-        )}
-      </ul>
-    </div>
+        </div>
+        <div>
+          {sessionUser ? (
+            <>
+              <h5>Hello, {sessionUser.first_name}</h5>
+              <h5>sessionUser.id: {sessionUser.id}</h5>
+            </>
+          ) : (
+            <h1>You are not logged in</h1>
+          )}
+        </div>
+        <div>
+          {isLoaded && (
+            <li>
+              <ProfileButton user={sessionUser} />
+            </li>
+          )}
+        </div>
+      </div>
+    </>
   );
 }
 

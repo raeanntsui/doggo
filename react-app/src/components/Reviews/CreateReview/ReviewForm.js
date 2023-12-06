@@ -69,7 +69,6 @@ function ReviewForm() {
         placeholder="What did you think about this item?"
       />
       <p>{submit && errors.description}</p>
-
       <div className="stars">
         <i
           className={

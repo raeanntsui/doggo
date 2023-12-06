@@ -12,7 +12,7 @@ const UpdateProduct = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { productId } = useParams();
-  console.log("🚀🚀🚀🚀🚀🚀 ~ productId:", productId);
+  // console.log("🚀🚀🚀🚀🚀🚀 ~ productId:", productId);
   //
   const products = useSelector((state) => state.products.allProducts);
   // console.log("🚀🚀🚀🚀🚀🚀 ~ products:", products);
@@ -34,14 +34,6 @@ const UpdateProduct = () => {
   // console.log("name", name);
   useEffect(() => {
     dispatch(getOneProductThunk(productId));
-    // .then((res) => {
-    // console.log("res", res);
-    // setName(res.name);
-    // setDescription(res.description);
-    // setCategory(res.category);
-    // setPrice(res.price);
-    // setProductImage(res.productImage);
-    // });
   }, [dispatch, productId]);
 
   useEffect(() => {
@@ -72,7 +64,6 @@ const UpdateProduct = () => {
     formData.append("product_category", category);
     formData.append("product_price", price);
     formData.append("product_image", productImage);
-    // console.log();
 
     dispatch(updateProductThunk(formData, productId)).then((res) => {
       history.push(`/products/${productId}`);

@@ -7,6 +7,7 @@ import GetAllReviews from "../../Reviews/GetAllReviews/GetAllReviews";
 import UpdateProduct from "../UpdateProduct/UpdateProduct";
 import ReviewForm from "../../Reviews/CreateReview/ReviewForm";
 import "./ShowOneProduct.css";
+import UpdateReviewForm from "../../Reviews/UpdateReview/UpdateReview";
 
 function ShowOneProduct() {
   const dispatch = useDispatch();
@@ -50,7 +51,10 @@ function ShowOneProduct() {
         currentUser.id !== product.product_owner_id ? (
           <ReviewForm />
         ) : currentUser && existingReview ? (
-          <h1 style={{ color: "red" }}>You already wrote a review here</h1>
+          <>
+            <h1 style={{ color: "red" }}>You already wrote a review here</h1>
+            <UpdateReviewForm />
+          </>
         ) : (
           <h1 style={{ color: "red" }}>
             Can't leave a review (not logged in, already wrote a review, or

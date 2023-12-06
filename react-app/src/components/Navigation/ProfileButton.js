@@ -46,7 +46,9 @@ function ProfileButton({ user }) {
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>{user.username}</li>
+            <li>
+              Welcome, {user.first_name} {user.last_name}!
+            </li>
             <li>
               <NavLink to="/products/new">
                 <button>Create a new listing </button>
