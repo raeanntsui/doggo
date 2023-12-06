@@ -68,11 +68,7 @@ function GetAllReviews() {
           <h2>Reviewer's Name: {oneReview.user.first_name}</h2>
           <h2>Stars: {oneReview.rating}</h2>
           <h2>{oneReview.review_description}</h2>
-          {oneReview.review_image ? (
-            <img src={oneReview.review_image} />
-          ) : (
-            <h1>No photo to show</h1>
-          )}
+          {oneReview.review_image ? <img src={oneReview.review_image} /> : null}
         </div>
       ))}
     </>
