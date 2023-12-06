@@ -18,7 +18,7 @@ function GetAllReviews() {
   const currentProduct = useSelector(
     (state) => state.products.allProducts[productId]
   );
-  console.log("🚀🚀🚀🚀🚀🚀 ~ current product:", currentProduct);
+  // console.log("🚀🚀🚀🚀🚀🚀 ~ current product:", currentProduct);
 
   const allReviewsObject = useSelector((state) => state.reviews.allReviews);
   console.log("🚀🚀🚀🚀🚀🚀 ~ allReviewsObject:", allReviewsObject);
@@ -67,7 +67,7 @@ function GetAllReviews() {
           {oneReview.review_image ? (
             <img src={oneReview.review_image} />
           ) : (
-            <h2>No review image to show</h2>
+            <h1>No photo to show</h1>
           )}
         </div>
       ))}

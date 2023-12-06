@@ -2,22 +2,19 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getOneProductThunk } from "../../../store/products";
-import "./ShowOneProduct.css";
 import DeleteProduct from "../DeleteProduct/DeleteProduct";
 import GetAllReviews from "../../Reviews/GetAllReviews/GetAllReviews";
 import UpdateProduct from "../UpdateProduct/UpdateProduct";
-import OpenModalButton from "../../OpenModalButton/index";
 import ReviewForm from "../../Reviews/CreateReview/ReviewForm";
-import CreateNewReview from "../../Reviews/CreateReview/CreateReview";
+import "./ShowOneProduct.css";
 
 function ShowOneProduct() {
   const dispatch = useDispatch();
   const { productId } = useParams();
   const product = useSelector((state) => state.products.allProducts[productId]);
-  // console.log("🚀🚀🚀🚀🚀🚀 ~ one product:", product);
+  console.log("🚀🚀🚀🚀🚀🚀 ~ current product:", product);
   const currentUser = useSelector((state) => state.session.user);
   // console.log("🚀🚀🚀🚀🚀🚀 ~ currentUser:", currentUser);
-  // const { OpenModalButton } = useModal();
 
   useEffect(() => {
     dispatch(getOneProductThunk(productId));
@@ -38,41 +35,34 @@ function ShowOneProduct() {
           <img src={product.product_image} />
         </div>
       ) : (
-        <h1>
-          Loading product information or no product information available?
-        </h1>
+        <h1>Loading</h1>
       )}
+      <div>
+        {currentUser && currentUser.id !== product.product_owner_id ? (
+          <ReviewForm />
+        ) : (
+          <h1 style={{ color: "red" }}>
+            You made this listing, can't leave review
+          </h1>
+        )}
+      </div>
       <div>
         <GetAllReviews />
       </div>
       <div>
         {currentUser.id === product.product_owner_id ? (
           <>
-            {/* <OpenModalButton
-              buttonText="Delete Listing"
-              modalComponent={<DeleteProduct />}
-            />
-            <OpenModalButton
-              buttonText="Update Listing"
-              modalComponent={<UpdateProduct />}
-            /> */}
+            <h1 style={{ color: "green" }}>
+              You made the listing, delete or update the product here:
+            </h1>
             <DeleteProduct />
             <UpdateProduct />
           </>
         ) : (
-          <h1>
-            Don't show Delete or Update listing button (not owner of listing)
+          <h1 style={{ color: "blue" }}>
+            You did not make this listing, can't make changes to the listing
           </h1>
         )}
-      </div>
-      <div>
-        {/* <CreateNewReview /> */}
-        <OpenModalButton
-          buttonText="Create a review"
-          modalComponent={<ReviewForm />}
-        />
-        {/* <button>Post your review</button> */}
-        {/* <ReviewForm /> */}
       </div>
     </>
   );
