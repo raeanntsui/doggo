@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { useModal } from "../../../context/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { createReviewThunk } from "../../../store/reviews";
-import { setModalContent, closeModal } from "../../OpenModalButton";
 
 function ReviewForm() {
   const { productId } = useParams();
@@ -14,13 +13,13 @@ function ReviewForm() {
   const [errors, setErrors] = useState({});
   const [submit, setSubmit] = useState(false);
   const dispatch = useDispatch();
-  const { setModalContent, closeModal } = useModal();
+  const { closeModal } = useModal();
   const currentSessionUser = useSelector((state) => state.session.user);
-  // console.log("🚀🚀🚀🚀🚀🚀 ~ currentSessionUser:", currentSessionUser);
+  console.log("🚀🚀🚀🚀🚀🚀 ~ currentSessionUser:", currentSessionUser);
   const currentProduct = useSelector(
     (state) => state.products.allProducts[productId]
   );
-  // console.log("🚀🚀🚀🚀🚀🚀 ~ currentProduct:", currentProduct);
+  console.log("🚀🚀🚀🚀🚀🚀 ~ currentProduct:", currentProduct);
 
   const checkValidation = () => {
     return description.length > 10 && description.length < 500 && starRating;
@@ -58,18 +57,6 @@ function ReviewForm() {
       closeModal();
       setSubmit(false);
       return null;
-    } else {
-      // Include error messages in the modal content
-      const modalContent = (
-        <>
-          <ReviewForm />
-          <p>{errors.description}</p>
-          <p>{errors.starRating}</p>
-        </>
-      );
-
-      setModalContent(modalContent);
-      setSubmit(false);
     }
   };
 
@@ -138,7 +125,12 @@ function ReviewForm() {
       <p>{submit && errors.starRating}</p>
       <label>Image</label>
       <input type="text" onChange={(e) => setReviewImage(e.target.value)} />
-      <button type="submit" onClick={handleSubmit}>
+      <button
+        type="submit"
+        onClick={handleSubmit}
+        // disabled={!checkValidation()}
+        // disabled={Object.keys(errors).length > 0}
+      >
         Post Your Review
       </button>
     </form>

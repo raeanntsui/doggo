@@ -13,25 +13,25 @@ const UpdateProduct = () => {
   const history = useHistory();
   const { productId } = useParams();
   console.log("🚀🚀🚀🚀🚀🚀 ~ productId:", productId);
-
+  //
   const products = useSelector((state) => state.products.allProducts);
-  console.log("🚀🚀🚀🚀🚀🚀 ~ products:", products);
+  // console.log("🚀🚀🚀🚀🚀🚀 ~ products:", products);
 
   const product = products[productId];
-  console.log("🚀🚀🚀🚀🚀🚀 ~ product:", product);
+  // console.log("🚀🚀🚀🚀🚀🚀 ~ product:", product);
 
   const [name, setName] = useState(product.product_name);
   const [description, setDescription] = useState(product.product_description);
-  console.log("🚀🚀🚀🚀🚀🚀 ~ description:", description);
+  // console.log("🚀🚀🚀🚀🚀🚀 ~ description:", description);
   const [category, setCategory] = useState(product.product_category);
-  console.log("🚀🚀🚀🚀🚀🚀 ~ category:", category);
+  // console.log("🚀🚀🚀🚀🚀🚀 ~ category:", category);
   const [price, setPrice] = useState(product.product_price);
-  console.log("🚀🚀🚀🚀🚀🚀 ~ price:", price);
+  // console.log("🚀🚀🚀🚀🚀🚀 ~ price:", price);
   const [productImage, setProductImage] = useState(null);
   const [validationErrors, setValidationErrors] = useState({});
   const [errors, setErrors] = useState([]);
   const [createdProduct, setCreatedProduct] = useState(null);
-  console.log("name", name);
+  // console.log("name", name);
   useEffect(() => {
     dispatch(getOneProductThunk(productId));
     // .then((res) => {
@@ -65,14 +65,14 @@ const UpdateProduct = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("name, cate, desc, price", name, category, description, price);
+    // console.log("name, cate, desc, price", name, category, description, price);
     const formData = new FormData();
     formData.append("product_name", name);
     formData.append("product_description", description);
     formData.append("product_category", category);
     formData.append("product_price", price);
     formData.append("product_image", productImage);
-    console.log();
+    // console.log();
 
     dispatch(updateProductThunk(formData, productId)).then((res) => {
       history.push(`/products/${productId}`);

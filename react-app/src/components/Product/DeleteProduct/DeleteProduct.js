@@ -7,13 +7,13 @@ import { deleteProductThunk } from "../../../store/products";
 
 function DeleteProduct() {
   const { productId } = useParams();
-  console.log("🚀🚀🚀🚀🚀🚀 ~ productId:", productId);
+  // console.log("🚀🚀🚀🚀🚀🚀 ~ productId:", productId);
   const { closeModal } = useModal();
   const dispatch = useDispatch();
   const history = useHistory();
 
   const onDeleteButton = async () => {
-    console.log("value of id before calling deleteSpotThunk:", productId);
+    // console.log("value of id before calling deleteSpotThunk:", productId);
     await dispatch(deleteProductThunk(productId));
     history.push(`/products`);
     closeModal();

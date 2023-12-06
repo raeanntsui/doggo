@@ -13,7 +13,7 @@ function GetAllReviews() {
   const dispatch = useDispatch();
 
   const currentSessionUser = useSelector((state) => state.session.user);
-  console.log("🚀🚀🚀🚀🚀🚀 ~ currentSessionUser:", currentSessionUser);
+  // console.log("🚀🚀🚀🚀🚀🚀 ~ currentSessionUser:", currentSessionUser);
 
   const currentProduct = useSelector(
     (state) => state.products.allProducts[productId]
@@ -21,10 +21,10 @@ function GetAllReviews() {
   // console.log("🚀🚀🚀🚀🚀🚀 ~ current product:", currentProduct);
 
   const allReviewsObject = useSelector((state) => state.reviews.allReviews);
-  console.log("🚀🚀🚀🚀🚀🚀 ~ allReviewsObject:", allReviewsObject);
+  // console.log("🚀🚀🚀🚀🚀🚀 ~ allReviewsObject:", allReviewsObject);
 
   const reviewArr = Object.values(allReviewsObject);
-  console.log("🚀🚀🚀🚀🚀🚀 ~ reviewArr:", reviewArr);
+  // console.log("🚀🚀🚀🚀🚀🚀 ~ reviewArr:", reviewArr);
 
   useEffect(() => {
     dispatch(getOneProductThunk(productId));
@@ -55,13 +55,14 @@ function GetAllReviews() {
   const userReview = Object.values(allReviewsObject).filter(
     (review) => review.user_id === currentSessionUser.id
   );
-  console.log("🚀🚀🚀🚀🚀🚀 ~ userReview:", userReview);
+  // console.log("🚀🚀🚀🚀🚀🚀 ~ userReview:", userReview);
 
   return (
     <>
       {reviewArr.reverse().map((oneReview) => (
         <div key={oneReview.id}>
           <h2>Review ID:{oneReview.id}</h2>
+          <h2>Reviewer's Name: {oneReview.user.first_name}</h2>
           <h2>Stars: {oneReview.rating}</h2>
           <h2>{oneReview.review_description}</h2>
           {oneReview.review_image ? (
@@ -71,15 +72,6 @@ function GetAllReviews() {
           )}
         </div>
       ))}
-      <div>
-        <h1>Check if a session user can create a review or not</h1>
-        {/* {currentSessionUser && currentSessionUser.id === product.user_id ? (
-          <h1>Create a review button here</h1>
-        ) : (
-          <h1>You 
-          already left a review</h1>
-        )} */}
-      </div>
     </>
   );
 }

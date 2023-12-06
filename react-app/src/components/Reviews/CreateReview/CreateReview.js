@@ -49,11 +49,7 @@ function CreateNewReview({ product }) {
     setValidationErrors(errorsObject);
   }, [rating, description]);
 
-  return (
-    <>
-      <button>Post Your Review</button>
-    </>
-  );
+  return <>{/* <button>Post Your Review</button> */}</>;
 }
 
 export default CreateNewReview;

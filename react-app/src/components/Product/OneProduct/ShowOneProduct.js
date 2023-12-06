@@ -12,9 +12,9 @@ function ShowOneProduct() {
   const dispatch = useDispatch();
   const { productId } = useParams();
   const product = useSelector((state) => state.products.allProducts[productId]);
-  console.log("🚀🚀🚀🚀🚀🚀 ~ current product:", product);
   const currentUser = useSelector((state) => state.session.user);
-  // console.log("🚀🚀🚀🚀🚀🚀 ~ currentUser:", currentUser);
+  const reviews = useSelector((state) => state.reviews.allReviews);
+  const reviewsObj = Object.values(reviews);
 
   useEffect(() => {
     dispatch(getOneProductThunk(productId));
@@ -22,33 +22,43 @@ function ShowOneProduct() {
 
   if (!product) return null;
 
+  let existingReview = reviewsObj.find(
+    (review) => review.user_id === currentUser.id
+  );
+
   return (
     <>
       {product ? (
         <div>
-          <h1>Information about Product ID: {productId}</h1>
-
-          <h1>Product Owner ID:{product.product_owner_id}</h1>
-          <h1>{product.product_description}</h1>
-          <h1>Category: {product.product_category}</h1>
-          <h1>${product.product_price}</h1>
-          <img src={product.product_image} />
+          <h1>Product Owner ID: {product.product_owner_id}</h1>
+          <h3>Listing created by: {product.user.first_name}</h3>
+          <h3>Description: {product.product_description}</h3>
+          <h3>Category: {product.product_category}</h3>
+          <h3>Price: ${product.product_price}</h3>
+          <img src={product.product_image} alt="Product" />
         </div>
       ) : (
         <h1>Loading</h1>
       )}
+
       <div>
-        {currentUser && currentUser.id !== product.product_owner_id ? (
+        {currentUser &&
+        !existingReview &&
+        currentUser.id !== product.product_owner_id ? (
           <ReviewForm />
+        ) : currentUser && existingReview ? (
+          <h1 style={{ color: "red" }}>You already wrote a review here</h1>
         ) : (
           <h1 style={{ color: "red" }}>
-            You made this listing, can't leave review
+            You made this listing, can't leave a review
           </h1>
         )}
       </div>
+
       <div>
         <GetAllReviews />
       </div>
+
       <div>
         {currentUser.id === product.product_owner_id ? (
           <>
@@ -60,7 +70,7 @@ function ShowOneProduct() {
           </>
         ) : (
           <h1 style={{ color: "blue" }}>
-            You did not make this listing, can't make changes to the listing
+            You did not make this listing, can't update or delete it
           </h1>
         )}
       </div>

@@ -36,10 +36,9 @@ function ShowAllProducts() {
             </NavLink>
           ))
         ) : (
-          <h1>Loading or no product information available?</h1>
+          <h1>Loading</h1>
         )}
       </div>
-      <div>{/* <ReviewForm /> */}</div>
     </>
   );
 }

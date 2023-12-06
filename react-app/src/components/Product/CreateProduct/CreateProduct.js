@@ -19,7 +19,7 @@ function CreateNewProduct() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Data:", name, description, category, price, productImage);
+    // console.log("Form Data:", name, description, category, price, productImage);
     const formData = new FormData();
     formData.append("product_name", name);
     formData.append("product_description", description);
