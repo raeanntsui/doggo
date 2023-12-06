@@ -52,9 +52,12 @@ function GetAllReviews() {
   //   });
   // }
 
-  const userReview = Object.values(allReviewsObject).filter(
-    (review) => review.user_id === currentSessionUser.id
-  );
+  let userReview;
+  if (currentSessionUser) {
+    userReview = Object.values(allReviewsObject).filter(
+      (review) => review.user_id === currentSessionUser.id
+    );
+  }
   // console.log("🚀🚀🚀🚀🚀🚀 ~ userReview:", userReview);
 
   return (

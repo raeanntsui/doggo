@@ -22,9 +22,12 @@ function ShowOneProduct() {
 
   if (!product) return null;
 
-  let existingReview = reviewsObj.find(
-    (review) => review.user_id === currentUser.id
-  );
+  let existingReview;
+  if (currentUser) {
+    existingReview = reviewsObj.find(
+      (review) => review.user_id === currentUser.id
+    );
+  }
 
   return (
     <>
@@ -50,7 +53,8 @@ function ShowOneProduct() {
           <h1 style={{ color: "red" }}>You already wrote a review here</h1>
         ) : (
           <h1 style={{ color: "red" }}>
-            You made this listing, can't leave a review
+            Can't leave a review (not logged in, already wrote a review, or
+            owner of product)
           </h1>
         )}
       </div>
@@ -60,7 +64,7 @@ function ShowOneProduct() {
       </div>
 
       <div>
-        {currentUser.id === product.product_owner_id ? (
+        {currentUser && currentUser.id === product.product_owner_id ? (
           <>
             <h1 style={{ color: "green" }}>
               You made the listing, delete or update the product here:
