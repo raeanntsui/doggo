@@ -10,20 +10,12 @@ function Navigation({ isLoaded }) {
   return (
     <>
       <div id="nav-bar">
-        <div>
-          <h1>Dogsy</h1>
-        </div>
-        <div>
-          <NavLink exact to="/">
-            Home
-          </NavLink>
-        </div>
-        <div>
+        <div id="dogsy">
           <NavLink exact to="/products">
-            Products
+            <h1 id="dogsy-title">Dogsy</h1>
           </NavLink>
         </div>
-        <div>
+        <div id="profile-button">
           {isLoaded && (
             <li>
               <ProfileButton user={sessionUser} />

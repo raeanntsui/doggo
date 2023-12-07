@@ -9,10 +9,12 @@ function LoginFormModal() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  const [submit, setSubmit] = useState(false);
   const { closeModal } = useModal();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const data = await dispatch(login(email, password));
     if (data) {
       setErrors(data);
@@ -39,6 +41,7 @@ function LoginFormModal() {
             required
           />
         </label>
+        <p>{errors.email}</p>
         <label>
           Password
           <input
@@ -48,7 +51,9 @@ function LoginFormModal() {
             required
           />
         </label>
-        <button type="submit">Log In</button>
+        <button type="submit" onClick={handleSubmit}>
+          Log In
+        </button>
       </form>
     </>
   );
