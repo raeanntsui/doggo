@@ -1,93 +1,55 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { signUp } from "../../store/session";
+import { signUp, authenticate } from "../../store/session";
 import "./SignupForm.css";
+import { useHistory } from "react-router-dom";
 
 function SignupFormModal() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [errors, setErrors] = useState({});
-  const [submit, setSubmit] = useState(false);
+  const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
+  const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrors({});
-    if (!username)
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        username: "Please enter a username",
-      }));
+    let errorsObj = {};
 
+    if (!username) errorsObj.username = "Please enter a username";
     if ((username && username.length < 5) || username.length > 25)
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        username: "Please enter a username between 5 and 25 characters",
-      }));
-    if (!email)
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        email: "Please enter an email address",
-      }));
-    if (email && !email.includes("@"))
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        email: "Please enter an email address with the '@' symbol",
-      }));
-    if (email && !email.endsWith(".com"))
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        email: "Please enter an email address ending in '.com'",
-      }));
-    if (!firstName)
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        firstName: "Please enter a first name",
-      }));
+      errorsObj.username =
+        "Please enter a username between 5 and 25 characters long";
+    if (!firstName) errorsObj.firstName = "Please enter your first name";
     if ((firstName && firstName.length < 3) || firstName.length > 25)
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        firstName: "Please enter a first name between 3 and 25 characters",
-      }));
-    if (!lastName)
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        lastName: "Please enter a last name",
-      }));
+      errorsObj.firstName = "Please enter a name between 3 and 25 characters";
     if ((lastName && lastName.length < 3) || lastName.length > 25)
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        lastName: "Please enter a last name between 3 and 25 characters",
-      }));
-    if (!password)
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        password: "Please enter a password",
-      }));
-    if (password && password.length < 5)
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        password: "Please enter a password longer than 5 characters",
-      }));
-    if (password && password !== confirmPassword)
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        password: "Passwords do not match",
-      }));
+      errorsObj.firstName = "Please enter a name between 3 and 25 characters";
+    if (!lastName) errorsObj.lastName = "Please enter your last name";
+    if (!email) errorsObj.email = "Please enter an email address";
+    if (email && !email.includes("@"))
+      errorsObj.email = "Email must contain @ symbol";
+    if (email && !email.endsWith(".com"))
+      errorsObj.email = "Email must end in .com";
+    if (!password) errorsObj.password = "Please enter a password";
+    if (password && password.length < 6)
+      errorsObj.password = "Please enter a password longer than 6 characters";
+    if (password !== confirmPassword)
+      errorsObj.confirmPassword = "Passwords must match";
 
-    // if (errorsObj.length > 0) {
-    //   setErrors(errorsObj);
-    //   return;
-    // }
+    if (Object.values(errorsObj).length > 0) {
+      setErrors(errorsObj);
+      return;
+    }
 
     if (password === confirmPassword) {
-      const data = await dispatch(
+      setErrors({});
+      const res = await dispatch(
         signUp({
           username,
           email,
@@ -95,41 +57,27 @@ function SignupFormModal() {
           last_name: lastName,
           password,
         })
-      );
-      if (data) {
-        setErrors((prevErrors) => ({ ...prevErrors, ...data }));
+      ).catch((res) => res);
+      if (res && res[0].startsWith("email")) {
+        const errorsObj_email = { email: res[0].slice(8) };
+        setErrors(errorsObj_email);
       } else {
+        dispatch(authenticate());
+        history.push("/products");
         closeModal();
-        setSubmit(true);
       }
+    } else {
+      return setErrors({
+        confirmPassword:
+          "Confirm Password field must be the same as the Password field",
+      });
     }
-    // else {
-    //   setErrors((prevErrors) => ({
-
-    //     password: "Passwords do not match",
-    //   }));
-    // }
   };
 
   return (
     <>
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
-        {/* <div>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </div> */}
-        <label>
-          Username
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </label>
-        {errors.username ? <div>{errors.username}</div> : null}
         <label>
           Email
           <input
@@ -138,8 +86,19 @@ function SignupFormModal() {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
+          <div id="errors">{errors.email && <p>{errors.email}</p>}</div>
         </label>
-        {errors.email ? <div>{errors.email}</div> : null}
+        <label>
+          Username
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+          <div id="errors"> {errors.username && <p>{errors.username}</p>}</div>
+        </label>
+
         <label>
           First Name
           <input
@@ -148,8 +107,9 @@ function SignupFormModal() {
             onChange={(e) => setFirstName(e.target.value)}
             required
           />
+          <div id="errors">{errors.firstName && <p>{errors.firstName}</p>}</div>
         </label>
-        {errors.firstName ? <div>{errors.firstName}</div> : null}
+
         <label>
           Last Name
           <input
@@ -158,8 +118,8 @@ function SignupFormModal() {
             onChange={(e) => setLastName(e.target.value)}
             required
           />
+          <div id="errors"> {errors.lastName && <p>{errors.lastName}</p>}</div>
         </label>
-        {errors.lastName ? <div>{errors.lastName}</div> : null}
         <label>
           Password
           <input
@@ -168,6 +128,7 @@ function SignupFormModal() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
+          <div id="errors"> {errors.password && <p>{errors.password}</p>}</div>
         </label>
         <label>
           Confirm Password
@@ -177,11 +138,12 @@ function SignupFormModal() {
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
+          <div id="errors">
+            {" "}
+            {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
+          </div>
         </label>
-        {errors.password ? <div>{errors.password}</div> : null}
-        <button type="submit" onClick={handleSubmit}>
-          Sign Up
-        </button>
+        <button type="submit">Sign Up</button>
       </form>
     </>
   );

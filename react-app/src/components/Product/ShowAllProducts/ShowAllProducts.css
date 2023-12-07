@@ -1,5 +1,5 @@
 #all-products {
-  border: solid 4px red;
+  /* border: solid 4px red; */
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   /* grid-template-rows: repeat(auto-fill, minmax(200px, 1fr)); */
@@ -9,7 +9,7 @@
 }
 
 #one-product {
-  border: solid 4px green;
+  /* border: solid 4px green; */
   width: 200px; /* Set a fixed width for each item */
   /* You can keep or remove the min-width property depending on your design needs */
   /* min-width: 200px; */

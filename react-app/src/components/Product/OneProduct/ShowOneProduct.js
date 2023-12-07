@@ -81,6 +81,32 @@ function ShowOneProduct() {
                 alt="Product"
               />
             </div>
+
+            <div>
+              {currentUser &&
+              !existingReview &&
+              currentUser.id !== product.product_owner_id ? (
+                <div id="review-form">
+                  <ReviewForm />
+                </div>
+              ) : currentUser && existingReview ? (
+                <>
+                  <OpenModalButton
+                    buttonText="Update Review"
+                    modalComponent={
+                      <UpdateReviewForm
+                        review={existingReview}
+                        product={product}
+                      />
+                    }></OpenModalButton>
+                  <OpenModalButton
+                    buttonText="Delete Review"
+                    modalComponent={
+                      <DeleteReview review={existingReview} />
+                    }></OpenModalButton>
+                </>
+              ) : null}
+            </div>
             <div id="reviews-for-this-item">
               <h1>Reviews for this item</h1>
             </div>
@@ -103,27 +129,6 @@ function ShowOneProduct() {
       ) : (
         <h1>Loading</h1>
       )}
-
-      <div>
-        {currentUser &&
-        !existingReview &&
-        currentUser.id !== product.product_owner_id ? (
-          <ReviewForm />
-        ) : currentUser && existingReview ? (
-          <>
-            <OpenModalButton
-              buttonText="Update Review"
-              modalComponent={
-                <UpdateReviewForm review={existingReview} product={product} />
-              }></OpenModalButton>
-            <OpenModalButton
-              buttonText="Delete Review"
-              modalComponent={
-                <DeleteReview review={existingReview} />
-              }></OpenModalButton>
-          </>
-        ) : null}
-      </div>
 
       <div>
         {currentUser && currentUser.id === product.product_owner_id ? (

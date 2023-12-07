@@ -1,0 +1,38 @@
+#sign-up-modal {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  border: none;
+  border-radius: 10px;
+}
+
+#sign-up-modal h1 {
+  font-size: 24px;
+  text-align: center;
+}
+
+label {
+  display: block;
+}
+
+input {
+  width: 100%;
+  /* padding: 8px; */
+  /* margin-bottom: 15px; */
+  /* border: 1px solid #ccc; */
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#errors {
+  color: red;
+  font-size: 14px;
+}
+
+#sign-up-button {
+  padding: 7px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}

@@ -4,6 +4,7 @@
   margin: 0 auto;
   /* line-height: 1.4; */
   /* max-width: 1024px; */
+  word-wrap: break-word;
 }
 
 a {
