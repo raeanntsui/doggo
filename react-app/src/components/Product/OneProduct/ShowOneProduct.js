@@ -53,15 +53,14 @@ function ShowOneProduct() {
           <ReviewForm />
         ) : currentUser && existingReview ? (
           <>
-            <h1 style={{ color: "red" }}>You already wrote a review here</h1>
-            <UpdateReviewForm review={existingReview} product={product} />
+            <OpenModalButton
+              buttonText="Update Review"
+              modalComponent={
+                <UpdateReviewForm review={existingReview} product={product} />
+              }></OpenModalButton>
+            {/* <UpdateReviewForm review={existingReview} product={product} /> */}
           </>
-        ) : (
-          <h1 style={{ color: "red" }}>
-            Can't leave a review (not logged in, already wrote a review, or
-            owner of product)
-          </h1>
-        )}
+        ) : null}
       </div>
 
       <div>
@@ -71,9 +70,6 @@ function ShowOneProduct() {
       <div>
         {currentUser && currentUser.id === product.product_owner_id ? (
           <>
-            <h1 style={{ color: "green" }}>
-              You made the listing, delete or update the product here:
-            </h1>
             <OpenModalButton
               buttonText="Delete Listing"
               modalComponent={
@@ -86,11 +82,7 @@ function ShowOneProduct() {
               }></OpenModalButton>
             {/* <UpdateProduct /> */}
           </>
-        ) : (
-          <h1 style={{ color: "blue" }}>
-            You did not make this listing, can't update or delete it
-          </h1>
-        )}
+        ) : null}
       </div>
     </>
   );

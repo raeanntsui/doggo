@@ -179,10 +179,10 @@ import "./UpdateReview.css";
 import { getAllProductsThunk } from "../../../store/products";
 
 function UpdateReviewForm({ product, review }) {
-  const { productId } = useParams();
+  //   const { productId } = useParams();
   //   const { reviewId } = useParams();
   //   console.log("🚀🚀🚀🚀🚀🚀 ~ reviewId:", reviewId);
-
+  const { closeModal } = useModal();
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -198,7 +198,6 @@ function UpdateReviewForm({ product, review }) {
   const [hover, setHover] = useState(0);
   const [errors, setErrors] = useState({});
   const [submit, setSubmit] = useState(false);
-  const { closeModal } = useModal();
 
   //   const currentProduct = useSelector(
   //     (state) => state.products.allProducts[productId]
@@ -228,7 +227,7 @@ function UpdateReviewForm({ product, review }) {
     setErrors(errorsObject);
   }, [starRating, description]);
 
-  if (!product || !currentSessionUser) {
+  if (!product.id || !currentSessionUser) {
     return null;
   }
 
@@ -241,26 +240,35 @@ function UpdateReviewForm({ product, review }) {
       review_image: reviewImage,
     };
 
-    // if (Object.keys(errors).length === 0) {
-    //     setErrors(errorsObject);
-    //   return;
-    // }
+    await dispatch(updateReviewThunk(review.id, product));
 
+    if (Object.keys(errors).length === 0) {
+      closeModal();
+    }
+
+    console.log("🚀🚀🚀🚀🚀🚀 ~ errors:", errors);
+    setSubmit(true);
     // const form = new FormData();
     // form.append("starRating", starRating);
     // form.append("description", description);
     // form.append("reviewImage", reviewImage);
 
-    await dispatch(updateReviewThunk(submitReview, review.id)).then(
-      (response) => {
-        if (response.errors) {
-          setErrors(response.errors);
-        } else {
-          // history.push(`/products/${product.id}`);
-          setSubmit(true);
-        }
-      }
-    );
+    //! Keep for later
+    // await dispatch(updateReviewThunk(review.id, submitReview)).then(
+    //   (response) => {
+    //     console.log("🚀🚀🚀🚀🚀🚀 ~ response:", response);
+    //     if (response.errors) {
+    //       console.log("🚀🚀🚀🚀🚀🚀 ~ response.errors:", response.errors);
+    //       setErrors(response.errors);
+    //     } else {
+    //       // history.push(`/products/${product.id}`);
+
+    //       setSubmit(true);
+    //       closeModal();
+    //     }
+    //   }
+    // );
+    //! End keep for later
   };
 
   return (

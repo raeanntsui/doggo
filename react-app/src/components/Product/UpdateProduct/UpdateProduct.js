@@ -25,7 +25,7 @@ const UpdateProduct = ({ productId }) => {
   const [validationErrors, setValidationErrors] = useState({});
   const [errors, setErrors] = useState([]);
   const [createdProduct, setCreatedProduct] = useState(null);
-
+  const [submit, setSubmit] = useState(false);
   useEffect(() => {
     dispatch(getOneProductThunk(productId));
   }, [dispatch, productId]);
@@ -33,17 +33,18 @@ const UpdateProduct = ({ productId }) => {
   useEffect(() => {
     let errorsObject = {};
     if (!name) errorsObject.name = "Name is required";
+    if (name && name.length < 5)
+      errorsObject.name = "Name must be longer than 5 characters";
     if (!description) errorsObject.description = "Description is required";
     if (description && description.length > 1000)
-      errorsObject.description =
-        "Description character over the limit of 1000 characters";
+      errorsObject.description = "Description exceeds 1000 characters";
     if (description && description.length < 10)
       errorsObject.description =
-        "Description must be longer than 10 characters long";
+        "Description must more than 10 characters long";
     if (!category) errorsObject.category = "Category is required";
-    if (!price) errorsObject.price = "Price is required";
-    if (price && price < 0)
-      errorsObject.price = "Price must be greater than $1";
+    if (!price) errorsObject.price = "Please enter a price";
+    if (price && price <= 0) errorsObject.price = "Price must be at least $1";
+    if (price && price < 0) errorsObject.price = "Price cannot be negative";
     if (price && price > 100000)
       errorsObject.price = "Price cannot exceed $100,000";
     setValidationErrors(errorsObject);
@@ -61,8 +62,14 @@ const UpdateProduct = ({ productId }) => {
 
     dispatch(updateProductThunk(formData, productId)).then((res) => {
       history.push(`/products/${productId}`);
-      closeModal();
+      // closeModal();
     });
+    if (Object.keys(validationErrors).length === 0) {
+      console.log("🚀🚀🚀🚀🚀🚀 ~ validationErrors:", validationErrors);
+      closeModal();
+    }
+
+    setSubmit(true);
   };
 
   return (
@@ -81,9 +88,7 @@ const UpdateProduct = ({ productId }) => {
               placeholder="Name"
             />
           </div>
-          {/* {submit && validationErrors.name && (
-            <p id="p-error">{validationErrors.name}</p>
-          )} */}
+          {submit && validationErrors.name && <p>{validationErrors.name}</p>}
           <div>
             <label>Description</label>
             <input
@@ -93,6 +98,9 @@ const UpdateProduct = ({ productId }) => {
               placeholder="Description"
             />
           </div>
+          {submit && validationErrors.description && (
+            <p>{validationErrors.description}</p>
+          )}
           <div>
             <label>Category</label>
             <input
@@ -102,6 +110,9 @@ const UpdateProduct = ({ productId }) => {
               placeholder="Category"
             />
           </div>
+          {submit && validationErrors.category && (
+            <p>{validationErrors.category}</p>
+          )}
           <div>
             <label>Price</label>
             <input
@@ -111,6 +122,7 @@ const UpdateProduct = ({ productId }) => {
               placeholder="Price"
             />
           </div>
+          {submit && validationErrors.price && <p>{validationErrors.price}</p>}
           <div>
             <label>Image</label>
             <input
@@ -121,7 +133,8 @@ const UpdateProduct = ({ productId }) => {
         </div>
         <button
           type="submit"
-          disabled={Object.keys(validationErrors).length > 0}>
+          // disabled={Object.keys(validationErrors).length > 0}
+        >
           Update listing
         </button>
       </form>
