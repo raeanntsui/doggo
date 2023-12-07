@@ -31,13 +31,7 @@ def seed_reviews():
         product_id=1,
         rating=5,
         review_description="I think I look super cute with this hat on!",
-        review_image="https://m.media-amazon.com/images/I/71ijFR1lwsL.jpg")    
-    review6 = Review(
-        user_id=5,
-        product_id=1,
-        rating=3,
-        review_description="I am a cutie. Would buy again.",
-        review_image="https://i5.walmartimages.com/asr/14853ba2-8d94-4011-a785-d72d2f1b3261.636f931660abbde0c8ec9662774830eb.jpeg")    
+        review_image="https://m.media-amazon.com/images/I/71ijFR1lwsL.jpg")        
     review7 = Review(
         user_id=1,
         product_id=2,
@@ -56,12 +50,6 @@ def seed_reviews():
         rating=4,
         review_description="The stars looked and I want to eat them.",
         review_image="https://media.discordapp.net/attachments/1110721109076221993/1182199243918815302/IMG_1322.jpg?ex=6583d3d7&is=65715ed7&hm=f6e92e659bbda5559a979c9533421e8c70723b755637fad3b2a0ad113bfaf757&=&format=webp&width=414&height=497")    
-    review10 = Review(
-        user_id=1,
-        product_id=2,
-        rating=4,
-        review_description="I thought these looked so adorable on Maddie, but she didn't care too much for it.",
-        review_image="https://media.discordapp.net/attachments/1110721109076221993/1182199243272896592/IMG_1330.jpg?ex=6583d3d7&is=65715ed7&hm=a3847b843a44b03892a65949c8ad632114fbca132dacb260e20d3fa7a3142608&=&format=webp&width=373&height=497")    
     review11 = Review(
         user_id=2,
         product_id=3,
@@ -85,13 +73,7 @@ def seed_reviews():
         product_id=4,
         rating=2,
         review_description="Meh. Could be better.",
-        review_image="https://media.discordapp.net/attachments/1110721109076221993/1182198479162978344/image0.jpg?ex=6583d321&is=65715e21&hm=aa8c417280b07d244f772111cf36809fdef73b74b64e1f19398e7e016bf3a677&=&format=webp&width=544&height=497")    
-    review15 = Review(
-        user_id=10,
-        product_id=4,
-        rating=5,
-        review_description="Omg! Look at me and my pumpkin hat! So cute.",
-        review_image="https://media.discordapp.net/attachments/1110721109076221993/1182199243272896592/IMG_1330.jpg?ex=6583d3d7&is=65715ed7&hm=a3847b843a44b03892a65949c8ad632114fbca132dacb260e20d3fa7a3142608&=&format=webp&width=373&height=497")    
+        review_image="https://media.discordapp.net/attachments/1110721109076221993/1182198479162978344/image0.jpg?ex=6583d321&is=65715e21&hm=aa8c417280b07d244f772111cf36809fdef73b74b64e1f19398e7e016bf3a677&=&format=webp&width=544&height=497")        
     review16 = Review(
         user_id=1,
         product_id=5,
@@ -122,16 +104,13 @@ def seed_reviews():
     db.session.add(review3)
     db.session.add(review4)
     db.session.add(review5)
-    db.session.add(review6)
     db.session.add(review7)
     db.session.add(review8)
     db.session.add(review9)
-    db.session.add(review10)
     db.session.add(review11)
     db.session.add(review12)
     db.session.add(review13)
     db.session.add(review14)
-    db.session.add(review15)
     db.session.add(review16)
     db.session.add(review17)
     db.session.add(review18)

@@ -17,11 +17,15 @@ function ShowAllProducts() {
   const currentUser = useSelector((state) => state.session.user);
   console.log("🚀🚀🚀🚀🚀🚀 ~ currentUser:", currentUser);
 
+  const allReviewsObject = useSelector((state) => state.reviews.allReviews);
+  const reviewArr = Object.values(allReviewsObject);
+
   useEffect(() => {
     dispatch(getAllProductsThunk());
   }, [dispatch]);
 
   if (!products) return null;
+
   return (
     <>
       <div>

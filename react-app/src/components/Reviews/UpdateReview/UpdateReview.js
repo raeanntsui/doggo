@@ -15,9 +15,13 @@ function UpdateReviewForm({ product, review }) {
   const reviews = useSelector((state) => state.reviews.allReviews);
   console.log("🚀🚀🚀🚀🚀🚀 ~ productReview:", reviews);
 
-  const [description, setDescription] = useState("");
-  const [starRating, setStarRating] = useState("");
-  const [reviewImage, setReviewImage] = useState("");
+  const [description, setDescription] = useState(review.review_description);
+  console.log(
+    "🚀🚀🚀🚀🚀🚀 ~ review.review_description:",
+    review.review_description
+  );
+  const [starRating, setStarRating] = useState(review.rating);
+  const [reviewImage, setReviewImage] = useState(review.review_image);
   const [hover, setHover] = useState(0);
   const [errors, setErrors] = useState({});
   const [submit, setSubmit] = useState(false);
@@ -28,8 +32,8 @@ function UpdateReviewForm({ product, review }) {
 
   useEffect(() => {
     if (review) {
-      setStarRating(review.starRating || "");
-      setDescription(review.description || "");
+      setStarRating(review.rating || "");
+      setDescription(review.review_description || "");
       setReviewImage(review.review_image || "");
     }
   }, [review]);

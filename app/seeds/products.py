@@ -43,7 +43,7 @@ def seed_products():
         product_description="Our shop is your go-to destination for enchanting hats designed exclusively for pets. Explore our collection inspired by the lovable pink character, Kirby. From whimsical designs to cozy fits, our Kirby-themed hats promise to transform your furry friends into adorable, magical companions. Step into a world of playful fashion at our shop, where every hat carries the spirit of Kirby.",
         product_category="hat",
         product_price=12,
-        product_image="https://sadanduseless.b-cdn.net/wp-content/uploads/2019/09/fruit-hats13.jpg")
+        product_image="https://m.media-amazon.com/images/I/61mdLfMohKL._AC_UF350,350_QL80_.jpg")
     db.session.add(product1)
     db.session.add(product2)
     db.session.add(product3)

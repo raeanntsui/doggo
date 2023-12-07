@@ -16,8 +16,15 @@ function ShowOneProduct() {
   const { productId } = useParams();
   const product = useSelector((state) => state.products.allProducts[productId]);
   const currentUser = useSelector((state) => state.session.user);
+
+  // all reviews for 1 spot (reviews)
   const reviews = useSelector((state) => state.reviews.allReviews);
-  const reviewsObj = Object.values(reviews);
+  console.log("🚀🚀🚀🚀🚀🚀 ~ reviews:", reviews);
+
+  const reviewsObj = Object.values(reviews).filter(
+    (review) => review.product_id === parseInt(productId)
+  );
+  console.log("🚀🚀🚀🚀🚀🚀 ~ reviewsObj:", reviewsObj);
 
   useEffect(() => {
     dispatch(getOneProductThunk(productId));
@@ -32,6 +39,40 @@ function ShowOneProduct() {
     );
   }
 
+  const renderStars = (rating) => {
+    const starElements = [];
+    const filledStars = Math.floor(rating);
+
+    for (let i = 0; i < filledStars; i++) {
+      starElements.push(
+        <i key={i} className="fa-solid fa-star filled-stars"></i>
+      );
+    }
+
+    const emptyStars = 5 - filledStars;
+    for (let i = 0; i < emptyStars; i++) {
+      starElements.push(
+        <i key={`empty-${i}`} className="fa-regular fa-star filled-stars"></i>
+      );
+    }
+
+    return starElements;
+  };
+
+  const calculateAverageRating = () => {
+    if (reviews.length === 0) {
+      return 0;
+    }
+
+    const totalRating = reviewsObj.reduce(
+      (sum, review) => sum + review.rating,
+      0
+    );
+    return totalRating / reviewsObj.length;
+  };
+
+  const averageRating = calculateAverageRating();
+
   return (
     <>
       {product ? (
@@ -41,6 +82,7 @@ function ShowOneProduct() {
           <h3>Description: {product.product_description}</h3>
           <h3>Category: {product.product_category}</h3>
           <h3>Price: ${product.product_price}</h3>
+          <h3>{renderStars(averageRating)}</h3>
           <img src={product.product_image} alt="Product" />
         </div>
       ) : (

@@ -9,13 +9,14 @@ import UpdateReviewForm from "../UpdateReview/UpdateReview";
 function GetAllReviews() {
   const { productId } = useParams();
   const dispatch = useDispatch();
-
+  // const [starRating, setStarRating] = useState(review.rating);
   const currentSessionUser = useSelector((state) => state.session.user);
   const currentProduct = useSelector(
     (state) => state.products.allProducts[productId]
   );
   const allReviewsObject = useSelector((state) => state.reviews.allReviews);
   const reviewArr = Object.values(allReviewsObject);
+  console.log("🚀🚀🚀🚀🚀🚀 ~ reviewArr:", reviewArr);
 
   useEffect(() => {
     dispatch(getOneProductThunk(productId));
@@ -37,12 +38,47 @@ function GetAllReviews() {
       (review) => review.user_id === currentSessionUser.id
     );
   }
+
+  const renderStars = (rating) => {
+    const starElements = [];
+    const filledStars = Math.floor(rating);
+
+    for (let i = 0; i < filledStars; i++) {
+      starElements.push(
+        <i key={i} className="fa-solid fa-star filled-stars"></i>
+      );
+    }
+
+    const emptyStars = 5 - filledStars;
+    for (let i = 0; i < emptyStars; i++) {
+      starElements.push(
+        <i key={`empty-${i}`} className="fa-regular fa-star filled-stars"></i>
+      );
+    }
+
+    return starElements;
+  };
+
+  const calculateAverageRating = () => {
+    if (reviewArr.length === 0) {
+      return 0;
+    }
+
+    const totalRating = reviewArr.reduce(
+      (sum, review) => sum + review.rating,
+      0
+    );
+    return totalRating / reviewArr.length;
+  };
+
+  const averageRating = calculateAverageRating();
+
   return (
     <>
       {reviewArr.reverse().map((oneReview) => (
         <div key={oneReview.id}>
           <h2>By: {oneReview.user.first_name}</h2>
-          <h2>Star Rating: {oneReview.rating}</h2>
+          <p>{renderStars(oneReview.rating)}</p>
           <h2>{oneReview.review_description}</h2>
           {oneReview.review_image ? (
             <img src={oneReview.review_image} />
