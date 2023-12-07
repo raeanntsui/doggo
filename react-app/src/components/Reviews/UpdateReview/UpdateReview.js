@@ -240,12 +240,10 @@ function UpdateReviewForm({ product, review }) {
       review_image: reviewImage,
     };
 
-    await dispatch(updateReviewThunk(review.id, product));
-
     if (Object.keys(errors).length === 0) {
+      await dispatch(updateReviewThunk(review.id, submitReview));
       closeModal();
     }
-
     console.log("🚀🚀🚀🚀🚀🚀 ~ errors:", errors);
     setSubmit(true);
     // const form = new FormData();
