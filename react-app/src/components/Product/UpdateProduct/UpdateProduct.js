@@ -7,31 +7,25 @@ import {
   getOneProductThunk,
   updateProductThunk,
 } from "../../../store/products";
+import { useModal } from "../../../context/Modal";
 
-const UpdateProduct = () => {
+const UpdateProduct = ({ productId }) => {
+  // const { productId } = useParams();
+  const { closeModal } = useModal();
   const dispatch = useDispatch();
   const history = useHistory();
-  const { productId } = useParams();
-  // console.log("🚀🚀🚀🚀🚀🚀 ~ productId:", productId);
-  //
-  const products = useSelector((state) => state.products.allProducts);
-  // console.log("🚀🚀🚀🚀🚀🚀 ~ products:", products);
 
-  const product = products[productId];
-  // console.log("🚀🚀🚀🚀🚀🚀 ~ product:", product);
+  const product = useSelector((state) => state.products.allProducts[productId]);
 
   const [name, setName] = useState(product.product_name);
   const [description, setDescription] = useState(product.product_description);
-  // console.log("🚀🚀🚀🚀🚀🚀 ~ description:", description);
   const [category, setCategory] = useState(product.product_category);
-  // console.log("🚀🚀🚀🚀🚀🚀 ~ category:", category);
   const [price, setPrice] = useState(product.product_price);
-  // console.log("🚀🚀🚀🚀🚀🚀 ~ price:", price);
   const [productImage, setProductImage] = useState(null);
   const [validationErrors, setValidationErrors] = useState({});
   const [errors, setErrors] = useState([]);
   const [createdProduct, setCreatedProduct] = useState(null);
-  // console.log("name", name);
+
   useEffect(() => {
     dispatch(getOneProductThunk(productId));
   }, [dispatch, productId]);
@@ -67,6 +61,7 @@ const UpdateProduct = () => {
 
     dispatch(updateProductThunk(formData, productId)).then((res) => {
       history.push(`/products/${productId}`);
+      closeModal();
     });
   };
 

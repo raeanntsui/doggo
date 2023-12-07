@@ -1,0 +1,9 @@
+#update-review-form {
+  border: 4px solid pink;
+}
+
+#update-review-form > form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}

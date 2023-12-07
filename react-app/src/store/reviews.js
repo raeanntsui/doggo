@@ -1,8 +1,8 @@
 // action constants
 const GET_ALL_REVIEWS = "reviews/GET_ALL_REVIEWS";
 const CREATE_REVIEW = "reviews/CREATE_REVIEW";
-const UPDATE_REVIEW = "review/UPDATE_REVIEW";
-const DELETE_REVIEW = "/spots/DELETE_REVIEW";
+const UPDATE_REVIEW = "reviews/UPDATE_REVIEW";
+const DELETE_REVIEW = "reviews/DELETE_REVIEW";
 
 // action
 const getAllReviews = (reviews) => ({

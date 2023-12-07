@@ -8,6 +8,7 @@ import UpdateProduct from "../UpdateProduct/UpdateProduct";
 import ReviewForm from "../../Reviews/CreateReview/ReviewForm";
 import "./ShowOneProduct.css";
 import UpdateReviewForm from "../../Reviews/UpdateReview/UpdateReview";
+import OpenModalButton from "../../OpenModalButton";
 
 function ShowOneProduct() {
   const dispatch = useDispatch();
@@ -53,7 +54,7 @@ function ShowOneProduct() {
         ) : currentUser && existingReview ? (
           <>
             <h1 style={{ color: "red" }}>You already wrote a review here</h1>
-            <UpdateReviewForm />
+            <UpdateReviewForm review={existingReview} product={product} />
           </>
         ) : (
           <h1 style={{ color: "red" }}>
@@ -73,8 +74,17 @@ function ShowOneProduct() {
             <h1 style={{ color: "green" }}>
               You made the listing, delete or update the product here:
             </h1>
-            <DeleteProduct />
-            <UpdateProduct />
+            <OpenModalButton
+              buttonText="Delete Listing"
+              modalComponent={
+                <DeleteProduct productId={productId} />
+              }></OpenModalButton>
+            <OpenModalButton
+              buttonText="Update Listing"
+              modalComponent={
+                <UpdateProduct productId={productId} />
+              }></OpenModalButton>
+            {/* <UpdateProduct /> */}
           </>
         ) : (
           <h1 style={{ color: "blue" }}>

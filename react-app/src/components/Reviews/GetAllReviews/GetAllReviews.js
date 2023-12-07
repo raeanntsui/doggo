@@ -7,10 +7,13 @@ import { getAllReviewsThunk } from "../../../store/reviews";
 // import PostReviewModalContent from "./ReviewForm";
 // import OpenModalButton from "../OpenModalButton";
 // import DeleteReview from "../DeleteReview/DeleteReview";
+import { useModal } from "../../../context/Modal";
 
 function GetAllReviews() {
   const { productId } = useParams();
   const dispatch = useDispatch();
+  const closeModal = useModal();
+
 
   const currentSessionUser = useSelector((state) => state.session.user);
   // console.log("🚀🚀🚀🚀🚀🚀 ~ currentSessionUser:", currentSessionUser);
