@@ -12,41 +12,79 @@ function SignupFormModal() {
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState({});
   const [submit, setSubmit] = useState(false);
   const { closeModal } = useModal();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrors({});
+    if (!username)
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        username: "Please enter a username",
+      }));
 
-    let errorsArray = [];
-
-    if (!username) errorsArray.push("Please enter a username");
-    if (username && (username.length < 5 || username.length > 25))
-      errorsArray.push(
-        "Please enter a username between 5 and 25 characters long"
-      );
-    if (!email) errorsArray.push("Please enter an email address");
+    if ((username && username.length < 5) || username.length > 25)
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        username: "Please enter a username between 5 and 25 characters",
+      }));
+    if (!email)
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        email: "Please enter an email address",
+      }));
     if (email && !email.includes("@"))
-      errorsArray.push("Please enter an email address with the '@' symbol");
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        email: "Please enter an email address with the '@' symbol",
+      }));
     if (email && !email.endsWith(".com"))
-      errorsArray.push("Please enter an email address ending in '.com'");
-    if (!firstName) errorsArray.push("Please enter a first name");
-    if (firstName && firstName.length < 3)
-      errorsArray.push("Please enter a first name longer than 3 characters");
-    if (!lastName) errorsArray.push("Please enter a last name");
-    if (lastName && lastName.length < 3)
-      errorsArray.push("Please enter a last name longer than 3 characters");
-    if (password && password.length < 6)
-      errorsArray.push("Please enter a password longer than 6 characters");
-    if (password !== confirmPassword) {
-      errorsArray.push("Passwords do not match");
-    }
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        email: "Please enter an email address ending in '.com'",
+      }));
+    if (!firstName)
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        firstName: "Please enter a first name",
+      }));
+    if ((firstName && firstName.length < 3) || firstName.length > 25)
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        firstName: "Please enter a first name between 3 and 25 characters",
+      }));
+    if (!lastName)
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        lastName: "Please enter a last name",
+      }));
+    if ((lastName && lastName.length < 3) || lastName.length > 25)
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        lastName: "Please enter a last name between 3 and 25 characters",
+      }));
+    if (!password)
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        password: "Please enter a password",
+      }));
+    if (password && password.length < 5)
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        password: "Please enter a password longer than 5 characters",
+      }));
+    if (password && password !== confirmPassword)
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        password: "Passwords do not match",
+      }));
 
-    if (errorsArray.length > 0) {
-      setErrors(errorsArray);
-      return;
-    }
+    // if (errorsObj.length > 0) {
+    //   setErrors(errorsObj);
+    //   return;
+    // }
 
     if (password === confirmPassword) {
       const data = await dispatch(
@@ -59,27 +97,29 @@ function SignupFormModal() {
         })
       );
       if (data) {
-        setErrors(data);
+        setErrors((prevErrors) => ({ ...prevErrors, ...data }));
       } else {
         closeModal();
         setSubmit(true);
       }
-    } else {
-      setErrors([
-        "Confirm Password field must be the same as the Password field",
-      ]);
     }
+    // else {
+    //   setErrors((prevErrors) => ({
+
+    //     password: "Passwords do not match",
+    //   }));
+    // }
   };
 
   return (
     <>
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
-        <div>
+        {/* <div>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
-        </div>
+        </div> */}
         <label>
           Username
           <input
@@ -89,7 +129,7 @@ function SignupFormModal() {
             required
           />
         </label>
-        <p>{errors.username}</p>
+        {errors.username ? <div>{errors.username}</div> : null}
         <label>
           Email
           <input
@@ -99,7 +139,7 @@ function SignupFormModal() {
             required
           />
         </label>
-        <p>{submit && errors.email}</p>
+        {errors.email ? <div>{errors.email}</div> : null}
         <label>
           First Name
           <input
@@ -109,7 +149,7 @@ function SignupFormModal() {
             required
           />
         </label>
-        <p>{submit && errors.firstName}</p>
+        {errors.firstName ? <div>{errors.firstName}</div> : null}
         <label>
           Last Name
           <input
@@ -119,7 +159,7 @@ function SignupFormModal() {
             required
           />
         </label>
-        <p>{submit && errors.lastName}</p>
+        {errors.lastName ? <div>{errors.lastName}</div> : null}
         <label>
           Password
           <input
@@ -138,7 +178,7 @@ function SignupFormModal() {
             required
           />
         </label>
-        <p>{submit && errors.password}</p>
+        {errors.password ? <div>{errors.password}</div> : null}
         <button type="submit" onClick={handleSubmit}>
           Sign Up
         </button>

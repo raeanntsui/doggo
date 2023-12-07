@@ -1,0 +1,5 @@
+#user-icon-and-name {
+  display: inline-flex;
+  border: 4px solid red;
+  gap: 10px;
+}

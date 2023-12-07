@@ -16,15 +16,11 @@ function ShowOneProduct() {
   const { productId } = useParams();
   const product = useSelector((state) => state.products.allProducts[productId]);
   const currentUser = useSelector((state) => state.session.user);
-
-  // all reviews for 1 spot (reviews)
   const reviews = useSelector((state) => state.reviews.allReviews);
-  console.log("🚀🚀🚀🚀🚀🚀 ~ reviews:", reviews);
 
   const reviewsObj = Object.values(reviews).filter(
     (review) => review.product_id === parseInt(productId)
   );
-  console.log("🚀🚀🚀🚀🚀🚀 ~ reviewsObj:", reviewsObj);
 
   useEffect(() => {
     dispatch(getOneProductThunk(productId));
@@ -76,14 +72,30 @@ function ShowOneProduct() {
   return (
     <>
       {product ? (
-        <div>
-          <h1>Product Owner ID: {product.product_owner_id}</h1>
-          <h3>Listing created by: {product.user.first_name}</h3>
-          <h3>Description: {product.product_description}</h3>
-          <h3>Category: {product.product_category}</h3>
-          <h3>Price: ${product.product_price}</h3>
-          <h3>{renderStars(averageRating)}</h3>
-          <img src={product.product_image} alt="Product" />
+        <div id="product-information-parent">
+          <div id="product-image-container">
+            <div>
+              <img
+                id="product-image"
+                src={product.product_image}
+                alt="Product"
+              />
+            </div>
+            <div id="reviews">
+              <GetAllReviews />
+            </div>
+          </div>
+          <div id="product-information-right">
+            <h1>${product.product_price}</h1>
+            <h2>{product.product_name}</h2>
+            <div id="shop-and-stars">
+              <div>{product.user.first_name}</div>
+              <div>{renderStars(averageRating)}</div>
+            </div>
+
+            <h3>{product.product_description}</h3>
+            <h5>Category: {product.product_category}</h5>
+          </div>
         </div>
       ) : (
         <h1>Loading</h1>
@@ -108,10 +120,6 @@ function ShowOneProduct() {
               }></OpenModalButton>
           </>
         ) : null}
-      </div>
-
-      <div>
-        <GetAllReviews />
       </div>
 
       <div>

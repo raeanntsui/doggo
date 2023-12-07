@@ -5,7 +5,7 @@ import { getOneProductThunk } from "../../../store/products";
 import { getAllReviewsThunk } from "../../../store/reviews";
 import { useModal } from "../../../context/Modal";
 import UpdateReviewForm from "../UpdateReview/UpdateReview";
-
+import "./GetAllReviews.css";
 function GetAllReviews() {
   const { productId } = useParams();
   const dispatch = useDispatch();
@@ -75,18 +75,27 @@ function GetAllReviews() {
   return (
     <>
       <div>
-        <p>{reviewArr.length} reviews</p>
+        <p>
+          {reviewArr.length} reviews {renderStars(averageRating)}
+        </p>
       </div>
       {reviewArr.reverse().map((oneReview) => (
         <div key={oneReview.id}>
-          <h2>By: {oneReview.user.first_name}</h2>
           <p>{renderStars(oneReview.rating)}</p>
           <h2>{oneReview.review_description}</h2>
+          <div id="user-icon-and-name">
+            <div>
+              <i class="fa-solid fa-user"></i>
+            </div>
+            <div>
+              <p>
+                {oneReview.user.first_name} {oneReview.user.last_name}{" "}
+              </p>
+            </div>
+          </div>
           {oneReview.review_image ? (
-            <img src={oneReview.review_image} />
-          ) : (
-            <h1>hi</h1>
-          )}
+            <img id="product-image" src={oneReview.review_image} />
+          ) : null}
         </div>
       ))}
     </>

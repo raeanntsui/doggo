@@ -1,0 +1,42 @@
+#product-information-parent {
+  border: 4px solid red;
+  max-width: 1024px;
+  height: 100%;
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+}
+
+#product-image {
+  height: 400px;
+  width: 400px;
+  object-fit: cover;
+  border: 4px solid orange;
+}
+
+#product-information-right {
+  height: 400px;
+  width: 600px;
+  border: 5px solid brown;
+}
+
+.fa-solid.fa-star.filled-stars,
+.fa-regular.fa-star.filled-stars {
+  font-size: 14px;
+}
+
+#shop-and-stars {
+  display: flex;
+  margin-left: 0px;
+  justify-content: left;
+  gap: 5px;
+}
+
+#shop-and-stars > div {
+  margin: 0px;
+  padding: 0px;
+}
+
+#reviews {
+  width: 400px;
+}

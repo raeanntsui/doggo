@@ -2,6 +2,7 @@
 * {
   font-family: "Quicksand", sans-serif;
   margin: 0 auto;
+  /* line-height: 1.4; */
   /* max-width: 1024px; */
 }
 
@@ -12,4 +13,8 @@ a {
 
 li {
   list-style: none;
+}
+
+button {
+  border-radius: 10px;
 }
