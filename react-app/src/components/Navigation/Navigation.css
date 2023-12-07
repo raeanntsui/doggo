@@ -1,5 +1,9 @@
 .profile-dropdown {
   position: absolute;
+  /* margin-right: 10; */
+  padding-top: 5px;
+  display: flex;
+  flex-direction: column;
 }
 
 .hidden {

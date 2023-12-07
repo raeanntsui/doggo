@@ -7,11 +7,16 @@
   gap: 20px;
 }
 
+#reviews-for-this-item {
+  padding: 20px 0px;
+}
+
 #product-image {
   height: 400px;
   width: 400px;
   object-fit: cover;
   border: 4px solid orange;
+  border-radius: 10px;
 }
 
 #product-information-right {

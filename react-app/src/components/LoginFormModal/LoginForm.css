@@ -1,0 +1,16 @@
+#login-modal-parent {
+  border-radius: 10px;
+}
+
+#login-modal {
+  display: flex;
+  border: 4px solid black;
+  flex-direction: column;
+  width: 300px;
+  height: fit-content;
+}
+
+ul {
+  padding: 0px;
+  margin: 0px;
+}
