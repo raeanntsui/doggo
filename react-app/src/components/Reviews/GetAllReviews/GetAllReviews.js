@@ -9,7 +9,6 @@ import UpdateReviewForm from "../UpdateReview/UpdateReview";
 function GetAllReviews() {
   const { productId } = useParams();
   const dispatch = useDispatch();
-  // const [starRating, setStarRating] = useState(review.rating);
   const currentSessionUser = useSelector((state) => state.session.user);
   const currentProduct = useSelector(
     (state) => state.products.allProducts[productId]
@@ -82,7 +81,6 @@ function GetAllReviews() {
         <div key={oneReview.id}>
           <h2>By: {oneReview.user.first_name}</h2>
           <p>{renderStars(oneReview.rating)}</p>
-          {/* <p>{reviewArr.length}</p> */}
           <h2>{oneReview.review_description}</h2>
           {oneReview.review_image ? (
             <img src={oneReview.review_image} />

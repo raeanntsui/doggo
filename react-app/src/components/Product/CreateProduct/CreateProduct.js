@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import "./CreateProduct.css";
 import { createProductThunk } from "../../../store/products";
 
@@ -20,22 +20,12 @@ function CreateNewProduct() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log("Form Data:", name, description, category, price, productImage);
     const formData = new FormData();
     formData.append("product_name", name);
     formData.append("product_description", description);
     formData.append("product_category", category);
     formData.append("product_price", price);
     formData.append("product_image", productImage);
-
-    // try {
-    //   const response = await dispatch(createProductThunk(formData));
-    //   setCreatedProduct(response);
-
-    //   history.push(`/products/`);
-    // } catch (error) {
-    //   console.error("Error creating a new product:", error);
-    // }
 
     if (Object.keys(validationErrors).length === 0) {
       await dispatch(createProductThunk(formData)).then((res) => {
