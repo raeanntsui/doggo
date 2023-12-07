@@ -12,6 +12,9 @@ function Navigation({ isLoaded }) {
     <>
       <div id="nav-bar">
         <div>
+          <h1>Dogsy</h1>
+        </div>
+        <div>
           <NavLink exact to="/">
             Home
           </NavLink>
@@ -21,7 +24,7 @@ function Navigation({ isLoaded }) {
             Products
           </NavLink>
         </div>
-        <div>
+        {/* <div>
           {sessionUser ? (
             <>
               <h5>Hello, {sessionUser.first_name}</h5>
@@ -30,7 +33,7 @@ function Navigation({ isLoaded }) {
           ) : (
             <h1>You are not logged in</h1>
           )}
-        </div>
+        </div> */}
         <div>
           {isLoaded && (
             <li>

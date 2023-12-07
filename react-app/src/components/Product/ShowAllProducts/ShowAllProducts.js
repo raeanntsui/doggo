@@ -28,16 +28,18 @@ function ShowAllProducts() {
 
   return (
     <>
-      <div>
+      <div id="all-products">
         {allProductsObject.length > 0 ? (
           allProductsObject.map((product) => (
-            <NavLink key={product.id} to={`/products/${product.id}`}>
-              <img src={product.product_image} />
-              <h1>Product ID: {product.id}</h1>
-              <h2>Owner ID: {product.product_owner_id}</h2>
-              <h2>{product.product_name}</h2>
-              <h2>{product.product_description}</h2>
-            </NavLink>
+            <div id="one-product">
+              <NavLink key={product.id} to={`/products/${product.id}`}>
+                <img id="all-products-image" src={product.product_image} />
+                {/* <h2>Owner ID: {product.product_owner_id}</h2> */}
+                <h3>{product.product_name}</h3>
+                {/* <p>{product.product_description}</p> */}
+                <p style={{ fontWeight: "bold" }}>${product.product_price}</p>
+              </NavLink>
+            </div>
           ))
         ) : (
           <h1>Loading</h1>

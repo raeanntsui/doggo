@@ -75,10 +75,14 @@ function GetAllReviews() {
 
   return (
     <>
+      <div>
+        <p>{reviewArr.length} reviews</p>
+      </div>
       {reviewArr.reverse().map((oneReview) => (
         <div key={oneReview.id}>
           <h2>By: {oneReview.user.first_name}</h2>
           <p>{renderStars(oneReview.rating)}</p>
+          {/* <p>{reviewArr.length}</p> */}
           <h2>{oneReview.review_description}</h2>
           {oneReview.review_image ? (
             <img src={oneReview.review_image} />

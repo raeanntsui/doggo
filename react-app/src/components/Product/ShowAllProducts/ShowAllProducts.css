@@ -1,0 +1,23 @@
+#all-products {
+  border: solid 4px red;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+  max-width: 1500px;
+  margin: auto 0;
+}
+
+#one-product {
+  border: solid 4px green;
+  max-width: 300px;
+  min-width: 200px;
+  /* margin: auto 0; */
+}
+
+#all-products-image {
+  height: 200px;
+  width: 200px;
+  width: 100%;
+  object-fit: cover;
+}
