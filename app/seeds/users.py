@@ -16,7 +16,15 @@ def seed_users():
         username='jasmine', email='jasmine@aa.io', password='password', first_name='Jasmine', last_name='Jones')
     violet = User(
         username='violet', email='violet@aa.io', password='password', first_name='Violet', last_name='Smith')
-
+    poppy = User(
+        username='poppy', email='poppy@aa.io', password='password', first_name='Poppy', last_name='Lee')
+    iris = User(
+        username='iris', email='iris@aa.io', password='password', first_name='Iris', last_name='Ivy')
+    dahlia = User(
+        username='dahlia', email='dahlia@aa.io', password='password', first_name='Dahlia', last_name='Mae')
+    aster = User(
+        username='aster', email='aster@aa.io', password='password', first_name='Aster', last_name='Belle')
+    
     db.session.add(demo)
     db.session.add(maddie)
     db.session.add(lily)
@@ -24,6 +32,11 @@ def seed_users():
     db.session.add(rose)
     db.session.add(jasmine)
     db.session.add(violet)
+    db.session.add(poppy)
+    db.session.add(iris)
+    db.session.add(dahlia)
+    db.session.add(aster)
+
     db.session.commit()
 
 

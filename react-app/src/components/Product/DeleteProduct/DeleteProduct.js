@@ -1,19 +1,16 @@
-import React, { useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import React from "react";
+import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import "./DeleteProduct.css";
 import { useModal } from "../../../context/Modal";
 import { deleteProductThunk } from "../../../store/products";
 
 function DeleteProduct({ productId }) {
-  // const { productId } = useParams();
-  // console.log("🚀🚀🚀🚀🚀🚀 ~ productId:", productId);
   const { closeModal } = useModal();
   const dispatch = useDispatch();
   const history = useHistory();
 
   const onDeleteButton = async () => {
-    // console.log("value of id before calling deleteSpotThunk:", productId);
     await dispatch(deleteProductThunk(productId));
     history.push(`/products`);
     closeModal();

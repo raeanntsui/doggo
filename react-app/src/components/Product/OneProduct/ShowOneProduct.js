@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getOneProductThunk } from "../../../store/products";
@@ -6,9 +6,10 @@ import DeleteProduct from "../DeleteProduct/DeleteProduct";
 import GetAllReviews from "../../Reviews/GetAllReviews/GetAllReviews";
 import UpdateProduct from "../UpdateProduct/UpdateProduct";
 import ReviewForm from "../../Reviews/CreateReview/ReviewForm";
-import "./ShowOneProduct.css";
 import UpdateReviewForm from "../../Reviews/UpdateReview/UpdateReview";
+import DeleteReview from "../../Reviews/DeleteReview/DeleteReview";
 import OpenModalButton from "../../OpenModalButton";
+import "./ShowOneProduct.css";
 
 function ShowOneProduct() {
   const dispatch = useDispatch();
@@ -58,7 +59,11 @@ function ShowOneProduct() {
               modalComponent={
                 <UpdateReviewForm review={existingReview} product={product} />
               }></OpenModalButton>
-            {/* <UpdateReviewForm review={existingReview} product={product} /> */}
+            <OpenModalButton
+              buttonText="Delete Review"
+              modalComponent={
+                <DeleteReview review={existingReview} />
+              }></OpenModalButton>
           </>
         ) : null}
       </div>

@@ -42,11 +42,14 @@ export const getAllReviewsThunk = (productId) => async (dispatch) => {
 };
 
 export const createReviewThunk = (review, productId) => async (dispatch) => {
+  console.log("🚀🚀🚀🚀🚀🚀 ~ review:", review);
   let res;
   try {
     const urlParams = new URLSearchParams();
     for (const key of Object.keys(review)) {
-      urlParams.append(key, review[key]);
+      if (review[key] !== undefined && review[key] !== null) {
+        urlParams.append(key, review[key]);
+      }
     }
     res = await fetch(`/api/reviews/new/${productId}`, {
       method: "POST",
@@ -70,7 +73,12 @@ export const updateReviewThunk =
   (reviewId, updatedReviewData) => async (dispatch) => {
     const urlParams = new URLSearchParams();
     for (const key of Object.keys(updatedReviewData)) {
-      urlParams.append(key, updatedReviewData[key]);
+      if (
+        updatedReviewData[key] !== undefined &&
+        updatedReviewData[key] !== null
+      ) {
+        urlParams.append(key, updatedReviewData[key]);
+      }
     }
     const res = await fetch(`/api/reviews/${reviewId}`, {
       method: "PUT",

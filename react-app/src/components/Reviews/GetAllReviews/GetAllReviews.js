@@ -1,33 +1,21 @@
-import React, { useState, useEffect } from "react";
-import { useParams, NavLink } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getOneProductThunk } from "../../../store/products";
 import { getAllReviewsThunk } from "../../../store/reviews";
-// import NewReviewModal from "../Reviews/CreateReview";
-// import PostReviewModalContent from "./ReviewForm";
-// import OpenModalButton from "../OpenModalButton";
-// import DeleteReview from "../DeleteReview/DeleteReview";
 import { useModal } from "../../../context/Modal";
+import UpdateReviewForm from "../UpdateReview/UpdateReview";
 
 function GetAllReviews() {
   const { productId } = useParams();
   const dispatch = useDispatch();
-  const closeModal = useModal();
-
 
   const currentSessionUser = useSelector((state) => state.session.user);
-  // console.log("🚀🚀🚀🚀🚀🚀 ~ currentSessionUser:", currentSessionUser);
-
   const currentProduct = useSelector(
     (state) => state.products.allProducts[productId]
   );
-  // console.log("🚀🚀🚀🚀🚀🚀 ~ current product:", currentProduct);
-
   const allReviewsObject = useSelector((state) => state.reviews.allReviews);
-  // console.log("🚀🚀🚀🚀🚀🚀 ~ allReviewsObject:", allReviewsObject);
-
   const reviewArr = Object.values(allReviewsObject);
-  // console.log("🚀🚀🚀🚀🚀🚀 ~ reviewArr:", reviewArr);
 
   useEffect(() => {
     dispatch(getOneProductThunk(productId));
@@ -43,26 +31,12 @@ function GetAllReviews() {
     return null;
   }
 
-  let counter = 1;
-  let existingReview;
-
-  // check if the current session user wrote a review or not
-  // check if review id === currentSessionUser.id
-
-  // if (currentSessionUser) {
-  //   reviewArr.map((review) => {
-  //     review.user_id === currentSessionUser.id;
-  //   });
-  // }
-
   let userReview;
   if (currentSessionUser) {
     userReview = Object.values(allReviewsObject).filter(
       (review) => review.user_id === currentSessionUser.id
     );
   }
-  // console.log("🚀🚀🚀🚀🚀🚀 ~ userReview:", userReview);
-
   return (
     <>
       {reviewArr.reverse().map((oneReview) => (
@@ -73,7 +47,7 @@ function GetAllReviews() {
           {oneReview.review_image ? (
             <img src={oneReview.review_image} />
           ) : (
-            <h1>No image to show</h1>
+            <h1>hi</h1>
           )}
         </div>
       ))}
