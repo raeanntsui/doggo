@@ -1,0 +1,15 @@
+#landing-page-about-info {
+  text-align: center;
+  padding: 20px;
+}
+
+#homepage-image {
+  height: 400px;
+  width: 400px;
+  object-fit: cover;
+}
+
+#landing-page-child {
+  display: flex;
+  padding: 15px 0px;
+}

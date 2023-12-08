@@ -9,6 +9,7 @@ import ShowAllProducts from "./components/Product/ShowAllProducts/ShowAllProduct
 import ShowOneProduct from "./components/Product/OneProduct/ShowOneProduct";
 import CreateNewProduct from "./components/Product/CreateProduct/CreateProduct";
 import UpdateProduct from "./components/Product/UpdateProduct/UpdateProduct";
+import HomePage from "./components/Homepage/Homepage";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,6 +23,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact path="/">
+            <HomePage />
+          </Route>
           <Route exact path="/products">
             <ShowAllProducts />
           </Route>

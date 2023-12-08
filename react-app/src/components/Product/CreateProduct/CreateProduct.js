@@ -10,11 +10,10 @@ function CreateNewProduct() {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
-  const [productImage, setProductImage] = useState(null);
+  const [productImage, setProductImage] = useState("");
   const [submit, setSubmit] = useState(false);
   const [createdProduct, setCreatedProduct] = useState(null);
   const { productId } = useParams();
-  console.log("🚀🚀🚀🚀🚀🚀 ~ productId:", productId);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -29,7 +28,7 @@ function CreateNewProduct() {
 
     if (Object.keys(validationErrors).length === 0) {
       await dispatch(createProductThunk(formData)).then((res) => {
-        history.push(`/products/`);
+        history.push(`/products/${productId}`);
       });
     }
     setSubmit(true);
@@ -52,14 +51,17 @@ function CreateNewProduct() {
     if (price && price < 0) errorsObject.price = "Price cannot be negative";
     if (price && price > 100000)
       errorsObject.price = "Price cannot exceed $100,000";
+    if (!productImage) errorsObject.productImage = "Please submit an image";
     setValidationErrors(errorsObject);
-  }, [name, description, category, price]);
+  }, [name, description, category, price, productImage]);
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form id="create-product-form" onSubmit={handleSubmit}>
         <div>
-          <h1>Create a new product here</h1>
+          <h1 style={{ textAlign: "center", padding: "10px" }}>
+            What do you want to sell?
+          </h1>
         </div>
         <div>
           <div>
@@ -72,7 +74,7 @@ function CreateNewProduct() {
             />
           </div>
           {submit && validationErrors.name && (
-            <p id="p-error">{validationErrors.name}</p>
+            <p id="errors">{validationErrors.name}</p>
           )}
           <div>
             <label>Description</label>
@@ -84,7 +86,7 @@ function CreateNewProduct() {
             />
           </div>
           {submit && validationErrors.description && (
-            <p id="p-error">{validationErrors.description}</p>
+            <p id="errors">{validationErrors.description}</p>
           )}
           <div>
             <label>Category</label>
@@ -96,7 +98,7 @@ function CreateNewProduct() {
             />
           </div>
           {submit && validationErrors.category && (
-            <p id="p-error">{validationErrors.category}</p>
+            <p id="errors">{validationErrors.category}</p>
           )}
           <div>
             <label>Price</label>
@@ -108,7 +110,7 @@ function CreateNewProduct() {
             />
           </div>
           {submit && validationErrors.price && (
-            <p id="p-error">{validationErrors.price}</p>
+            <p id="errors">{validationErrors.price}</p>
           )}
           <div>
             <label>Image</label>
@@ -116,14 +118,20 @@ function CreateNewProduct() {
               type="text"
               onChange={(e) => setProductImage(e.target.value)}
             />
+            {submit && validationErrors.productImage && (
+              <p id="errors">{validationErrors.productImage}</p>
+            )}
           </div>
         </div>
-        <button
-          type="submit"
-          // disabled={Object.keys(validationErrors).length > 0}
-        >
-          Create New Product
-        </button>
+        <div id="submit-button-div">
+          <button
+            id="submit-button"
+            type="submit"
+            // disabled={Object.keys(validationErrors).length > 0}
+          >
+            Create New Product
+          </button>
+        </div>
       </form>
 
       {createdProduct && (

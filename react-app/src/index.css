@@ -2,8 +2,6 @@
 * {
   font-family: "Quicksand", sans-serif;
   margin: 0 auto;
-  /* line-height: 1.4; */
-  /* max-width: 1024px; */
   word-wrap: break-word;
 }
 
@@ -18,4 +16,18 @@ li {
 
 button {
   border-radius: 10px;
+}
+
+img {
+  border-radius: 10px;
+}
+
+label {
+  font-weight: 600;
+  padding: 5px 0px;
+}
+
+input {
+  height: 30px;
+  padding-left: 10px;
 }

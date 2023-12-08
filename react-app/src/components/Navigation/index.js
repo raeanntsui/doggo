@@ -11,8 +11,14 @@ function Navigation({ isLoaded }) {
     <>
       <div id="nav-bar">
         <div id="dogsy">
-          <NavLink exact to="/products">
+          <NavLink exact to="/">
             <h1 id="dogsy-title">Dogsy</h1>
+          </NavLink>
+        </div>
+
+        <div id="all-listings-link">
+          <NavLink exact to="/products">
+            All Listings
           </NavLink>
         </div>
         <div id="profile-button">
