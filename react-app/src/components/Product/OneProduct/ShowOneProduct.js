@@ -91,19 +91,25 @@ function ShowOneProduct() {
                 </div>
               ) : currentUser && existingReview ? (
                 <>
-                  <OpenModalButton
-                    buttonText="Update Review"
-                    modalComponent={
-                      <UpdateReviewForm
-                        review={existingReview}
-                        product={product}
-                      />
-                    }></OpenModalButton>
-                  <OpenModalButton
-                    buttonText="Delete Review"
-                    modalComponent={
-                      <DeleteReview review={existingReview} />
-                    }></OpenModalButton>
+                  <div id="update-delete-review-parent-container">
+                    <div>
+                      <OpenModalButton
+                        buttonText="Update Review"
+                        modalComponent={
+                          <UpdateReviewForm
+                            review={existingReview}
+                            product={product}
+                          />
+                        }></OpenModalButton>
+                    </div>
+                    <div>
+                      <OpenModalButton
+                        buttonText="Delete Review"
+                        modalComponent={
+                          <DeleteReview review={existingReview} />
+                        }></OpenModalButton>
+                    </div>
+                  </div>
                 </>
               ) : null}
             </div>

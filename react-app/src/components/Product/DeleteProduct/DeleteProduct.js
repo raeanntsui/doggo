@@ -30,14 +30,6 @@ function DeleteProduct({ productId }) {
           </button>
           <button onClick={doNotDeleteButton}>Cancel</button>
         </div>
-        {/* <button
-          id="post-review"
-          onClick={() => {
-            setModalContent(<PostReviewModalContent spot={spot} />);
-          }}
-          type="submit">
-          Post Your Review
-        </button> */}
       </div>
     </>
   );

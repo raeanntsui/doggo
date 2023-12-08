@@ -36,22 +36,25 @@ function CreateNewProduct() {
 
   useEffect(() => {
     let errorsObject = {};
-    if (!name) errorsObject.name = "Name is required";
+    if (!name) errorsObject.name = "Please enter a name for your listing";
     if (name && name.length < 5)
       errorsObject.name = "Name must be longer than 5 characters";
-    if (!description) errorsObject.description = "Description is required";
+    if (!description)
+      errorsObject.description = "Please enter a description for your listing";
     if (description && description.length > 1000)
-      errorsObject.description = "Description exceeds 1000 characters";
+      errorsObject.description = "Description exceeds 1000 character limit";
     if (description && description.length < 10)
       errorsObject.description =
         "Description must more than 10 characters long";
-    if (!category) errorsObject.category = "Category is required";
-    if (!price) errorsObject.price = "Please enter a price";
+    if (!category)
+      errorsObject.category = "Please enter a category for your listing";
+    if (!price) errorsObject.price = "Please enter a price for your listing";
     if (price && price <= 0) errorsObject.price = "Price must be at least $1";
     if (price && price < 0) errorsObject.price = "Price cannot be negative";
     if (price && price > 100000)
       errorsObject.price = "Price cannot exceed $100,000";
-    if (!productImage) errorsObject.productImage = "Please submit an image";
+    if (!productImage)
+      errorsObject.productImage = "Please submit an image for your listing";
     setValidationErrors(errorsObject);
   }, [name, description, category, price, productImage]);
 

@@ -68,23 +68,30 @@ function UpdateReviewForm({ product, review }) {
     }
     console.log("🚀🚀🚀🚀🚀🚀 ~ errors:", errors);
     setSubmit(true);
-    // const form = new FormData();
-    // form.append("starRating", starRating);
-    // form.append("description", description);
-    // form.append("reviewImage", reviewImage);
+  };
+
+  const cancelButton = () => {
+    closeModal();
   };
 
   return (
     <div id="update-review-form">
       <form onSubmit={handleSubmit}>
-        <h2>Make changes to your review here</h2>
+        <h2 style={{ paddingBottom: "20px" }}>
+          Changed your mind about the review?
+        </h2>
         <textarea
+          style={{
+            width: "100%",
+            height: "40px",
+          }}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          // placeholder={setDescription(productId)}
         />
-        <p>{submit && errors.description}</p>
-        <div className="stars">
+        <p id="errors">{submit && errors.description}</p>
+        <div
+          className="stars"
+          style={{ padding: "10px 0px", fontSize: "30px" }}>
           <i
             className={
               (hover || starRating) >= 1
@@ -136,17 +143,41 @@ function UpdateReviewForm({ product, review }) {
             onClick={() => setStarRating(5)}
           />
         </div>
-        <p>{submit && errors.starRating}</p>
-        <label>Image</label>
-        <input type="text" onChange={(e) => setReviewImage(e.target.value)} />
-        <button
-          type="submit"
-          onClick={handleSubmit}
-          // disabled={!checkValidation()}
-          //   disabled={Object.keys(errors).length > 0}
-        >
-          Update Your Review
-        </button>
+        <p id="errors">{submit && errors.starRating}</p>
+        <div>
+          {/* <label style={{ textAlign: "center" }}>Image</label> */}
+          <input
+            style={{
+              width: "185px",
+              // border: "2px solid red",
+              padding: "0px",
+              margin: "0px",
+              display: "flex",
+            }}
+            type="file"
+            onChange={(e) => setReviewImage(e.target.value)}
+          />
+        </div>
+        <div
+          style={{
+            paddingTop: "10px",
+            display: "inline-flex",
+            gap: "15px",
+          }}>
+          <div style={{ display: "inline-flex" }}>
+            <button
+              id="update-review-button"
+              type="submit"
+              onClick={handleSubmit}>
+              Update Your Review
+            </button>
+          </div>
+          <div>
+            <button id="cancel-button" onClick={cancelButton}>
+              Cancel
+            </button>
+          </div>
+        </div>
       </form>
     </div>
   );

@@ -8,7 +8,8 @@
 }
 
 #reviews-for-this-item {
-  padding: 20px 0px;
+  padding-top: 20px;
+  padding-bottom: 10px;
 }
 
 #product-image {
@@ -44,4 +45,9 @@
 
 #reviews {
   width: 400px;
+}
+
+#update-delete-review-parent-container {
+  gap: 10px;
+  display: flex;
 }
