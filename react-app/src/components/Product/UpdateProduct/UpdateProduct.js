@@ -74,7 +74,7 @@ const UpdateProduct = ({ productId }) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div>
           <h1>Make changes to your listing here</h1>
         </div>
@@ -130,8 +130,9 @@ const UpdateProduct = ({ productId }) => {
           <div>
             <label>Image</label>
             <input
-              type="text"
-              onChange={(e) => setProductImage(e.target.value)}
+              type="file"
+              accept="image/*"
+              onChange={(e) => setProductImage(e.target.files[0])}
             />
           </div>
         </div>

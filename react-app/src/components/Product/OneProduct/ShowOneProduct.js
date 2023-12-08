@@ -22,11 +22,15 @@ function ShowOneProduct() {
     (review) => review.product_id === parseInt(productId)
   );
 
+  // useEffect(() => {
+  //   dispatch(getOneProductThunk(productId));
+  // }, [dispatch, productId]);
+
   useEffect(() => {
     dispatch(getOneProductThunk(productId));
-  }, [dispatch]);
+  }, [dispatch, productId]);
 
-  if (!product) return null;
+  if (!productId) return null;
 
   let existingReview;
   if (currentUser) {
@@ -124,7 +128,7 @@ function ShowOneProduct() {
             <h1>${product.product_price}</h1>
             <h2>{product.product_name}</h2>
             <div id="shop-and-stars">
-              <div>{product.user.first_name}</div>
+              <div>{product?.user?.first_name}</div>
               <div>{renderStars(averageRating)}</div>
             </div>
 
@@ -133,11 +137,11 @@ function ShowOneProduct() {
           </div>
         </div>
       ) : (
-        <h1>Loading</h1>
+        <h1>Undefined</h1>
       )}
 
       <div>
-        {currentUser && currentUser.id === product.product_owner_id ? (
+        {currentUser && currentUser?.id === product?.product_owner_id ? (
           <>
             <OpenModalButton
               buttonText="Delete Listing"
@@ -149,7 +153,6 @@ function ShowOneProduct() {
               modalComponent={
                 <UpdateProduct productId={productId} />
               }></OpenModalButton>
-            {/* <UpdateProduct /> */}
           </>
         ) : null}
       </div>

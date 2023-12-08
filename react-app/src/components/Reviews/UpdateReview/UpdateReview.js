@@ -80,6 +80,7 @@ function UpdateReviewForm({ product, review }) {
         <h2 style={{ paddingBottom: "20px" }}>
           Changed your mind about the review?
         </h2>
+        <label>Description</label>
         <textarea
           style={{
             width: "100%",
@@ -89,6 +90,9 @@ function UpdateReviewForm({ product, review }) {
           onChange={(e) => setDescription(e.target.value)}
         />
         <p id="errors">{submit && errors.description}</p>
+        <label style={{ paddingTop: "20px", paddingBottom: "0px" }}>
+          Star Rating
+        </label>
         <div
           className="stars"
           style={{ padding: "10px 0px", fontSize: "30px" }}>

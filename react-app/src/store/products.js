@@ -63,6 +63,20 @@ export const getOneProductThunk = (productId) => async (dispatch) => {
   }
 };
 
+// export const createProductThunk = (newProduct) => async (dispatch) => {
+//   try {
+//     const res = await fetch("/api/products/new", {
+//       method: "POST",
+//       body: newProduct,
+//     });
+//     const newListing = await res.json();
+//     dispatch(createProduct(newListing.newProduct));
+//     return newListing.newProduct;
+//   } catch (error) {
+//     console.error("Error creating new listing:", error);
+//   }
+// };
+
 export const createProductThunk = (newProduct) => async (dispatch) => {
   try {
     const res = await fetch("/api/products/new", {
@@ -70,8 +84,9 @@ export const createProductThunk = (newProduct) => async (dispatch) => {
       body: newProduct,
     });
     const newListing = await res.json();
-    dispatch(createProduct(newListing));
-    return newListing;
+    dispatch(createProduct(newListing.newProduct));
+    dispatch(getOneProductThunk(newListing.newProduct.id));
+    return newListing.newProduct;
   } catch (error) {
     console.error("Error creating new listing:", error);
   }

@@ -62,7 +62,7 @@ function ReviewForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} encType="multipart/form-data">
       <div id="create-review-parent">
         <h2 style={{ paddingBottom: "10px", fontSize: "32px" }}>
           Leave your review here!
@@ -138,7 +138,11 @@ function ReviewForm() {
         </div>
         <p id="errors">{submit && errors.starRating}</p>
         <label>Image</label>
-        <input type="text" onChange={(e) => setReviewImage(e.target.value)} />
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(e) => setReviewImage(e.target.files[0])}
+        />
         <div id="post-button-div">
           <button id="post-review-button" type="submit" onClick={handleSubmit}>
             Post Your Review

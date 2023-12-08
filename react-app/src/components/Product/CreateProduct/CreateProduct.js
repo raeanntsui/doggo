@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import "./CreateProduct.css";
-import { createProductThunk } from "../../../store/products";
+import {
+  createProductThunk,
+  getOneProductThunk,
+} from "../../../store/products";
 
 function CreateNewProduct() {
   const [validationErrors, setValidationErrors] = useState({});
@@ -13,7 +16,7 @@ function CreateNewProduct() {
   const [productImage, setProductImage] = useState("");
   const [submit, setSubmit] = useState(false);
   const [createdProduct, setCreatedProduct] = useState(null);
-  const { productId } = useParams();
+  // const { productId } = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -28,7 +31,8 @@ function CreateNewProduct() {
 
     if (Object.keys(validationErrors).length === 0) {
       await dispatch(createProductThunk(formData)).then((res) => {
-        history.push(`/products/${productId}`);
+        console.log("🚀🚀🚀🚀🚀🚀 ~ res:", res);
+        history.push(`/products/${res.id}`);
       });
     }
     setSubmit(true);
@@ -58,9 +62,15 @@ function CreateNewProduct() {
     setValidationErrors(errorsObject);
   }, [name, description, category, price, productImage]);
 
+  // useEffect(() => {
+  //   dispatch(getOneProductThunk(productId));
+  // }, [dispatch]);
   return (
     <>
-      <form id="create-product-form" onSubmit={handleSubmit}>
+      <form
+        id="create-product-form"
+        onSubmit={handleSubmit}
+        encType="multipart/form-data">
         <div>
           <h1 style={{ textAlign: "center", padding: "10px" }}>
             What do you want to sell?
@@ -118,8 +128,9 @@ function CreateNewProduct() {
           <div>
             <label>Image</label>
             <input
-              type="text"
-              onChange={(e) => setProductImage(e.target.value)}
+              type="file"
+              accept="image/*"
+              onChange={(e) => setProductImage(e.target.files[0])}
             />
             {submit && validationErrors.productImage && (
               <p id="errors">{validationErrors.productImage}</p>

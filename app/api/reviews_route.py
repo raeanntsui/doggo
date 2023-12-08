@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from app.models import db, Review, User
 from app.forms import ReviewForm
 from .auth_routes import validation_errors_to_error_messages
+from .aws_helper import upload_file_to_s3, get_unique_filename, remove_file_from_s3
 
 
 reviews_route = Blueprint('reviews', __name__)
@@ -39,8 +40,17 @@ def create_review(product_id):
             product_id=product_id, 
             rating=rating, 
             review_description=review_description, 
-            review_image=review_image, 
         )
+
+        review_image = form.data["review_image"]
+        review_image.filename = get_unique_filename(review_image.filename)
+        uploadReviewImage = upload_file_to_s3(review_image)
+
+        if "url" not in uploadReviewImage:
+            print(uploadReviewImage)
+            return uploadReviewImage
+        else:
+            new_review.review_image = uploadReviewImage["url"]
 
         db.session.add(new_review)
         db.session.commit()
