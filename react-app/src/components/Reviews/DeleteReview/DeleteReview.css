@@ -1,0 +1,9 @@
+#delete-review-modal-parent {
+  width: 100%;
+  padding: 20px;
+}
+
+#delete-review-modal-buttons {
+  display: flex;
+  flex-direction: row;
+}

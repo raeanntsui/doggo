@@ -50,4 +50,5 @@
 #update-delete-review-parent-container {
   gap: 10px;
   display: flex;
+  padding-top: 20px;
 }
