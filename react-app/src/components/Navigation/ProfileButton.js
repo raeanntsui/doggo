@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 
 function ProfileButton({ user }) {
+  const history = useHistory();
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
@@ -33,6 +34,13 @@ function ProfileButton({ user }) {
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
+    closeMenu();
+    history.push("/");
+  };
+
+  const handleCreateNewListing = (e) => {
+    closeMenu();
+    history.push("/products/new");
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
@@ -52,9 +60,9 @@ function ProfileButton({ user }) {
               Welcome, {user.first_name} {user.last_name}!
             </li>
             <li>
-              <NavLink to="/products/new">
-                <button>Create a new listing </button>
-              </NavLink>
+              <button onClick={handleCreateNewListing}>
+                Create a new listing
+              </button>
             </li>
             <li>
               <button onClick={handleLogout}>Log Out</button>
