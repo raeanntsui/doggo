@@ -88,7 +88,9 @@ const UpdateProduct = ({ productId }) => {
               placeholder="Name"
             />
           </div>
-          {submit && validationErrors.name && <p>{validationErrors.name}</p>}
+          {submit && validationErrors.name && (
+            <p id="errors">{validationErrors.name}</p>
+          )}
           <div>
             <label>Description</label>
             <input
@@ -99,7 +101,7 @@ const UpdateProduct = ({ productId }) => {
             />
           </div>
           {submit && validationErrors.description && (
-            <p>{validationErrors.description}</p>
+            <p id="errors">{validationErrors.description}</p>
           )}
           <div>
             <label>Category</label>
@@ -111,7 +113,7 @@ const UpdateProduct = ({ productId }) => {
             />
           </div>
           {submit && validationErrors.category && (
-            <p>{validationErrors.category}</p>
+            <p id="errors">{validationErrors.category}</p>
           )}
           <div>
             <label>Price</label>
@@ -122,7 +124,9 @@ const UpdateProduct = ({ productId }) => {
               placeholder="Price"
             />
           </div>
-          {submit && validationErrors.price && <p>{validationErrors.price}</p>}
+          {submit && validationErrors.price && (
+            <p id="errors">{validationErrors.price}</p>
+          )}
           <div>
             <label>Image</label>
             <input
