@@ -85,6 +85,18 @@ def update_product(id):
         product.product_price = form.data["product_price"]
         product.product_image = form.data["product_image"]
 
+    if form.data['product_image']:
+        product_image = form.data["product_image"]
+        product_image.filename = get_unique_filename(product_image.filename)
+        updateProductImage = upload_file_to_s3(product_image)
+
+        if "url" not in updateProductImage:
+            print(updateProductImage)
+            return updateProductImage
+        else:
+            product.product_image = updateProductImage["url"]
+
+
         db.session.commit()
 
         return {"resUpdateproduct": product.to_dict()}

@@ -11,17 +11,18 @@ import { useModal } from "../../../context/Modal";
 
 const UpdateProduct = ({ productId }) => {
   // const { productId } = useParams();
+  const product = useSelector((state) => state.products.allProducts[productId]);
   const { closeModal } = useModal();
   const dispatch = useDispatch();
   const history = useHistory();
-
-  const product = useSelector((state) => state.products.allProducts[productId]);
 
   const [name, setName] = useState(product.product_name);
   const [description, setDescription] = useState(product.product_description);
   const [category, setCategory] = useState(product.product_category);
   const [price, setPrice] = useState(product.product_price);
-  const [productImage, setProductImage] = useState(null);
+  const [productImage, setProductImage] = useState(
+    product ? product.product_image : null
+  );
   const [validationErrors, setValidationErrors] = useState({});
   const [errors, setErrors] = useState([]);
   const [createdProduct, setCreatedProduct] = useState(null);
@@ -47,18 +48,25 @@ const UpdateProduct = ({ productId }) => {
     if (price && price < 0) errorsObject.price = "Price cannot be negative";
     if (price && price > 100000)
       errorsObject.price = "Price cannot exceed $100,000";
+    if (productImage === setProductImage)
+      errorsObject.productImage = "Please choose a new image for your listing";
     setValidationErrors(errorsObject);
-  }, [name, description, category, price]);
+  }, [name, description, category, price, productImage]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log("name, cate, desc, price", name, category, description, price);
+
     const formData = new FormData();
     formData.append("product_name", name);
     formData.append("product_description", description);
     formData.append("product_category", category);
     formData.append("product_price", price);
-    formData.append("product_image", productImage);
+
+    if (productImage !== null) {
+      formData.append("product_image", productImage);
+    }
+
+    // formData.append("product_image", productImage);
 
     dispatch(updateProductThunk(formData, productId)).then((res) => {
       history.push(`/products/${productId}`);
@@ -134,14 +142,12 @@ const UpdateProduct = ({ productId }) => {
               accept="image/*"
               onChange={(e) => setProductImage(e.target.files[0])}
             />
+            {submit && validationErrors.productImage && (
+              <p id="errors">{validationErrors.productImage}</p>
+            )}
           </div>
         </div>
-        <button
-          type="submit"
-          // disabled={Object.keys(validationErrors).length > 0}
-        >
-          Update listing
-        </button>
+        <button type="submit">Update listing</button>
       </form>
 
       {createdProduct && (
