@@ -23,6 +23,20 @@ function LoginFormModal() {
     }
   };
 
+  const loginAsDemoUser = (e) => {
+    e.preventDefault();
+    const demoEmail = "rae@aa.io";
+    const demoPassword = "password";
+    return dispatch(login(demoEmail, demoPassword))
+      .then(closeModal)
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) {
+          setErrors(data.errors);
+        }
+      });
+  };
+
   return (
     <>
       <div id="login-modal-parent">
@@ -55,6 +69,7 @@ function LoginFormModal() {
           <button type="submit" onClick={handleSubmit}>
             Log In
           </button>
+          <button onClick={loginAsDemoUser}>Log in as Demo User</button>
         </form>
       </div>
     </>
