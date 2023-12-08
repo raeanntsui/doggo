@@ -8,6 +8,11 @@ Create Date: 2023-12-08 13:21:23.631523
 from alembic import op
 import sqlalchemy as sa
 
+# add 1
+import os
+environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get("SCHEMA")
+#
 
 # revision identifiers, used by Alembic.
 revision = 'd6eeef7ed550'
@@ -29,6 +34,10 @@ def upgrade():
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
     )
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")    
+
     op.create_table('products',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('product_owner_id', sa.Integer(), nullable=True),
@@ -40,6 +49,10 @@ def upgrade():
     sa.ForeignKeyConstraint(['product_owner_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE products SET SCHEMA {SCHEMA};")
+
     op.create_table('reviews',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
@@ -51,6 +64,9 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE reviews SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 
