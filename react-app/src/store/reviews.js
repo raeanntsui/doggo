@@ -41,21 +41,48 @@ export const getAllReviewsThunk = (productId) => async (dispatch) => {
   }
 };
 
+// export const createReviewThunk = (review, productId) => async (dispatch) => {
+//   console.log("🚀🚀🚀🚀🚀🚀 ~ review:", review);
+//   let res;
+//   try {
+//     const urlParams = new URLSearchParams();
+//     for (const key of Object.keys(review)) {
+//       if (review[key] !== undefined && review[key] !== null) {
+//         urlParams.append(key, review[key]);
+//       }
+//     }
+//     res = await fetch(`/api/reviews/new/${productId}`, {
+//       method: "POST",
+//       headers: { "Content-Type": "application/x-www-form-urlencoded" },
+//       body: urlParams,
+//     });
+//     if (res.ok) {
+//       const review = await res.json();
+//       dispatch(createReview(review.new_review));
+//       await dispatch(getAllReviewsThunk(productId));
+//       return review.new_review;
+//     } else {
+//       console.error(`Server error: ${res.status}`);
+//     }
+//   } catch (e) {
+//     return await e.json();
+//   }
+// };
+
 export const createReviewThunk = (review, productId) => async (dispatch) => {
-  console.log("🚀🚀🚀🚀🚀🚀 ~ review:", review);
-  let res;
   try {
-    const urlParams = new URLSearchParams();
-    for (const key of Object.keys(review)) {
-      if (review[key] !== undefined && review[key] !== null) {
-        urlParams.append(key, review[key]);
-      }
-    }
-    res = await fetch(`/api/reviews/new/${productId}`, {
+    const formData = new FormData();
+    formData.append("rating", review.rating);
+    formData.append("review_description", review.review_description);
+    formData.append("review_image", review.review_image);
+
+    const res = await fetch(`/api/reviews/new/${productId}`, {
       method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: urlParams,
+      body: formData,
     });
+
+    console.log("🚀🚀🚀 ~ res:", res);
+
     if (res.ok) {
       const review = await res.json();
       dispatch(createReview(review.new_review));
@@ -65,9 +92,26 @@ export const createReviewThunk = (review, productId) => async (dispatch) => {
       console.error(`Server error: ${res.status}`);
     }
   } catch (e) {
+    console.error("Error in createReviewThunk:", e);
     return await e.json();
   }
 };
+
+//? Attempt #3
+// export const createReviewThunk = (review, productId) => async (dispatch) => {
+//   try {
+//     const res = await fetch("/api/reviews/new", {
+//       method: "POST",
+//       body: review,
+//     });
+//     const newReviewJSON = await res.json();
+//     dispatch(createReview(newReviewJSON));
+//     await dispatch(getAllReviews(productId));
+//     return newReviewJSON;
+//   } catch (error) {
+//     console.error("Error creating new listing:", error);
+//   }
+// };
 
 export const updateReviewThunk =
   (reviewId, updatedReviewData) => async (dispatch) => {

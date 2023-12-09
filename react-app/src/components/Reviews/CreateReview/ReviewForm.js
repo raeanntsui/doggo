@@ -16,11 +16,11 @@ function ReviewForm() {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
   const currentSessionUser = useSelector((state) => state.session.user);
-  console.log("🚀🚀🚀🚀🚀🚀 ~ currentSessionUser:", currentSessionUser);
+  // console.log("🚀🚀🚀🚀🚀🚀 ~ currentSessionUser:", currentSessionUser);
   const currentProduct = useSelector(
     (state) => state.products.allProducts[productId]
   );
-  console.log("🚀🚀🚀🚀🚀🚀 ~ currentProduct:", currentProduct);
+  // console.log("🚀🚀🚀🚀🚀🚀 ~ currentProduct:", currentProduct);
 
   const checkValidation = () => {
     return description.length > 10 && description.length < 500 && starRating;

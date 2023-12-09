@@ -15,7 +15,6 @@ function GetAllReviews() {
   );
   const allReviewsObject = useSelector((state) => state.reviews.allReviews);
   const reviewArr = Object.values(allReviewsObject);
-  console.log("🚀🚀🚀🚀🚀🚀 ~ reviewArr:", reviewArr);
 
   useEffect(() => {
     dispatch(getOneProductThunk(productId));
@@ -89,7 +88,7 @@ function GetAllReviews() {
             </div>
             <div>
               <p>
-                {oneReview.user.first_name} {oneReview.user.last_name}{" "}
+                {oneReview.user.first_name} {oneReview.user.last_name}
               </p>
             </div>
           </div>

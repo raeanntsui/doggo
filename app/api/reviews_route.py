@@ -22,14 +22,10 @@ def create_review(product_id):
     '''
     Create a new review for a specific product
     '''
-    form = ReviewForm(request.form)
+    form = ReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     print(form.data)
     if form.validate_on_submit():
-
-        # review_description = form.review_description.data
-        # rating = form.rating.data
-        # review_image =form.review_image.data
 
         rating = form.data["rating"]
         review_description = form.data["review_description"]
