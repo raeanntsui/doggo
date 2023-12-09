@@ -168,10 +168,8 @@
 
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
-
+import { useHistory } from "react-router-dom";
 import {
-  getAllProductsThunk,
   getOneProductThunk,
   updateProductThunk,
 } from "../../../store/products";
@@ -188,13 +186,13 @@ const UpdateProduct = ({ productId }) => {
   const [category, setCategory] = useState(product.product_category);
   const [price, setPrice] = useState(product.product_price);
   const [productImage, setProductImage] = useState(
-    product ? product.product_image : null
+    product.product_image ? product.product_image : null
   );
   const [validationErrors, setValidationErrors] = useState({});
   const [submit, setSubmit] = useState(false);
 
   useEffect(() => {
-    dispatch(getOneProductThunk({ productId }));
+    dispatch(getOneProductThunk(productId));
   }, [dispatch, productId]);
 
   useEffect(() => {
@@ -214,10 +212,10 @@ const UpdateProduct = ({ productId }) => {
     if (price && price < 0) errorsObject.price = "Price cannot be negative";
     if (price && price > 100000)
       errorsObject.price = "Price cannot exceed $100,000";
-    if (productImage === setProductImage)
-      errorsObject.productImage = "Please choose a new image for your listing";
+    if (!product.product_image)
+      errorsObject.productImage = "Please submit a new photo";
     setValidationErrors(errorsObject);
-  }, [name, description, category, price, productImage]);
+  }, [name, description, category, price]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

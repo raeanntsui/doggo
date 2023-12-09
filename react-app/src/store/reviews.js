@@ -41,34 +41,6 @@ export const getAllReviewsThunk = (productId) => async (dispatch) => {
   }
 };
 
-// export const createReviewThunk = (review, productId) => async (dispatch) => {
-//   console.log("🚀🚀🚀🚀🚀🚀 ~ review:", review);
-//   let res;
-//   try {
-//     const urlParams = new URLSearchParams();
-//     for (const key of Object.keys(review)) {
-//       if (review[key] !== undefined && review[key] !== null) {
-//         urlParams.append(key, review[key]);
-//       }
-//     }
-//     res = await fetch(`/api/reviews/new/${productId}`, {
-//       method: "POST",
-//       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-//       body: urlParams,
-//     });
-//     if (res.ok) {
-//       const review = await res.json();
-//       dispatch(createReview(review.new_review));
-//       await dispatch(getAllReviewsThunk(productId));
-//       return review.new_review;
-//     } else {
-//       console.error(`Server error: ${res.status}`);
-//     }
-//   } catch (e) {
-//     return await e.json();
-//   }
-// };
-
 export const createReviewThunk = (review, productId) => async (dispatch) => {
   try {
     const formData = new FormData();
@@ -97,48 +69,52 @@ export const createReviewThunk = (review, productId) => async (dispatch) => {
   }
 };
 
-//? Attempt #3
-// export const createReviewThunk = (review, productId) => async (dispatch) => {
-//   try {
-//     const res = await fetch("/api/reviews/new", {
-//       method: "POST",
-//       body: review,
+// export const updateReviewThunk =
+//   (reviewId, updatedReviewData) => async (dispatch) => {
+//     const urlParams = new URLSearchParams();
+//     for (const key of Object.keys(updatedReviewData)) {
+//       if (
+//         updatedReviewData[key] !== undefined &&
+//         updatedReviewData[key] !== null
+//       ) {
+//         urlParams.append(key, updatedReviewData[key]);
+//       }
+//     }
+//     const res = await fetch(`/api/reviews/${reviewId}`, {
+//       method: "PUT",
+//       headers: { "Content-Type": "application/x-www-form-urlencoded" },
+//       body: urlParams,
 //     });
-//     const newReviewJSON = await res.json();
-//     dispatch(createReview(newReviewJSON));
-//     await dispatch(getAllReviews(productId));
-//     return newReviewJSON;
-//   } catch (error) {
-//     console.error("Error creating new listing:", error);
-//   }
-// };
 
-export const updateReviewThunk =
-  (reviewId, updatedReviewData) => async (dispatch) => {
-    const urlParams = new URLSearchParams();
-    for (const key of Object.keys(updatedReviewData)) {
-      if (
-        updatedReviewData[key] !== undefined &&
-        updatedReviewData[key] !== null
-      ) {
-        urlParams.append(key, updatedReviewData[key]);
-      }
-    }
-    const res = await fetch(`/api/reviews/${reviewId}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: urlParams,
+//     if (res.ok) {
+//       const updatedReview = await res.json();
+//       dispatch(updateReview(updatedReview.updateReview));
+//       return updatedReview.updateReview;
+//     } else {
+//       console.error(`Server error: ${res.status}`);
+//       return { error: `Server error: ${res.status}` };
+//     }
+//   };
+
+export const updateReviewThunk = (review, productId) => async (dispatch) => {
+  try {
+    const res = await fetch(`/api/reviews/new/${productId}`, {
+      method: "POST",
+      body: review,
     });
-
     if (res.ok) {
-      const updatedReview = await res.json();
-      dispatch(updateReview(updatedReview.updateReview));
-      return updatedReview.updateReview;
+      const review = await res.json();
+      dispatch(updateReview(review.new_review));
+      // await dispatch(getAllReviewsThunk(productId));
+      return review.new_review;
     } else {
       console.error(`Server error: ${res.status}`);
-      return { error: `Server error: ${res.status}` };
     }
-  };
+  } catch (e) {
+    console.error("Error in createReviewThunk:", e);
+    return await e.json();
+  }
+};
 
 export const deleteReviewThunk = (review) => async (dispatch) => {
   let res;

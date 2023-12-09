@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import "./CreateProduct.css";
-import {
-  createProductThunk,
-  getOneProductThunk,
-} from "../../../store/products";
+import { createProductThunk } from "../../../store/products";
 
 function CreateNewProduct() {
   const [validationErrors, setValidationErrors] = useState({});
@@ -16,7 +13,6 @@ function CreateNewProduct() {
   const [productImage, setProductImage] = useState("");
   const [submit, setSubmit] = useState(false);
   const [createdProduct, setCreatedProduct] = useState(null);
-  // const { productId } = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -62,9 +58,6 @@ function CreateNewProduct() {
     setValidationErrors(errorsObject);
   }, [name, description, category, price, productImage]);
 
-  // useEffect(() => {
-  //   dispatch(getOneProductThunk(productId));
-  // }, [dispatch]);
   return (
     <>
       <form

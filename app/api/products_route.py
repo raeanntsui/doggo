@@ -83,7 +83,6 @@ def update_product(id):
         product.product_description = form.data["product_description"]
         product.product_category = form.data["product_category"]
         product.product_price = form.data["product_price"]
-        product.product_image = form.data["product_image"]
 
         if form.data['product_image']:
             product_image = form.data["product_image"]
@@ -123,3 +122,4 @@ def delete_product(productId):
     db.session.delete(currentProduct)
     db.session.commit()
     return {'error': 'Product successfully deleted'}
+

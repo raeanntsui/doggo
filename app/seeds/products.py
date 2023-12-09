@@ -12,7 +12,7 @@ def seed_products():
     product2 = Product(
         product_owner_id=6,
         product_name="Star Clips",
-        product_description="Guess what? We are a shop with specialize in clips for pets, and they look like stars! It's like putting little twinkling stars on your furry friend—it's so pretty!",
+        product_description="Guess what? We are a shop that specialize in clips for pets, and they look like stars! It's like putting little twinkling stars on your furry friend—it's so pretty!",
         product_category="accessories",
         product_price=5,
         product_image="https://m.media-amazon.com/images/I/7111Czh0nDL.jpg")
@@ -33,7 +33,7 @@ def seed_products():
     product5 = Product(
         product_owner_id=5,
         product_name="Custom Pomelo Hat",
-        product_description="Discover the latest trend in animal fashion at our store—Pomelo Hats for any pet! These unique hats are designed to add a touch of humor and style to your pet's wardrobe. Crafted with quality materials, the hats ensure a comfortable fit for your fur baby. The pomelo-inspired design brings a playful and cheerful vibe, making it perfect for various occasions or just to make them the center of attention. Elevate your pet's fashion game with our adorable Pomelo Hats, turning everyday moments into memorable ones.",
+        product_description="Discover the latest trend in animal fashion at our store, Pomelo Hats, for any pet! These unique hats are designed to add a touch of humor and style to your pet's wardrobe. Crafted with quality materials, the hats ensure a comfortable fit for your fur baby. The pomelo-inspired design brings a playful and cheerful vibe, making it perfect for various occasions or just to make them the center of attention. Elevate your pet's fashion game with our adorable Pomelo Hats, turning everyday moments into memorable ones.",
         product_category="hat",
         product_price=5,
         product_image="https://sadanduseless.b-cdn.net/wp-content/uploads/2019/09/fruit-hats13.jpg")

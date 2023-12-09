@@ -48,7 +48,7 @@ def seed_reviews():
         user_id=4,
         product_id=2,
         rating=4,
-        review_description="The stars looked and I want to eat them.",
+        review_description="The stars look cute and I want to eat them.",
         review_image="https://media.discordapp.net/attachments/1110721109076221993/1182199243918815302/IMG_1322.jpg?ex=6583d3d7&is=65715ed7&hm=f6e92e659bbda5559a979c9533421e8c70723b755637fad3b2a0ad113bfaf757&=&format=webp&width=414&height=497")    
     review11 = Review(
         user_id=2,
@@ -78,8 +78,8 @@ def seed_reviews():
         user_id=1,
         product_id=5,
         rating=4,
-        review_description="I thought these looked so adorable on Maddie, but she didn't care too much for it.",
-        review_image="https://media.discordapp.net/attachments/1110721109076221993/1182199243272896592/IMG_1330.jpg?ex=6583d3d7&is=65715ed7&hm=a3847b843a44b03892a65949c8ad632114fbca132dacb260e20d3fa7a3142608&=&format=webp&width=373&height=497")    
+        review_description="I think she liked the hat!",
+        review_image="https://media.discordapp.net/attachments/1110721109076221993/1182199245755920445/IMG_0622.jpg?ex=6583d3d8&is=65715ed8&hm=ce5b63dbc5c43b03995eefd3c4d9fe439bfcc032600e1f4354e54533d3ccd890&=&format=webp&width=329&height=439")    
     review17 = Review(
         user_id=3,
         product_id=6,

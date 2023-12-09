@@ -92,18 +92,39 @@ export const createProductThunk = (newProduct) => async (dispatch) => {
   }
 };
 
+// export const updateProductThunk = (formData, productId) => async (dispatch) => {
+//   const res = await fetch(`/api/products/${productId}`, {
+//     method: "PUT",
+//     body: formData,
+//   });
+//   if (res.ok) {
+//     const product = await res.json();
+//     dispatch(updateProduct(product.resUpdateproduct));
+//     return product.resUpdateproduct;
+//   } else {
+//     const data = await res.json();
+//     return data;
+//   }
+// };
+
 export const updateProductThunk = (formData, productId) => async (dispatch) => {
-  const res = await fetch(`/api/products/${productId}`, {
-    method: "PUT",
-    body: formData,
-  });
-  if (res.ok) {
-    const product = await res.json();
-    dispatch(updateProduct(product.resUpdateproduct));
-    return product.resUpdateproduct;
-  } else {
-    const data = await res.json();
-    return data;
+  // console.log("🚀🚀🚀🚀🚀🚀 ~ productId:", productId);
+  try {
+    const res = await fetch(`/api/products/${productId}`, {
+      method: "PUT",
+      body: formData,
+    });
+
+    if (res.ok) {
+      const product = await res.json();
+      dispatch(updateProduct(product.resUpdateproduct));
+      return product.resUpdateproduct;
+    } else {
+      const data = await res.json();
+      return data;
+    }
+  } catch (error) {
+    console.error("Error updating product:", error);
   }
 };
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useModal } from "../../../context/Modal";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { createReviewThunk } from "../../../store/reviews";
 import "./CreateReview.css";
 
@@ -15,16 +15,6 @@ function ReviewForm() {
   const [submit, setSubmit] = useState(false);
   const dispatch = useDispatch();
   const { closeModal } = useModal();
-  const currentSessionUser = useSelector((state) => state.session.user);
-  // console.log("🚀🚀🚀🚀🚀🚀 ~ currentSessionUser:", currentSessionUser);
-  const currentProduct = useSelector(
-    (state) => state.products.allProducts[productId]
-  );
-  // console.log("🚀🚀🚀🚀🚀🚀 ~ currentProduct:", currentProduct);
-
-  const checkValidation = () => {
-    return description.length > 10 && description.length < 500 && starRating;
-  };
 
   useEffect(() => {
     let errorsObject = {};
@@ -137,7 +127,7 @@ function ReviewForm() {
           />
         </div>
         <p id="errors">{submit && errors.starRating}</p>
-        <label>Image</label>
+        <label>Image (not required)</label>
         <input
           type="file"
           accept="image/*"
