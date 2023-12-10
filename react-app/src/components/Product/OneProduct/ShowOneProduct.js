@@ -85,6 +85,7 @@ function ShowOneProduct() {
                 alt="Product"
               />
             </div>
+
             <div id="update-delete-listing">
               {currentUser && currentUser?.id === product?.product_owner_id ? (
                 <>

@@ -113,7 +113,7 @@ function GetAllReviews() {
             </div>
           </div>
           <div id="if-one-review-matches-currentSessionUser">
-            {oneReview.user.id === currentSessionUser.id ? (
+            {oneReview.user.id === currentSessionUser?.id ? (
               <div id="update-delete-review-parent-container">
                 <div>
                   <OpenModalButton
