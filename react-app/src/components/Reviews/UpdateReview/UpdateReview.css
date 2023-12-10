@@ -38,7 +38,7 @@
 }
 
 #cancel-button:hover {
-  background-color: red;
+  background-color: #c70000;
   color: white;
   transition: 0.2s;
 }

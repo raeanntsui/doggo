@@ -69,53 +69,23 @@ export const createReviewThunk = (review, productId) => async (dispatch) => {
   }
 };
 
-// export const updateReviewThunk =
-//   (reviewId, updatedReviewData) => async (dispatch) => {
-//     const urlParams = new URLSearchParams();
-//     for (const key of Object.keys(updatedReviewData)) {
-//       if (
-//         updatedReviewData[key] !== undefined &&
-//         updatedReviewData[key] !== null
-//       ) {
-//         urlParams.append(key, updatedReviewData[key]);
-//       }
-//     }
-//     const res = await fetch(`/api/reviews/${reviewId}`, {
-//       method: "PUT",
-//       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-//       body: urlParams,
-//     });
+export const updateReviewThunk = (reviewId, formData) => async (dispatch) => {
+  const res = await fetch(`/api/reviews/${reviewId}`, {
+    method: "PUT",
+    body: formData,
+  });
 
-//     if (res.ok) {
-//       const updatedReview = await res.json();
-//       dispatch(updateReview(updatedReview.updateReview));
-//       return updatedReview.updateReview;
-//     } else {
-//       console.error(`Server error: ${res.status}`);
-//       return { error: `Server error: ${res.status}` };
-//     }
-//   };
-
-export const updateReviewThunk = (review, productId) => async (dispatch) => {
-  try {
-    const res = await fetch(`/api/reviews/new/${productId}`, {
-      method: "POST",
-      body: review,
-    });
-    if (res.ok) {
-      const review = await res.json();
-      dispatch(updateReview(review.new_review));
-      // await dispatch(getAllReviewsThunk(productId));
-      return review.new_review;
-    } else {
-      console.error(`Server error: ${res.status}`);
-    }
-  } catch (e) {
-    console.error("Error in createReviewThunk:", e);
-    return await e.json();
+  if (res.ok) {
+    const updatedReview = await res.json();
+    dispatch(updateReview(updatedReview.updateReview));
+    return updatedReview.updateReview;
+  } else {
+    console.log("error updating review");
   }
+  console.log("🚀🚀🚀🚀🚀🚀 ~ res:", res);
 };
 
+// delete review thunk
 export const deleteReviewThunk = (review) => async (dispatch) => {
   let res;
   try {

@@ -9,7 +9,9 @@ function ReviewForm() {
   const { productId } = useParams();
   const [description, setDescription] = useState("");
   const [starRating, setStarRating] = useState(0);
-  const [reviewImage, setReviewImage] = useState(null);
+  // const [reviewImage, setReviewImage] = useState(null);
+  const [reviewImage, setReviewImage] = useState("");
+
   const [hover, setHover] = useState(0);
   const [errors, setErrors] = useState({});
   const [submit, setSubmit] = useState(false);

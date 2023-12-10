@@ -20,14 +20,18 @@ function DeleteReview({ review }) {
     <>
       <div id="delete-review-modal-parent">
         <h2 style={{ paddingBottom: "15px" }}>
-          Are you sure you want to remove your review?
+          Do you really want to delete your review?
         </h2>
         <div id="delete-review-modal-buttons">
           <div>
-            <button onClick={onDeleteButton}>Delete Review</button>
+            <button id="delete-review-button-2" onClick={onDeleteButton}>
+              Delete Review
+            </button>
           </div>
           <div>
-            <button onClick={doNotDeleteButton}>Cancel</button>
+            <button id="cancel-review-button" onClick={doNotDeleteButton}>
+              Cancel
+            </button>
           </div>
         </div>
       </div>

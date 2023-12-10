@@ -22,5 +22,5 @@
   position: absolute;
   background-color: white;
   border-radius: 10px;
-  /* max-width: 400px; */
+  width: fit-content;
 }

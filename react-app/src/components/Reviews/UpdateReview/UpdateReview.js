@@ -10,16 +10,8 @@ function UpdateReviewForm({ product, review }) {
   const dispatch = useDispatch();
 
   const currentSessionUser = useSelector((state) => state.session.user);
-  console.log("🚀🚀🚀🚀🚀🚀 ~ currentSessionUser:", currentSessionUser);
-
   const reviews = useSelector((state) => state.reviews.allReviews);
-  console.log("🚀🚀🚀🚀🚀🚀 ~ productReview:", reviews);
-
   const [description, setDescription] = useState(review.review_description);
-  console.log(
-    "🚀🚀🚀🚀🚀🚀 ~ review.review_description:",
-    review.review_description
-  );
   const [starRating, setStarRating] = useState(review.rating);
   const [reviewImage, setReviewImage] = useState(review.review_image);
   const [hover, setHover] = useState(0);
@@ -53,25 +45,27 @@ function UpdateReviewForm({ product, review }) {
     return null;
   }
 
+  const cancelButton = () => {
+    closeModal();
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const submitReview = {
-      rating: starRating,
-      review_description: description,
-      review_image: reviewImage,
-    };
+    const formData = new FormData();
+    formData.append("review_description", description);
+    formData.append("rating", starRating);
+
+    if (reviewImage !== null) {
+      formData.append("review_image", reviewImage);
+    }
+    console.log("🚀🚀🚀🚀🚀🚀 ~ formData:", formData);
 
     if (Object.keys(errors).length === 0) {
-      await dispatch(updateReviewThunk(review.id, submitReview));
+      await dispatch(updateReviewThunk(review.id, formData));
       closeModal();
     }
-    console.log("🚀🚀🚀🚀🚀🚀 ~ errors:", errors);
     setSubmit(true);
-  };
-
-  const cancelButton = () => {
-    closeModal();
   };
 
   return (

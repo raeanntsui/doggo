@@ -12,7 +12,6 @@ function CreateNewProduct() {
   const [price, setPrice] = useState("");
   const [productImage, setProductImage] = useState("");
   const [submit, setSubmit] = useState(false);
-  const [createdProduct, setCreatedProduct] = useState(null);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -140,17 +139,6 @@ function CreateNewProduct() {
           </button>
         </div>
       </form>
-
-      {createdProduct && (
-        <div>
-          <h2>Details of Created Product:</h2>
-          <p>Name: {createdProduct.product_name}</p>
-          <p>Description: {createdProduct.product_description}</p>
-          <p>Category: {createdProduct.product_category}</p>
-          <p>Price: ${createdProduct.product_price}</p>
-          <p>Picture: {createdProduct.product_image}</p>
-        </div>
-      )}
     </>
   );
 }
