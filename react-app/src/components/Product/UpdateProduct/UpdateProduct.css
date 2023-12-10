@@ -1,0 +1,15 @@
+#update-form-parent {
+  padding: 20px;
+}
+
+#update-product-button {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+#update-product-button:hover {
+  background-color: #228b22;
+  color: white;
+}

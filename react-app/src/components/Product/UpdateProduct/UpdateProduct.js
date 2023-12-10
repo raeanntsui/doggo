@@ -6,6 +6,7 @@ import {
   updateProductThunk,
 } from "../../../store/products";
 import { useModal } from "../../../context/Modal";
+import "./UpdateProduct.css";
 
 const UpdateProduct = ({ productId }) => {
   const product = useSelector((state) => state.products.allProducts[productId]);
@@ -76,73 +77,77 @@ const UpdateProduct = ({ productId }) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <div>
-          <h1>Make changes to your listing here</h1>
-        </div>
-        <div>
+      <div id="update-form-parent">
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
           <div>
-            <label>Name</label>
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Name"
-            />
+            <h1>Make changes to your listing here</h1>
           </div>
-          {submit && validationErrors.name && (
-            <p id="errors">{validationErrors.name}</p>
-          )}
           <div>
-            <label>Description</label>
-            <input
-              type="text"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              placeholder="Description"
-            />
-          </div>
-          {submit && validationErrors.description && (
-            <p id="errors">{validationErrors.description}</p>
-          )}
-          <div>
-            <label>Category</label>
-            <input
-              type="text"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              placeholder="Category"
-            />
-          </div>
-          {submit && validationErrors.category && (
-            <p id="errors">{validationErrors.category}</p>
-          )}
-          <div>
-            <label>Price</label>
-            <input
-              type="number"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
-              placeholder="Price"
-            />
-          </div>
-          {submit && validationErrors.price && (
-            <p id="errors">{validationErrors.price}</p>
-          )}
-          <div>
-            <label>Image</label>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={(e) => setProductImage(e.target.files[0])}
-            />
-            {submit && validationErrors.productImage && (
-              <p id="errors">{validationErrors.productImage}</p>
+            <div>
+              <label>Name</label>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Name"
+              />
+            </div>
+            {submit && validationErrors.name && (
+              <p id="errors">{validationErrors.name}</p>
             )}
+            <div>
+              <label>Description</label>
+              <input
+                type="text"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                placeholder="Description"
+              />
+            </div>
+            {submit && validationErrors.description && (
+              <p id="errors">{validationErrors.description}</p>
+            )}
+            <div>
+              <label>Category</label>
+              <input
+                type="text"
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                placeholder="Category"
+              />
+            </div>
+            {submit && validationErrors.category && (
+              <p id="errors">{validationErrors.category}</p>
+            )}
+            <div>
+              <label>Price</label>
+              <input
+                type="number"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+                placeholder="Price"
+              />
+            </div>
+            {submit && validationErrors.price && (
+              <p id="errors">{validationErrors.price}</p>
+            )}
+            <div>
+              <label>Image</label>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => setProductImage(e.target.files[0])}
+              />
+              {submit && validationErrors.productImage && (
+                <p id="errors">{validationErrors.productImage}</p>
+              )}
+            </div>
           </div>
-        </div>
-        <button type="submit">Update listing</button>
-      </form>
+          <button id="update-product-button" type="submit">
+            Update listing
+          </button>
+        </form>
+      </div>
     </>
   );
 };

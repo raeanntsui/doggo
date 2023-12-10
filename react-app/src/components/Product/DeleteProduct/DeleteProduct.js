@@ -22,13 +22,17 @@ function DeleteProduct({ productId }) {
 
   return (
     <>
-      <div>
-        <h2>Are you sure you want to remove this listing?</h2>
+      <div id="delete-product-parent">
+        <h2 style={{ paddingBottom: "10px" }}>
+          Are you sure you want to remove this listing?
+        </h2>
         <div id="delete-review-button">
           <button id="top-button-delete" onClick={onDeleteButton}>
-            Delete Listing
+            Yes, delete it!
           </button>
-          <button onClick={doNotDeleteButton}>Cancel</button>
+          <button id="bottom-button-cancel" onClick={doNotDeleteButton}>
+            No, I changed my mind
+          </button>
         </div>
       </div>
     </>

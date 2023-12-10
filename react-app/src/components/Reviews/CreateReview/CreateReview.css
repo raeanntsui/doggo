@@ -11,6 +11,8 @@
   font-size: 14px;
   font-weight: 600;
   border: none;
+  width: 70%;
+  color: white;
 }
 
 #post-button-div {
@@ -18,7 +20,7 @@
 }
 
 #post-review-button:hover {
-  background-color: #04aa6d;
+  background-color: #04aa6da5;
   color: white;
   transition: 0.2s;
 }

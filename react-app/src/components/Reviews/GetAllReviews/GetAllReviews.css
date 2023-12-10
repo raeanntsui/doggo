@@ -25,3 +25,8 @@
 .fa-solid.fa-user {
   color: #00a5ff;
 }
+
+#if-one-review-matches-currentSessionUser {
+  display: flex;
+  justify-content: left;
+}

@@ -45,7 +45,9 @@
 #update-delete-review-parent-container {
   gap: 10px;
   display: flex;
-  padding-top: 20px;
+  /* padding-top: 20px; */
+  justify-content: left;
+  width: fit-content;
 }
 
 #update-delete-listing {

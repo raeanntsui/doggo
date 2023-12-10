@@ -3,19 +3,32 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getOneProductThunk } from "../../../store/products";
 import { getAllReviewsThunk } from "../../../store/reviews";
-import { useModal } from "../../../context/Modal";
+import OpenModalButton from "../../OpenModalButton";
 import UpdateReviewForm from "../UpdateReview/UpdateReview";
+import DeleteReview from "../../Reviews/DeleteReview/DeleteReview";
 import "./GetAllReviews.css";
 function GetAllReviews() {
   const { productId } = useParams();
   const dispatch = useDispatch();
+  const product = useSelector((state) => state.products.allProducts[productId]);
+
   const currentSessionUser = useSelector((state) => state.session.user);
   const currentProduct = useSelector(
     (state) => state.products.allProducts[productId]
   );
+  const reviews = useSelector((state) => state.reviews.allReviews);
   const allReviewsObject = useSelector((state) => state.reviews.allReviews);
+  const reviewsObj = Object.values(reviews).filter(
+    (review) => review.product_id === parseInt(productId)
+  );
   const reviewArr = Object.values(allReviewsObject);
-  console.log("🚀🚀🚀🚀🚀🚀 ~ reviewArr:", reviewArr);
+
+  let existingReview;
+  if (currentSessionUser) {
+    existingReview = reviewsObj.find(
+      (review) => review.user_id === currentSessionUser.id
+    );
+  }
 
   useEffect(() => {
     dispatch(getOneProductThunk(productId));
@@ -95,12 +108,32 @@ function GetAllReviews() {
                 {oneReview.user.first_name} {oneReview.user.last_name}
               </p>
             </div>
-            <p>{renderStars(oneReview.rating)}</p>
-            <div id="if-one-review-matches-currentSessionUser">
-              {oneReview.user.id === currentSessionUser.id ? (
-                <p>Show update and delete button here</p>
-              ) : null}
+            <div>
+              <p>{renderStars(oneReview.rating)}</p>
             </div>
+          </div>
+          <div id="if-one-review-matches-currentSessionUser">
+            {oneReview.user.id === currentSessionUser.id ? (
+              <div id="update-delete-review-parent-container">
+                <div>
+                  <OpenModalButton
+                    buttonText="Update Review"
+                    modalComponent={
+                      <UpdateReviewForm
+                        review={existingReview}
+                        product={product}
+                      />
+                    }></OpenModalButton>
+                </div>
+                <div>
+                  <OpenModalButton
+                    buttonText="Delete Review"
+                    modalComponent={
+                      <DeleteReview review={existingReview} />
+                    }></OpenModalButton>
+                </div>
+              </div>
+            ) : null}
           </div>
           <p>{oneReview.review_description}</p>
           <div id="one-review-image">
