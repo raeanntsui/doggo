@@ -117,11 +117,13 @@ function ShowOneProduct() {
               </h2>
               <div id="shop-and-stars">
                 <div>
-                  <p style={{ fontWeight: "bold", color: "#eb6d20" }}>
-                    {product?.user?.first_name}
+                  <p style={{ fontWeight: "bold", padding: "10px 0px" }}>
+                    Shop ran by {product?.user?.first_name}
                   </p>
                 </div>
-                <div>{renderStars(averageRating)}</div>
+                <div style={{ fontWeight: "bold", padding: "10px 0px" }}>
+                  {renderStars(averageRating)}
+                </div>
               </div>
               <h3>{product.product_description}</h3>
               <h5>Category: {product.product_category}</h5>
