@@ -9,6 +9,8 @@ function HomePage() {
   const products = useSelector((state) => state.products.allProducts);
   const allProductsObject = Object.values(products);
   const productKeys = Object.keys(allProductsObject);
+  const currentSessionUser = useSelector((state) => state.session.user);
+  // console.log("🚀🚀🚀🚀🚀🚀 ~ currentSessionUser:", currentSessionUser);
 
   useEffect(() => {
     dispatch(getAllProductsThunk());
@@ -23,8 +25,16 @@ function HomePage() {
   return (
     <>
       <div id="landing-page-about-info">
-        <h1 style={{ fontSize: "80px" }}>Welcome to Dogsy!</h1>
-        <h3>
+        {currentSessionUser ? (
+          <h1
+            style={{
+              fontSize: "80px",
+            }}>{`Welcome to Dogsy, ${currentSessionUser.first_name}!`}</h1>
+        ) : (
+          <h1 style={{ fontSize: "80px" }}>Welcome to Dogsy!</h1>
+        )}
+
+        <h3 style={{ paddingTop: "10px" }}>
           Here are some of our spotlight items! Feel free to check these shops
           out.
         </h3>
@@ -39,9 +49,10 @@ function HomePage() {
               <p
                 style={{
                   fontWeight: "bold",
-                  fontSize: "18px",
+                  fontSize: "30px",
                   textAlign: "center",
                   color: "#eb6d20",
+                  paddingBottom: "15px",
                 }}>
                 {allProductsObject[productKey].product_name}
               </p>

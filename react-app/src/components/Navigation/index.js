@@ -21,6 +21,10 @@ function Navigation({ isLoaded }) {
             style={{
               fontWeight: "700",
               fontSize: "20px",
+              textAlign: "center",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
             }}
             exact
             to="/products">

@@ -41,8 +41,12 @@ function LoginFormModal() {
   return (
     <>
       <div id="login-modal-parent">
-        <h1 style={{ paddingTop: "10px" }}>Log In</h1>
         <form id="login-modal" onSubmit={handleSubmit}>
+          <h1
+          // style={{ paddingTop: "10px" }}
+          >
+            Log In
+          </h1>
           <ul>
             {errors.map((error, idx) => (
               <li key={idx}>{error}</li>
@@ -67,10 +71,12 @@ function LoginFormModal() {
               required
             />
           </label>
-          <button type="submit" onClick={handleSubmit}>
+          <button id="login-only-button" type="submit" onClick={handleSubmit}>
             Log In
           </button>
-          <button onClick={loginAsDemoUser}>Log in as Demo User</button>
+          <button id="login-as-demo-user" onClick={loginAsDemoUser}>
+            Log in as Demo User
+          </button>
         </form>
       </div>
     </>
