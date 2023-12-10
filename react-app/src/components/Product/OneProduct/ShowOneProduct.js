@@ -103,7 +103,7 @@ function ShowOneProduct() {
             </div>
 
             <div id="reviews-for-this-item">
-              <h1>Reviews for this item</h1>
+              <h1>See what others had to say below!</h1>
             </div>
             <div>
               <GetAllReviews />
@@ -112,9 +112,15 @@ function ShowOneProduct() {
           <div id="product-information-right-parent-container">
             <div id="product-information-right">
               <h1>${product.product_price}</h1>
-              <h2>{product.product_name}</h2>
+              <h2 style={{ fontWeight: "bold", color: "#eb6d20" }}>
+                {product.product_name}
+              </h2>
               <div id="shop-and-stars">
-                <div>{product?.user?.first_name}</div>
+                <div>
+                  <p style={{ fontWeight: "bold", color: "#eb6d20" }}>
+                    {product?.user?.first_name}
+                  </p>
+                </div>
                 <div>{renderStars(averageRating)}</div>
               </div>
               <h3>{product.product_description}</h3>

@@ -15,6 +15,7 @@ function GetAllReviews() {
   );
   const allReviewsObject = useSelector((state) => state.reviews.allReviews);
   const reviewArr = Object.values(allReviewsObject);
+  console.log("🚀🚀🚀🚀🚀🚀 ~ reviewArr:", reviewArr);
 
   useEffect(() => {
     dispatch(getOneProductThunk(productId));
@@ -85,11 +86,21 @@ function GetAllReviews() {
               <i class="fa-solid fa-user"></i>
             </div>
             <div>
-              <p>
+              <p
+                style={{
+                  fontSize: "18px",
+                  fontWeight: "bold",
+                  color: "#eb6d20",
+                }}>
                 {oneReview.user.first_name} {oneReview.user.last_name}
               </p>
             </div>
             <p>{renderStars(oneReview.rating)}</p>
+            <div id="if-one-review-matches-currentSessionUser">
+              {oneReview.user.id === currentSessionUser.id ? (
+                <p>Show update and delete button here</p>
+              ) : null}
+            </div>
           </div>
           <p>{oneReview.review_description}</p>
           <div id="one-review-image">
