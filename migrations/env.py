@@ -6,12 +6,11 @@ from logging.config import fileConfig
 from flask import current_app
 
 from alembic import context
-
-##
+# add 2
 import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
-##
+#
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -96,6 +95,8 @@ def run_migrations_online():
             if environment == "production":
                 context.execute(f"SET search_path TO {SCHEMA}")
             context.run_migrations()
+
+
 
 if context.is_offline_mode():
     run_migrations_offline()

@@ -1,1 +1,37 @@
 /* TODO Add site wide styles */
+* {
+  font-family: "Quicksand", sans-serif;
+  margin: 0 auto;
+  word-wrap: break-word;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+li {
+  list-style: none;
+}
+
+button {
+  border-radius: 10px;
+}
+
+img {
+  border-radius: 10px;
+}
+
+label {
+  font-weight: 600;
+  padding: 5px 0px;
+}
+
+input {
+  height: 30px;
+  padding-left: 10px;
+}
+
+#open-modal-button {
+  height: 30px;
+}

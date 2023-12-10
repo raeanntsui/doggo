@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 from app.models import db, Product
 from app.forms import ProductForm
 from .auth_routes import validation_errors_to_error_messages
-
+from .aws_helper import upload_file_to_s3, get_unique_filename, remove_file_from_s3
 
 products_route = Blueprint('products', __name__)
 
@@ -42,8 +42,17 @@ def create_product():
             product_description=form.data["product_description"],
             product_category=form.data["product_category"],
             product_price=form.data["product_price"],
-            product_image=form.data["product_image"],
         )
+
+        product_image = form.data["product_image"]
+        product_image.filename = get_unique_filename(product_image.filename)
+        uploadProductImage = upload_file_to_s3(product_image)
+
+        if "url" not in uploadProductImage:
+            print(uploadProductImage)
+            return uploadProductImage
+        else:
+            product_params.product_image = uploadProductImage["url"]
 
         db.session.add(product_params)
         db.session.commit()
@@ -74,7 +83,21 @@ def update_product(id):
         product.product_description = form.data["product_description"]
         product.product_category = form.data["product_category"]
         product.product_price = form.data["product_price"]
-        product.product_image = form.data["product_image"]
+
+        if form.data['product_image']:
+            product_image = form.data["product_image"]
+            product_image.filename = get_unique_filename(product_image.filename)
+
+            if product.product_image:
+                remove_file_from_s3(product.product_image)
+            updateProductImage = upload_file_to_s3(product_image)
+
+            if "url" not in updateProductImage:
+                print(updateProductImage)
+                return updateProductImage
+            else:
+                product.product_image = updateProductImage["url"]
+
 
         db.session.commit()
 
@@ -99,3 +122,4 @@ def delete_product(productId):
     db.session.delete(currentProduct)
     db.session.commit()
     return {'error': 'Product successfully deleted'}
+

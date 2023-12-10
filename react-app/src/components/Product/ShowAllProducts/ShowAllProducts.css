@@ -1,0 +1,18 @@
+#all-products {
+  /* border: solid 4px red; */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+  max-width: 1500px;
+  padding-top: 20px;
+}
+
+#one-product {
+  width: 200px;
+}
+
+#all-products-image {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}

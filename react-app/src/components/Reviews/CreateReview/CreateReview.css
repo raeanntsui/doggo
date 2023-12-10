@@ -1,0 +1,28 @@
+#create-review-parent {
+  /* border: 4px solid red; */
+  padding-top: 20px;
+}
+
+#post-review-button {
+  padding: 7px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: #04aa6d;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+}
+
+#post-button-div {
+  padding-top: 10px;
+}
+
+#post-review-button:hover {
+  background-color: #04aa6d;
+  color: white;
+  transition: 0.2s;
+}
+
+#post-review-button:not(:hover) {
+  transition: 0.2s;
+}
