@@ -73,8 +73,8 @@ function GetAllReviews() {
 
   return (
     <>
-      <div>
-        <p>
+      <div id="review-count">
+        <p style={{ fontWeight: "500" }}>
           {reviewArr.length} reviews {renderStars(averageRating)}
         </p>
       </div>

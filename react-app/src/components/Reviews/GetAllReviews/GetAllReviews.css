@@ -16,3 +16,12 @@
   width: 150px;
   object-fit: cover;
 }
+
+#review-count {
+  padding-bottom: 10px;
+  border-bottom: 3px solid rgba(128, 128, 128, 0.523);
+}
+
+.fa-solid.fa-user {
+  color: #00a5ff;
+}

@@ -1,9 +1,6 @@
 .profile-dropdown {
-  /* position: absolute;
-  padding-top: 5px;
   display: flex;
-  flex-direction: column;
-  border: 2px solid black; */
+  flex-direction: row;
   border: 1px solid rgb(221, 221, 221);
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
@@ -12,10 +9,27 @@
   padding: 10px 10px;
   margin-top: 5px;
   position: absolute;
-  /* min-width: 65px; */
   width: 160px;
   margin-left: -130px;
-  /* justify-content: flex-start; */
+}
+
+#create-listing-dropdown-button,
+#logout-dropdown-button {
+  font-weight: 600;
+  width: 100%;
+  padding: 5px;
+  border: 2px solid rgb(221, 221, 221);
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+  background-color: white;
+}
+
+#create-listing-dropdown-button:hover {
+  color: #228b22;
+}
+
+#logout-dropdown-button:hover {
+  color: red;
 }
 
 .hidden {
@@ -46,7 +60,7 @@
 }
 
 .login-button {
-  color: black;
+  /* color: #eb6d20; */
   width: 50px;
   height: 30px;
   display: flex;
@@ -55,7 +69,7 @@
   align-items: center;
   border-radius: 10px;
   background-color: white;
-  border: 3px solid black;
+  border: 3px solid #eb6d20;
 }
 
 .fas,
@@ -63,4 +77,12 @@
 #all-listings-link {
   padding: 0px;
   margin: 0px;
+}
+
+#right-side-nav {
+  display: flex;
+  margin-right: 10px;
+  gap: 10px;
+  justify-content: center;
+  text-align: center;
 }

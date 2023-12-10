@@ -56,16 +56,31 @@ function ProfileButton({ user }) {
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>
-              Welcome, {user.first_name} {user.last_name}!
+            <li
+              style={{
+                fontSize: "20px",
+                fontWeight: "600",
+                paddingBottom: "5px",
+              }}>
+              Welcome, {user.first_name}!
             </li>
-            <li>
-              <button onClick={handleCreateNewListing}>
+            <li
+              style={{
+                paddingBottom: "5px",
+              }}>
+              <button
+                id="create-listing-dropdown-button"
+                onClick={handleCreateNewListing}>
                 Create a new listing
               </button>
             </li>
-            <li>
-              <button onClick={handleLogout}>Log Out</button>
+            <li
+              style={{
+                paddingBottom: "5px",
+              }}>
+              <button id="logout-dropdown-button" onClick={handleLogout}>
+                Log Out
+              </button>
             </li>
           </>
         ) : (

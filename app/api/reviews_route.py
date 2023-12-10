@@ -1,8 +1,7 @@
 from flask import Blueprint, jsonify, redirect, request
 from flask_login import login_required, current_user
 from app.models import db, Review, User
-# from app.forms import UpdateReviewForm, CreateReviewForm
-from app.forms import ReviewForm
+from app.forms import UpdateReviewForm, CreateReviewForm
 from .auth_routes import validation_errors_to_error_messages
 from .aws_helper import upload_file_to_s3, get_unique_filename, remove_file_from_s3
 
@@ -24,7 +23,7 @@ def create_review(product_id):
     '''
     Create a new review for a specific product
     '''
-    form = ReviewForm()
+    form = CreateReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     print(form.data)
     if form.validate_on_submit():
@@ -59,44 +58,13 @@ def create_review(product_id):
         errors = form.errors
         return jsonify({"message": "Invalid form submission", "errors": errors}), 400
 
-## update review route
-# @reviews_route.route("/<int:review_id>", methods=["PUT"])
-# @login_required
-# def update_review(review_id):
-#     '''
-#     Update an existing review
-#     '''
-#     form = ReviewForm(request.form)
-#     form['csrf_token'].data = request.cookies['csrf_token']
-
-#     if form.validate_on_submit():
-#         review = Review.query.get(review_id)
-
-#         if not review:
-#             return (jsonify({"error": "Review not found"}), 404)
-
-#         review.rating = form.data["rating"]
-#         review.review_description = form.data["review_description"]
-#         review.review_image = form.data["review_image"]
-
-#         # rating = form.rating.data
-#         # review_description = form.review_description.data
-#         # review_image = form.review_image.data
-#         db.session.add(review)
-#         db.session.commit()
-
-#         return {"updateReview": review.to_dict()}
-#     else:
-#         return (jsonify({"error": "Invalid form data"}), 400)
-
-#! Comment below back in
 @reviews_route.route("/<int:review_id>", methods=["PUT"])
 @login_required
 def update_review(review_id):
     '''
     Update an existing review
     '''
-    form = ReviewForm(request.form)
+    form = UpdateReviewForm(request.form)
     form['csrf_token'].data = request.cookies['csrf_token']
 
     print(form.data)
@@ -128,15 +96,6 @@ def update_review(review_id):
     else:
         print(form.errors)
         return jsonify({"Something wrong with form submission": form.errors}), 400
-
-
-
-
-
-
-
-
-
 
 ## delete review route
 @reviews_route.route('/<int:review_id>', methods=['DELETE'])

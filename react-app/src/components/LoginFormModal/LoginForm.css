@@ -10,7 +10,7 @@
   width: 300px;
   height: fit-content;
   gap: 5px;
-  padding: 10px 0px;
+  padding-bottom: 10px;
 }
 
 ul {

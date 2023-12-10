@@ -21,6 +21,10 @@ function LoginFormPage() {
     }
   };
 
+  // useEffect(() => {
+  //   if (!email)
+  // })
+
   return (
     <>
       <h1>Log In</h1>

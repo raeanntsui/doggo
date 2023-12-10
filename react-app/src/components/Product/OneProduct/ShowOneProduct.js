@@ -85,7 +85,22 @@ function ShowOneProduct() {
                 alt="Product"
               />
             </div>
-
+            <div id="update-delete-listing">
+              {currentUser && currentUser?.id === product?.product_owner_id ? (
+                <>
+                  <OpenModalButton
+                    buttonText="Delete Listing"
+                    modalComponent={
+                      <DeleteProduct productId={productId} />
+                    }></OpenModalButton>
+                  <OpenModalButton
+                    buttonText="Update Listing"
+                    modalComponent={
+                      <UpdateProduct productId={productId} />
+                    }></OpenModalButton>
+                </>
+              ) : null}
+            </div>
             <div>
               {currentUser &&
               !existingReview &&
@@ -139,23 +154,6 @@ function ShowOneProduct() {
       ) : (
         <h1>Undefined</h1>
       )}
-
-      <div>
-        {currentUser && currentUser?.id === product?.product_owner_id ? (
-          <>
-            <OpenModalButton
-              buttonText="Delete Listing"
-              modalComponent={
-                <DeleteProduct productId={productId} />
-              }></OpenModalButton>
-            <OpenModalButton
-              buttonText="Update Listing"
-              modalComponent={
-                <UpdateProduct productId={productId} />
-              }></OpenModalButton>
-          </>
-        ) : null}
-      </div>
     </>
   );
 }

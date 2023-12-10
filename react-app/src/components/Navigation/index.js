@@ -15,18 +15,25 @@ function Navigation({ isLoaded }) {
             <h1 id="dogsy-title">Dogsy</h1>
           </NavLink>
         </div>
-
-        <div id="all-listings-link">
-          <NavLink exact to="/products">
+        <div id="right-side-nav">
+          {/* <div id="all-listings-link"> */}
+          <NavLink
+            style={{
+              fontWeight: "700",
+              fontSize: "20px",
+            }}
+            exact
+            to="/products">
             All Listings
           </NavLink>
-        </div>
-        <div id="profile-button">
-          {isLoaded && (
-            <li>
-              <ProfileButton user={sessionUser} />
-            </li>
-          )}
+          {/* </div> */}
+          <div id="profile-button">
+            {isLoaded && (
+              <li>
+                <ProfileButton user={sessionUser} />
+              </li>
+            )}
+          </div>
         </div>
       </div>
     </>

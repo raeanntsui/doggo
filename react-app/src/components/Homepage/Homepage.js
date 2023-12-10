@@ -23,8 +23,11 @@ function HomePage() {
   return (
     <>
       <div id="landing-page-about-info">
-        <h1>Welcome to Dogsy!</h1>
-        <h1>Here are some of the items being sold on Dogsy</h1>
+        <h1 style={{ fontSize: "80px" }}>Welcome to Dogsy!</h1>
+        <h3>
+          Here are some of our spotlight items! Feel free to check these shops
+          out.
+        </h3>
       </div>
 
       <div id="landing-page-parent">

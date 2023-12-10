@@ -33,6 +33,7 @@ function LoginFormModal() {
         const data = await res.json();
         if (data && data.errors) {
           setErrors(data.errors);
+          console.log("🚀🚀🚀🚀🚀🚀 ~ data.errors:", data.errors);
         }
       });
   };
@@ -40,7 +41,7 @@ function LoginFormModal() {
   return (
     <>
       <div id="login-modal-parent">
-        <h1>Log In</h1>
+        <h1 style={{ paddingTop: "10px" }}>Log In</h1>
         <form id="login-modal" onSubmit={handleSubmit}>
           <ul>
             {errors.map((error, idx) => (

@@ -59,12 +59,12 @@ function UpdateReviewForm({ product, review }) {
     if (reviewImage !== null) {
       formData.append("review_image", reviewImage);
     }
-    console.log("🚀🚀🚀🚀🚀🚀 ~ formData:", formData);
 
     if (Object.keys(errors).length === 0) {
       await dispatch(updateReviewThunk(review.id, formData));
       closeModal();
     }
+    // console.log("🚀🚀🚀🚀🚀🚀 ~ formData:", formData);
     setSubmit(true);
   };
 
@@ -153,7 +153,8 @@ function UpdateReviewForm({ product, review }) {
               display: "flex",
             }}
             type="file"
-            onChange={(e) => setReviewImage(e.target.value)}
+            accept="image/*"
+            onChange={(e) => setReviewImage(e.target.files[0])}
           />
         </div>
         <div
