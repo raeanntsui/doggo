@@ -80,8 +80,6 @@ function GetAllReviews() {
       </div>
       {reviewArr.reverse().map((oneReview) => (
         <div id="one-review" key={oneReview.id}>
-          <p>{renderStars(oneReview.rating)}</p>
-          <p>{oneReview.review_description}</p>
           <div id="user-icon-and-name">
             <div>
               <i class="fa-solid fa-user"></i>
@@ -91,7 +89,9 @@ function GetAllReviews() {
                 {oneReview.user.first_name} {oneReview.user.last_name}
               </p>
             </div>
+            <p>{renderStars(oneReview.rating)}</p>
           </div>
+          <p>{oneReview.review_description}</p>
           <div id="one-review-image">
             {oneReview.review_image ? (
               <img id="product-image" src={oneReview.review_image} />

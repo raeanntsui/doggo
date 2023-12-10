@@ -2,15 +2,24 @@
   /* border: solid 4px red; */
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 10px;
+  gap: 20px;
   max-width: 1500px;
   padding-top: 20px;
 }
 
 #one-product {
+  /* position: absolute; */
   width: 200px;
+  padding: 15px 20px;
+  border-radius: 10px;
+  /* box-shadow: rgba(0, 0, 0, 0.1) 5px 5px 5px 5px; */
+  transition: box-shadow 0.3s ease-in-out;
+  gap: 10px;
 }
 
+#one-product:hover {
+  box-shadow: #dbdbdbba 0px 0px 15px 15px;
+}
 #all-products-image {
   height: 200px;
   width: 100%;

@@ -101,7 +101,26 @@ function ShowOneProduct() {
                 </>
               ) : null}
             </div>
+
+            <div id="reviews-for-this-item">
+              <h1>Reviews for this item</h1>
+            </div>
             <div>
+              <GetAllReviews />
+            </div>
+          </div>
+          <div id="product-information-right-parent-container">
+            <div id="product-information-right">
+              <h1>${product.product_price}</h1>
+              <h2>{product.product_name}</h2>
+              <div id="shop-and-stars">
+                <div>{product?.user?.first_name}</div>
+                <div>{renderStars(averageRating)}</div>
+              </div>
+              <h3>{product.product_description}</h3>
+              <h5>Category: {product.product_category}</h5>
+            </div>
+            <div id="create-review-parent-div">
               {currentUser &&
               !existingReview &&
               currentUser.id !== product.product_owner_id ? (
@@ -132,23 +151,6 @@ function ShowOneProduct() {
                 </>
               ) : null}
             </div>
-            <div id="reviews-for-this-item">
-              <h1>Reviews for this item</h1>
-            </div>
-            <div>
-              <GetAllReviews />
-            </div>
-          </div>
-          <div id="product-information-right">
-            <h1>${product.product_price}</h1>
-            <h2>{product.product_name}</h2>
-            <div id="shop-and-stars">
-              <div>{product?.user?.first_name}</div>
-              <div>{renderStars(averageRating)}</div>
-            </div>
-
-            <h3>{product.product_description}</h3>
-            <h5>Category: {product.product_category}</h5>
           </div>
         </div>
       ) : (
