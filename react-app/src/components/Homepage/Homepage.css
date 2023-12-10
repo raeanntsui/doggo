@@ -41,12 +41,11 @@
   width: 300px;
   padding: 15px 20px;
   border-radius: 10px;
-  transition: box-shadow 0.3s ease-in-out;
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 #landing-page-child:hover {
   box-shadow: rgba(0, 0, 0, 0.1) 10px 10px 16px 10px;
-  transition: 0.3s ease-in-out;
   background-color: white;
-  /* cursor: pointer; */
+  transform: scale(1.1);
 }
