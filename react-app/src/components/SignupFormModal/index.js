@@ -21,21 +21,30 @@ function SignupFormModal() {
     e.preventDefault();
     let errorsObj = {};
 
-    if (!username) errorsObj.username = "Please enter a username";
-    if ((username && username.length < 5) || username.length > 25)
-      errorsObj.username =
-        "Please enter a username between 5 and 25 characters long";
-    if (!firstName) errorsObj.firstName = "Please enter your first name";
-    if ((firstName && firstName.length < 3) || firstName.length > 25)
-      errorsObj.firstName = "Please enter a name between 3 and 25 characters";
-    if ((lastName && lastName.length < 3) || lastName.length > 25)
-      errorsObj.firstName = "Please enter a name between 3 and 25 characters";
-    if (!lastName) errorsObj.lastName = "Please enter your last name";
+    // email validation
     if (!email) errorsObj.email = "Please enter an email address";
     if (email && !email.includes("@"))
       errorsObj.email = "Email must contain @ symbol";
     if (email && !email.endsWith(".com"))
       errorsObj.email = "Email must end in .com";
+
+    // username validation
+    if (!username) errorsObj.username = "Please enter a username";
+    if ((username && username.length < 5) || username.length > 25)
+      errorsObj.username =
+        "Please enter a username between 5 and 25 characters long";
+
+    // first name validation
+    if (!firstName) errorsObj.firstName = "Please enter your first name";
+    if ((firstName && firstName.length < 3) || firstName.length > 25)
+      errorsObj.firstName = "Please enter a name between 3 and 25 characters";
+
+    // last name validation
+    if (!lastName) errorsObj.lastName = "Please enter your last name";
+    if ((lastName && lastName.length < 3) || lastName.length > 25)
+      errorsObj.lastName = "Please enter a name between 3 and 25 characters";
+
+    // password validation
     if (!password) errorsObj.password = "Please enter a password";
     if (password && password.length < 6)
       errorsObj.password = "Please enter a password longer than 6 characters";
@@ -76,75 +85,92 @@ function SignupFormModal() {
 
   return (
     <>
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <div id="errors">{errors.email && <p>{errors.email}</p>}</div>
-        </label>
-        <label>
-          Username
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-          <div id="errors"> {errors.username && <p>{errors.username}</p>}</div>
-        </label>
+      <div id="signup-modal-parent">
+        <form id="signup-modal" onSubmit={handleSubmit}>
+          <h1>Sign Up</h1>
+          <label>
+            Email
+            <div id="errors">{errors.email && <p>{errors.email}</p>}</div>
+            <input
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              // required
+            />
+          </label>
+          <label>
+            Username
+            <div id="errors">
+              {" "}
+              {errors.username && <p>{errors.username}</p>}
+            </div>
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              // required
+            />
+          </label>
 
-        <label>
-          First Name
-          <input
-            type="text"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            required
-          />
-          <div id="errors">{errors.firstName && <p>{errors.firstName}</p>}</div>
-        </label>
+          <label>
+            First Name
+            <div id="errors">
+              {errors.firstName && <p>{errors.firstName}</p>}
+            </div>
+            <input
+              type="text"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              // required
+            />
+          </label>
 
-        <label>
-          Last Name
-          <input
-            type="text"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            required
-          />
-          <div id="errors"> {errors.lastName && <p>{errors.lastName}</p>}</div>
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <div id="errors"> {errors.password && <p>{errors.password}</p>}</div>
-        </label>
-        <label>
-          Confirm Password
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-          <div id="errors">
-            {" "}
-            {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
+          <label>
+            Last Name
+            <div id="errors">
+              {" "}
+              {errors.lastName && <p>{errors.lastName}</p>}
+            </div>
+            <input
+              type="text"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              // required
+            />
+          </label>
+          <label>
+            Password
+            <div id="errors">
+              {" "}
+              {errors.password && <p>{errors.password}</p>}
+            </div>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              // required
+            />
+          </label>
+          <label>
+            Confirm Password
+            <div id="errors">
+              {" "}
+              {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
+            </div>
+            <input
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              // required
+            />
+          </label>
+          <div id="signup-modal-button-div">
+            <button id="signup-modal-button" type="submit">
+              Sign Up
+            </button>
           </div>
-        </label>
-        <button type="submit">Sign Up</button>
-      </form>
+        </form>
+      </div>
     </>
   );
 }

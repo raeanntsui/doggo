@@ -24,45 +24,40 @@ function HomePage() {
 
   return (
     <>
-      <div id="landing-page-about-info">
-        {currentSessionUser ? (
-          <h1
-            style={{
-              fontSize: "80px",
-            }}>{`Welcome to Dogsy, ${currentSessionUser.first_name}!`}</h1>
-        ) : (
-          <h1 style={{ fontSize: "80px" }}>Welcome to Dogsy!</h1>
-        )}
+      <div id="homepage-parent">
+        <div id="landing-page-about-info">
+          {currentSessionUser ? (
+            <h1
+              style={{
+                fontSize: "60px",
+              }}>{`Welcome to Dogsy, ${currentSessionUser.first_name}!`}</h1>
+          ) : (
+            <h1 style={{ fontSize: "60px" }}>Welcome to Dogsy!</h1>
+          )}
 
-        <h3 style={{ paddingTop: "10px" }}>
-          Here are some of our spotlight items! Feel free to check these shops
-          out.
-        </h3>
-      </div>
+          <h3 style={{ paddingTop: "10px" }}>
+            Here are some of our spotlight items! Feel free to check these shops
+            out.
+          </h3>
+        </div>
 
-      <div id="landing-page-parent">
-        {randomProducts.map((productKey) => (
-          <div id="landing-page-child">
-            <NavLink
-              key={productKey}
-              to={`/products/${parseInt(productKey) + 1}`}>
-              <p
-                style={{
-                  fontWeight: "bold",
-                  fontSize: "30px",
-                  textAlign: "center",
-                  color: "#eb6d20",
-                  paddingBottom: "15px",
-                }}>
-                {allProductsObject[productKey].product_name}
-              </p>
-              <img
-                id="homepage-image"
-                src={allProductsObject[productKey].product_image}
-              />
-            </NavLink>
-          </div>
-        ))}
+        <div id="landing-page-parent">
+          {randomProducts.map((productKey) => (
+            <div id="landing-page-child">
+              <NavLink
+                key={productKey}
+                to={`/products/${parseInt(productKey) + 1}`}>
+                <p id="homepage-p-title">
+                  {allProductsObject[productKey].product_name}
+                </p>
+                <img
+                  id="homepage-image"
+                  src={allProductsObject[productKey].product_image}
+                />
+              </NavLink>
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );

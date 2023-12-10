@@ -6,9 +6,16 @@
   border-radius: 10px;
 }
 
-#sign-up-modal h1 {
+/* #signup-modal h1 {
   font-size: 24px;
   text-align: center;
+} */
+
+#signup-modal label {
+  padding: 10px;
+  display: block;
+  width: 350px;
+  text-align: left;
 }
 
 label {

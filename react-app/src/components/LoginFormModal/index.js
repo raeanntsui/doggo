@@ -49,12 +49,17 @@ function LoginFormModal() {
           </h1>
           <ul>
             {errors.map((error, idx) => (
-              <li key={idx}>{error}</li>
+              <li key={idx}>
+                <p id="errors" style={{ padding: "5px", fontWeight: "bold" }}>
+                  {error}
+                </p>
+              </li>
             ))}
           </ul>
           <label>
             Email
             <input
+              style={{ display: "flex", width: "300px" }}
               type="text"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -65,18 +70,21 @@ function LoginFormModal() {
           <label>
             Password
             <input
+              style={{ display: "flex", width: "300px" }}
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
           </label>
-          <button id="login-only-button" type="submit" onClick={handleSubmit}>
-            Log In
-          </button>
-          <button id="login-as-demo-user" onClick={loginAsDemoUser}>
-            Log in as Demo User
-          </button>
+          <div id="login-and-demo-login-parent-div">
+            <button id="login-only-button" type="submit" onClick={handleSubmit}>
+              Log In
+            </button>
+            <button id="login-as-demo-user" onClick={loginAsDemoUser}>
+              Log in as Demo User
+            </button>
+          </div>
         </form>
       </div>
     </>

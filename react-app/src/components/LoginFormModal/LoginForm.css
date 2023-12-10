@@ -1,8 +1,10 @@
 #login-modal-parent {
-  /* border-radius: 20px; */
+  border-radius: 20px;
   text-align: center;
   width: 400px;
   height: fit-content;
+  /* border: 4px solid red; */
+  padding: 20px;
 }
 
 #login-modal {
@@ -11,6 +13,7 @@
   flex-direction: column;
   height: fit-content;
   gap: 5px;
+  justify-content: center;
 }
 
 ul {
@@ -20,9 +23,21 @@ ul {
 
 #login-as-demo-user,
 #login-only-button {
-  width: 80%;
+  width: 175px;
+  padding: 10px 0px;
+  margin: 5px 0px;
 }
 
+#login-only-button:hover {
+  background-color: #228b22d7;
+  color: white;
+}
 #login-as-demo-user {
   color: red;
+}
+
+#login-and-demo-login-parent-div {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
 }

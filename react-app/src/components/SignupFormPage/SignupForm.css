@@ -1,0 +1,23 @@
+#signup-modal-parent {
+  border-radius: 20px;
+  text-align: center;
+  width: 400px;
+  height: fit-content;
+  /* border: 4px solid red; */
+  padding: 20px;
+}
+
+#signup-modal {
+  display: flex;
+  /* border: 4px solid black; */
+  flex-direction: column;
+  height: fit-content;
+  gap: 5px;
+  justify-content: center;
+}
+
+#signup-modal-button {
+  width: 175px;
+  padding: 10px 0px;
+  margin: 5px 0px;
+}
