@@ -18,14 +18,15 @@ function Navigation({ isLoaded }) {
         <div id="right-side-nav">
           {/* <div id="all-listings-link"> */}
           <NavLink
-            style={{
-              fontWeight: "700",
-              fontSize: "20px",
-              textAlign: "center",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
+            // style={{
+            //   fontWeight: "700",
+            //   fontSize: "20px",
+            //   textAlign: "center",
+            //   display: "flex",
+            //   justifyContent: "center",
+            //   alignItems: "center",
+            // }}
+            id="all-listings-nav-bar"
             exact
             to="/products">
             All Listings

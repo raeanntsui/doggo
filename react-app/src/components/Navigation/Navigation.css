@@ -123,3 +123,31 @@
   width: 100%;
   background-color: white;
 } */
+
+#all-listings-nav-bar {
+  font-weight: 700;
+  font-size: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+  background-color: white;
+  padding: 0px 10px;
+  border-radius: 10px;
+}
+
+#all-listings-nav-bar:hover {
+  transition: 0.3s;
+  color: #eb6d20;
+  box-shadow: rgba(0, 0, 0, 0.373) 4px 6px 16px;
+  border: 1px solid rgba(221, 221, 221, 0.526);
+  /* border-radius: 10px; */
+}
+
+#all-listings-nav-bar:not(:hover) {
+  color: black;
+  transition: 0.3s;
+}

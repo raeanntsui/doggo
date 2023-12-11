@@ -36,8 +36,11 @@ function HomePage() {
           )}
 
           <h3 style={{ paddingTop: "10px" }}>
-            Here are some of our spotlight items! Feel free to check these shops
-            out.
+            Here are some of our spotlight items! Feel free to check{" "}
+            <NavLink id="these" exact to="/products">
+              these
+            </NavLink>{" "}
+            shops out.
           </h3>
         </div>
 
