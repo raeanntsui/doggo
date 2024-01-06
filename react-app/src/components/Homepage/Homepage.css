@@ -6,6 +6,19 @@
 
 #homepage-parent {
   background-image: linear-gradient(#fdebd2, white);
+  /* border: 3px solid red; */
+}
+
+#footer-information {
+  /* border: 4px solid red; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  /* padding: 0px; */
+  /* margin: 0px 50px; */
 }
 
 #landing-page-parent {
@@ -37,6 +50,7 @@
   overflow: hidden;
 }
 #landing-page-child {
+  position: relative;
   display: flex;
   width: 300px;
   padding: 15px 20px;
@@ -50,8 +64,41 @@
   transform: scale(1.1);
 }
 
+#product-price-corner {
+  border: 2px solid #eaeaea;
+  /* height: 20px; */
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 30px;
+  left: 40px;
+  padding: 5px;
+  background-color: white;
+  border-radius: 15px;
+}
+
 #these {
   text-decoration: underline;
   font-weight: boldest;
   color: blue;
+  transition: 0.3s ease-in-out;
+}
+#these:hover {
+  color: red;
+  /* font-weight: 1000; */
+  /* transform: scale(1.2);
+  transition: 0.2s; */
+  transition: 0.3s ease-in-out;
+}
+
+#github-li,
+#linkedin-li {
+  transition: 0.3s ease-in-out;
+}
+
+#github-li:hover,
+#linkedin-li:hover {
+  transform: scale(1.2);
+  transition: 0.3s ease-in-out;
 }

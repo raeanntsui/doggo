@@ -29,7 +29,12 @@ function ShowAllProducts() {
               <NavLink key={product.id} to={`/products/${product.id}`}>
                 <img id="all-products-image" src={product.product_image} />
                 <h3>{product.product_name}</h3>
+                {/* <div> */}
                 <p style={{ fontWeight: "bold" }}>${product.product_price}</p>
+                {/* </div> */}
+                <p style={{ fontWeight: "500", color: "gray" }}>
+                  Sold by: {product.user.first_name}
+                </p>
               </NavLink>
             </div>
           ))

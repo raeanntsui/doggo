@@ -1,4 +1,5 @@
 .profile-dropdown {
+  /* position: relative; */
   border: 1px solid rgb(221, 221, 221);
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
@@ -7,14 +8,10 @@
   padding: 10px 10px;
   margin-top: 5px;
   position: absolute;
-  width: 160px;
-  margin-left: -130px;
+  width: 175px;
+  margin-left: -135px;
+  z-index: 1;
 }
-
-/* .profile-dropdown:hover {
-  display: block;
-  animation: slideDown 0.3s ease;
-} */
 
 #create-listing-dropdown-button,
 #logout-dropdown-button,
@@ -28,10 +25,6 @@
   background-color: white;
   transition: 0.3s ease-in-out;
 }
-
-/* #create-listing-dropdown-button:hover {
-  color: #228b22;
-} */
 
 #create-listing-dropdown-button:hover,
 #logout-dropdown-button:hover {
