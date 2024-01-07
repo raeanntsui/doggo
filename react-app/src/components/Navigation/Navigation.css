@@ -8,9 +8,9 @@
   padding: 10px 10px;
   margin-top: 5px;
   position: absolute;
-  width: 175px;
-  margin-left: -135px;
-  z-index: 1;
+  width: 185px;
+  margin-left: -147px;
+  z-index: 2;
 }
 
 #create-listing-dropdown-button,
