@@ -15,13 +15,13 @@ def seed_products():
         product_description="Guess what? We are a shop that specialize in clips for pets, and they look like stars! It's like putting little twinkling stars on your furry friend—it's so pretty!",
         product_category="accessories",
         product_price=5.75,
-        product_image="https://m.media-amazon.com/images/I/7111Czh0nDL.jpg")
+        product_image="https://img.kwcdn.com/product/Fancyalgo/VirtualModelMatting/af23443f3dd41cf649f99456e9f7c6c6.jpg?imageMogr2/auto-orient%7CimageView2/2/w/1300/q/80/format/webp")
     product3 = Product(
         product_owner_id=1,
         product_name="Toast hat",
         product_description="Picture this: a hat for pets that looks like toast! It's like a fun accessory that turns your furry friend into a cute little toast buddy. How adorable is that?",
         product_category="hat",
-        product_price=14.20,
+        product_price=14.25,
         product_image="https://sp.apolloboxassets.com/vendor/product/productImages/2019-11-20/3SqzbArray_1-(4).jpg")
     product4 = Product(
         product_owner_id=9,
@@ -46,11 +46,11 @@ def seed_products():
         product_image="https://m.media-amazon.com/images/I/61mdLfMohKL._AC_UF350,350_QL80_.jpg")
     product7 = Product(
         product_owner_id=3,
-        product_name="Bowtie Collar Set",
-        product_description="Dress your pet in style with our adorable bowtie collar set. This set includes a comfortable collar with an attached bowtie, making your furry friend look dapper and fashionable. Perfect for special occasions or just to showcase their cuteness!",
+        product_name="Yankees Hat",
+        product_description="Let your furry friend join the Yankees fandom with our New York Yankees Dog Baseball Hat. This adorable and comfortable hat is specially designed for dogs, featuring the iconic Yankees logo embroidered with precision. Now your pup can cheer for the team alongside you in style during game days or everyday outings.",
         product_category="accessories",
-        product_price=8.15,
-        product_image="https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/61rb8MlZmEL._AC_UF1000,1000_QL80_.jpg")
+        product_price=25.15,
+        product_image="https://i.ebayimg.com/images/g/Gj0AAOSwlaFhrwq7/s-l1600.jpg")
     product8 = Product(
         product_owner_id=2,
         product_name="Rainbow Unicorn Costume",
@@ -78,14 +78,14 @@ def seed_products():
         product_description="Add a pop of color to your dog's wardrobe with our tropical bird-themed dog bandana. Made from soft and breathable fabric, this bandana is not only stylish but also comfortable for your furry friend. Perfect for outings, playdates, or just to showcase their personality!",
         product_category="accessories",
         product_price=17.55,
-        product_image="https://m.media-amazon.com/images/I/710mYvGx2hL.jpg")
+        product_image="https://sammyssewshop.com/wp-content/uploads/2021/06/flock-party-bandit.jpg")
     product12 = Product(
         product_owner_id=7,
         product_name="Cactus Cat Scratching Post",
         product_description="Give your cat a stylish and functional scratching post with our cactus-shaped design. This scratching post provides an outlet for your cat's natural scratching instincts while adding a touch of desert-inspired decor to your home. Keep your furniture safe and your cat entertained!",
         product_category="furniture",
         product_price=25.55,
-        product_image="https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/71RyTHljOdL.jpg")
+        product_image="https://image.chewy.com/ca/is/image/catalog/1000015262_MAIN._AC_SL600_V1692691033_.jpg")
     product13 = Product(
         product_owner_id=6,
         product_name="Sock Dog Bandana",
@@ -99,7 +99,7 @@ def seed_products():
         product_description="Elevate your pet's dining experience with our wooden pet bowl stand. The elevated design reduces strain on your pet's neck and provides a stylish and functional solution for feeding time. Available in various sizes to suit your pet's needs!",
         product_category="bowl",
         product_price=22.99,
-        product_image="https://assets.mgimgs.com/mgimgs/ab/images/dp/wcm/202335/0005/ceramic-dog-bowls-with-wooden-stand-c.jpg")
+        product_image="https://i.ebayimg.com/images/g/kVUAAOSwuO9hnPvq/s-l1200.webp")
     product15 = Product(
         product_owner_id=1,
         product_name="Mermaid Tail Cat Bed",
@@ -141,7 +141,7 @@ def seed_products():
         product_description="Made from durable and pet-friendly materials, this propeller hat is perfect for playdates, parties, or even just a walk around the block. It's not just a hat; it's a statement piece that showcases your dog's fun-loving personality.",
         product_category="accessories",
         product_price=14.81,
-        product_image="https://petcostumecenter.com/wp-content/uploads/2020/05/propeller-dog-hat.jpg")
+        product_image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1VW4T-iL0GevbUd9Z7rDp-WCBMDex0LGxycE1GJVNxBd5Xjj7ErzO14Dq5sPrpPbKNhM&usqp=CAU")
 
     db.session.add(product1)
     db.session.add(product2)
