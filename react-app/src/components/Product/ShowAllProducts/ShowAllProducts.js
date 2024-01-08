@@ -20,6 +20,40 @@ function ShowAllProducts() {
 
   if (!products) return null;
 
+  const renderStars = (rating) => {
+    const starElements = [];
+    const filledStars = Math.floor(rating);
+
+    for (let i = 0; i < filledStars; i++) {
+      starElements.push(
+        <i key={i} className="fa-solid fa-star filled-stars"></i>
+      );
+    }
+
+    const emptyStars = 5 - filledStars;
+    for (let i = 0; i < emptyStars; i++) {
+      starElements.push(
+        <i key={`empty-${i}`} className="fa-regular fa-star filled-stars"></i>
+      );
+    }
+
+    return starElements;
+  };
+
+  const calculateAverageRating = () => {
+    if (reviewArr.length === 0) {
+      return 0;
+    }
+
+    const totalRating = allReviewsObject.reduce(
+      (sum, review) => sum + review.rating,
+      0
+    );
+    return totalRating / allReviewsObject.length;
+  };
+
+  const averageRating = calculateAverageRating();
+
   return (
     <>
       <div id="all-products">
@@ -31,6 +65,9 @@ function ShowAllProducts() {
                 <h3>{product.product_name}</h3>
                 <div id="showallproducts-price-corner">
                   <p style={{ fontWeight: "bold" }}>${product.product_price}</p>
+                </div>
+                <div style={{ fontWeight: "bold", padding: "10px 0px" }}>
+                  {renderStars(averageRating)}
                 </div>
                 <p style={{ fontWeight: "500", color: "gray" }}>
                   Sold by: {product.user.first_name}

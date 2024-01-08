@@ -1,15 +1,24 @@
-# Flask React Project
+# Full Stack Project
 
-This is the starter for the Flask React project.
+Welcome to Dogsy, an Etsy inspired clone for all pet related items! Feel free to explore the website and check out what our site has to offer for your furry friends.
+
+Here is a link to the live website:
+https://dogsy.onrender.com/
+
+Find me here on LinkedIn:
+https://www.linkedin.com/in/raeanntsui/
+
+![https://www.linkedin.com/in/raeanntsui/](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)
 
 ## Getting started
+
 1. Clone this repository (only this branch)
 
 2. Install dependencies
 
-      ```bash
-      pipenv install -r requirements.txt
-      ```
+   ```bash
+   pipenv install -r requirements.txt
+   ```
 
 3. Create a **.env** file based on the example with proper settings for your
    development environment
@@ -17,7 +26,7 @@ This is the starter for the Flask React project.
 4. Make sure the SQLite3 database connection URL is in the **.env** file
 
 5. This starter organizes all tables inside the `flask_schema` schema, defined
-   by the `SCHEMA` environment variable.  Replace the value for
+   by the `SCHEMA` environment variable. Replace the value for
    `SCHEMA` with a unique name, **making sure you use the snake_case
    convention**.
 
@@ -40,7 +49,6 @@ This is the starter for the Flask React project.
    ```
 
 7. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
-
 
 ## Deployment through Render.com
 
@@ -84,7 +92,7 @@ flask seed all
 ```
 
 This script will install dependencies for the frontend, and run the build
-command in the __package.json__ file for the frontend, which builds the React
+command in the **package.json** file for the frontend, which builds the React
 application. Then, it will install the dependencies needed for the Python
 backend, and run the migration and seed files.
 
@@ -103,7 +111,7 @@ _If you are using websockets, use the following start command instead for increa
 
 Click on the "Advanced" button at the bottom of the form to configure the
 environment variables your application needs to access to run properly. In the
-development environment, you have been securing these variables in the __.env__
+development environment, you have been securing these variables in the **.env**
 file, which has been removed from source control. In this step, you will need to
 input the keys and values for the environment variables you need for production
 into the Render GUI.
@@ -127,9 +135,9 @@ Add the following keys and values:
 
 - DATABASE_URL (copy value from Internal Database URL field)
 
-_Note: Add any other keys and values that may be present in your local __.env__
+_Note: Add any other keys and values that may be present in your local **.env**
 file. As you work to further develop your project, you may need to add more
-environment variables to your local __.env__ file. Make sure you add these
+environment variables to your local **.env** file. Make sure you add these
 environment variables to the Render GUI as well for the next deployment._
 
 Next, choose "Yes" for the Auto-Deploy field. This will re-deploy your
