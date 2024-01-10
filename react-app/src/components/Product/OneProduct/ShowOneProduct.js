@@ -112,22 +112,29 @@ function ShowOneProduct() {
           </div>
           <div id="product-information-right-parent-container">
             <div id="product-information-right">
-              <h1>${product.product_price}</h1>
-              <h2 style={{ fontWeight: "bold", color: "#eb6d20" }}>
+              <h2
+                style={{
+                  fontWeight: "bold",
+                  color: "#eb6d20",
+                  fontSize: "35px",
+                }}>
                 {product.product_name}
               </h2>
+              <h1>${product.product_price}</h1>
               <div id="shop-and-stars">
                 <div>
-                  <p style={{ fontWeight: "bold", padding: "10px 0px" }}>
-                    Shop ran by {product?.user?.first_name}
+                  <p style={{ fontWeight: "bold", padding: "5px 0px" }}>
+                    Sold by {product?.user?.first_name}
                   </p>
                 </div>
-                <div style={{ fontWeight: "bold", padding: "10px 0px" }}>
+                <div style={{ fontWeight: "bold", padding: "5px 0px" }}>
                   {renderStars(averageRating)}
                 </div>
               </div>
               <h3>{product.product_description}</h3>
-              <h5>Category: {product.product_category}</h5>
+              <h3 style={{ color: "#949494", padding: "5px 0px" }}>
+                Category: {product.product_category}
+              </h3>
             </div>
             <div id="create-review-parent-div">
               {currentUser &&

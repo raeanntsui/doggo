@@ -45,11 +45,11 @@ function ShowAllProducts() {
       return 0;
     }
 
-    const totalRating = allReviewsObject.reduce(
+    const totalRating = reviewArr.reduce(
       (sum, review) => sum + review.rating,
       0
     );
-    return totalRating / allReviewsObject.length;
+    return totalRating / reviewArr.length;
   };
 
   const averageRating = calculateAverageRating();
@@ -66,9 +66,9 @@ function ShowAllProducts() {
                 <div id="showallproducts-price-corner">
                   <p style={{ fontWeight: "bold" }}>${product.product_price}</p>
                 </div>
-                <div style={{ fontWeight: "bold", padding: "10px 0px" }}>
+                {/* <div style={{ fontWeight: "bold", padding: "10px 0px" }}>
                   {renderStars(averageRating)}
-                </div>
+                </div> */}
                 <p style={{ fontWeight: "500", color: "gray" }}>
                   Sold by: {product.user.first_name}
                 </p>

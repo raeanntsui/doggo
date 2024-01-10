@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getOneProductThunk } from "../../../store/products";
@@ -136,7 +136,10 @@ function GetAllReviews() {
             ) : null}
           </div>
           <p>{oneReview.review_description}</p>
-          <div id="one-review-image">
+          <div
+            id="one-review-image"
+            // onClick={photoEnlarger(oneReview.review_image)}
+          >
             {oneReview.review_image ? (
               <img id="product-image" src={oneReview.review_image} />
             ) : null}

@@ -6,6 +6,8 @@
 
 #one-review {
   padding: 10px 0px;
+  /* border: 1px solid #d3d3d3; */
+  /* border-radius: 10px; */
   border-bottom: 1px solid rgba(128, 128, 128, 0.523);
   line-height: 1.6;
   max-width: 400px;
@@ -15,11 +17,12 @@
   height: 150px;
   width: 150px;
   object-fit: cover;
+  /* display: flex; */
 }
 
 #review-count {
   padding-bottom: 10px;
-  border-bottom: 3px solid rgba(128, 128, 128, 0.523);
+  border-bottom: 2px solid rgba(128, 128, 128, 0.523);
 }
 
 .fa-solid.fa-user {
