@@ -104,7 +104,7 @@ function ShowOneProduct() {
             </div>
 
             <div id="reviews-for-this-item">
-              <h1>See what others had to say below!</h1>
+              <h1>Product Reviews</h1>
             </div>
             <div>
               <GetAllReviews />

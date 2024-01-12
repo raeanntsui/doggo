@@ -136,10 +136,7 @@ function GetAllReviews() {
             ) : null}
           </div>
           <p>{oneReview.review_description}</p>
-          <div
-            id="one-review-image"
-            // onClick={photoEnlarger(oneReview.review_image)}
-          >
+          <div id="one-review-image">
             {oneReview.review_image ? (
               <img id="product-image" src={oneReview.review_image} />
             ) : null}

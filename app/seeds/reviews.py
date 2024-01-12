@@ -98,7 +98,42 @@ def seed_reviews():
         rating=5,
         review_description="Cool hat! I liked it.",
         review_image="https://pbs.twimg.com/media/E8IRGh0VcAAI2UE.jpg:large")    
-   
+    review20 = Review(
+        user_id=10,
+        product_id=1,
+        rating=4,
+        review_description="I like this hat, its really fuzzy!",
+        review_image="https://m.media-amazon.com/images/I/51eM5d7PkWL.jpg") 
+    review21 = Review(
+        user_id=4,
+        product_id=1,
+        rating=5,
+        review_description="Well constructed hat, would buy again.",
+        review_image="https://i5.walmartimages.com/asr/d703dec8-98f9-453d-a9d1-c05c4f85b6e5.c8d06e8cf119a680ffe6961bb69997b2.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF")    
+    review22 = Review(
+        user_id=6,
+        product_id=1,
+        rating=3,
+        review_description="My hat fell off pretty easily. It is cute, though.",
+        review_image="https://leannalinswonderland.com/cdn/shop/files/leannalinswonderland_ci_catcaps2_800x800.jpg?v=1694649526")
+    review23 = Review(
+        user_id=7,
+        product_id=1,
+        rating=5,
+        review_description="My friend got this hat for me, it is amazing! The fabric feels super soft.",
+        review_image="https://cdn.shopifycdn.net/s/files/1/0270/1341/4984/files/d8_480x480.jpg?v=1629384451")
+    review24 = Review(
+        user_id=8,
+        product_id=1,
+        rating=4,
+        review_description="Not bad! I might buy another one.",
+        review_image="https://www.shopdogandco.com/cdn/shop/products/kitanclubcleveridiotsbunnyhat4_1024x1024.jpg?v=1599153929")
+    review25 = Review(
+        user_id=9,
+        product_id=1,
+        rating=5,
+        review_description="I want these in all the colors they have to offer!!!",
+        review_image="https://canary.contestimg.wish.com/api/webimage/5c89b9ddf145ec439e46d7d3-large.jpg?cache_buster=29f9cea0f60261261f8d259783b82478")
     db.session.add(review1)
     db.session.add(review2)
     db.session.add(review3)
@@ -115,6 +150,12 @@ def seed_reviews():
     db.session.add(review17)
     db.session.add(review18)
     db.session.add(review19)
+    db.session.add(review20)
+    db.session.add(review21)
+    db.session.add(review22)
+    db.session.add(review23)
+    db.session.add(review24)
+    db.session.add(review25)
     db.session.commit()
 
 

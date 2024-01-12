@@ -70,7 +70,9 @@ function CreateNewProduct() {
         </div>
         <div>
           <div>
-            <label>Name</label>
+            <label>
+              Name<span style={{ color: "red" }}> *</span>
+            </label>
             <input
               type="text"
               value={name}
@@ -82,7 +84,9 @@ function CreateNewProduct() {
             <p id="errors">{validationErrors.name}</p>
           )}
           <div>
-            <label>Description</label>
+            <label>
+              Description<span style={{ color: "red" }}> *</span>
+            </label>
             <input
               type="text"
               value={description}
@@ -94,7 +98,9 @@ function CreateNewProduct() {
             <p id="errors">{validationErrors.description}</p>
           )}
           <div>
-            <label>Category</label>
+            <label>
+              Category<span style={{ color: "red" }}> *</span>
+            </label>
             <input
               type="text"
               value={category}
@@ -106,7 +112,9 @@ function CreateNewProduct() {
             <p id="errors">{validationErrors.category}</p>
           )}
           <div>
-            <label>Price</label>
+            <label>
+              Price<span style={{ color: "red" }}> *</span>
+            </label>
             <input
               type="number"
               value={price}
@@ -118,8 +126,11 @@ function CreateNewProduct() {
             <p id="errors">{validationErrors.price}</p>
           )}
           <div>
-            <label>Image</label>
+            <label>
+              Image<span style={{ color: "red" }}> *</span>
+            </label>
             <input
+              style={{ padding: "0px" }}
               type="file"
               accept="image/*"
               onChange={(e) => setProductImage(e.target.files[0])}

@@ -44,6 +44,11 @@ function ProfileButton({ user }) {
     history.push("/products/new");
   };
 
+  // const handleManageProducts = (e) => {
+  //   closeMenu();
+  //   history.push("/products/mine");
+  // };
+
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
   const closeMenu = () => {
@@ -77,7 +82,19 @@ function ProfileButton({ user }) {
               <button
                 id="create-listing-dropdown-button"
                 onClick={handleCreateNewListing}>
-                Create a new listing
+                Sell A New Product!
+              </button>
+            </li>
+            <li
+              style={{
+                paddingBottom: "5px",
+              }}>
+              <button
+                id="create-listing-dropdown-button"
+                // onClick={handleManageProducts}
+                // Render all products created by user
+              >
+                Manage Store
               </button>
             </li>
             <li

@@ -14,8 +14,8 @@
 }
 
 #one-review-image > img {
-  height: 150px;
-  width: 150px;
+  height: 220px;
+  width: 220px;
   object-fit: cover;
   /* display: flex; */
 }
