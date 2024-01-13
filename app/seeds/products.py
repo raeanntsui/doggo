@@ -43,7 +43,7 @@ def seed_products():
         product_description="Our shop is your go-to destination for enchanting hats designed exclusively for pets. Explore our collection inspired by the lovable pink character, Kirby. From whimsical designs to cozy fits, our Kirby-themed hats promise to transform your furry friends into adorable, magical companions. Step into a world of playful fashion at our shop, where every hat carries the spirit of Kirby.",
         product_category="hat",
         product_price=12.75,
-        product_image="https://m.media-amazon.com/images/I/61mdLfMohKL._AC_UF350,350_QL80_.jpg")
+        product_image="https://i.ebayimg.com/images/g/MqsAAOSwegReVo-m/s-l500.jpg")
     product7 = Product(
         product_owner_id=3,
         product_name="Yankees Hat",
@@ -78,7 +78,7 @@ def seed_products():
         product_description="Add a pop of color to your dog's wardrobe with our tropical bird-themed dog bandana. Made from soft and breathable fabric, this bandana is not only stylish but also comfortable for your furry friend. Perfect for outings, playdates, or just to showcase their personality!",
         product_category="accessories",
         product_price=17.55,
-        product_image="https://sammyssewshop.com/wp-content/uploads/2021/06/flock-party-bandit.jpg")
+        product_image="https://isteam.wsimg.com/ip/31614e7a-c3a1-11e5-8887-14feb5d40a06/ols/8877_original/:/rs=w:600,h:600")
     product12 = Product(
         product_owner_id=7,
         product_name="Cactus Cat Scratching Post",

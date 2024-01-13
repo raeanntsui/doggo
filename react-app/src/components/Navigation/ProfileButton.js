@@ -85,7 +85,7 @@ function ProfileButton({ user }) {
                 Sell A New Product!
               </button>
             </li>
-            <li
+            {/* <li
               style={{
                 paddingBottom: "5px",
               }}>
@@ -96,7 +96,7 @@ function ProfileButton({ user }) {
               >
                 Manage Store
               </button>
-            </li>
+            </li> */}
             <li
               style={{
                 paddingBottom: "5px",
