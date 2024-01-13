@@ -88,7 +88,6 @@ Welcome to Dogsy, an Etsy inspired clone for all pet related items! Feel free to
 ## Edit or Delete the Listing
 
 ![Alt text](image-6.png)
-![Alt text](image-7.png)
 
 - User is able to update or delete the listing on the product details page
 - Each update requires a name, description, category, price, and image!
