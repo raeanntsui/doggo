@@ -19,6 +19,8 @@ Welcome to Dogsy, an Etsy inspired clone for all pet related items! Feel free to
 **Site Preview**<br>
 ![Alt Text](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYmcyeW5wZ3l6dTB3eXB4cGtvYThtZ2RkdmE4ZHgwbmpuMHpvdW52OCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/nLpZQxxXm98qlUBQzV/giphy.gif)
 
+<!-- ![Alt text](<Screen-Recording-2024-01-13-at-11.17.31 AM.gif>) -->
+
 ## What can you do on Dogsy?
 
 **1. Explore store listings!**<br>
@@ -34,9 +36,24 @@ Welcome to Dogsy, an Etsy inspired clone for all pet related items! Feel free to
 
 ## How to download Dogsy on your local computer
 
-1. cd into the root folder and then run `pipenv run flask run` to start the back-end
+1. In the root folder:
 
-2. cd into the react-app folder and then run `npm start` to start the front-end
+- create an .env file
+- copy over .envexample content into the new .env file
+- run these commands in terminal
+
+  ```bash
+  pipenv requirements > requirements.txt
+  pipenv install
+  pipenv shell
+  flask db upgrade
+  flask seed all
+  flask run
+  ```
+
+2. cd into the root folder and then run `pipenv run flask run` to start the back-end
+
+3. cd into the react-app folder and then run `npm start` to start the front-end
 
 # Site Summary
 
