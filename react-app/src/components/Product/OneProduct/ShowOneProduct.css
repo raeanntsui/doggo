@@ -1,10 +1,14 @@
 #product-information-parent {
-  /* border: 4px dashed green; */
-  max-width: 1024px;
-  height: 100%;
+  border: 4px dashed green;
+  /* max-width: 1024px; */
+  /* height: 100%; */
   display: flex;
   padding: 20px;
-  gap: 20px;
+  /* gap: 20px; */
+  width: fit-content;
+  min-width: 500px;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 #reviews-for-this-item {
@@ -13,10 +17,12 @@
 }
 
 #product-image {
-  height: 400px;
-  width: 400px;
+  width: 100%;
+  margin: 0 auto;
+  /* height: 400px;
+  width: 400px; */
   object-fit: cover;
-  /* border: 4px solid orange; */
+  border: 4px solid orange;
   border-radius: 10px;
 }
 
