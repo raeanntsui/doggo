@@ -22,8 +22,9 @@
   /* height: 400px;
   width: 400px; */
   object-fit: cover;
-  border: 4px solid orange;
+  /* border: 4px solid orange; */
   border-radius: 10px;
+  max-height: 600px;
 }
 
 .fa-solid.fa-star.filled-stars,
@@ -64,10 +65,11 @@
 }
 
 #product-information-right-parent-container {
-  /* border: 10px solid red; */
+  border: 10px solid red;
   position: sticky;
   top: 20px;
   height: fit-content;
+  width: 60%;
 }
 
 #product-information-right {
@@ -78,7 +80,8 @@
 }
 
 #product-image-container {
-  /* border: 4px solid red;
-  border-radius: 10px;
-  padding: 10px; */
+  border: 4px solid green;
+  width: 40%;
+  /* border-radius: 10px; */
+  padding: 10px;
 }
