@@ -1,0 +1,30 @@
+#delete-review-modal-parent {
+  width: 100%;
+  padding: 20px;
+}
+
+#delete-review-modal-buttons {
+  display: flex;
+  margin: 0px;
+  /* border: 4px solid red; */
+  width: fit-content;
+  justify-content: center;
+  width: 90%;
+}
+
+#delete-review-button-2,
+#cancel-review-button {
+  padding: 10px 15px;
+  border: none;
+}
+
+#delete-review-button-2 {
+  background-color: #c70000;
+  color: white;
+}
+
+#delete-review-button-2:hover {
+  background-color: rgb(255, 0, 0);
+  transition: 0.3s;
+  color: white;
+}

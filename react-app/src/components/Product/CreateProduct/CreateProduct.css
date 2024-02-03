@@ -1,0 +1,19 @@
+#create-product-form {
+  width: 500px;
+  padding: 20px;
+}
+
+#submit-button {
+  padding: 7px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  background-color: #ebebeb;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+#submit-button-div {
+  padding-top: 20px;
+}

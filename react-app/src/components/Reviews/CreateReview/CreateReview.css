@@ -1,0 +1,46 @@
+#create-review-parent {
+  /* border: 4px solid #eb6d20; */
+  border-radius: 10px;
+  padding: 20px;
+  /* background-color: #eb6e203a; */
+}
+
+#post-review-button {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  padding: 7px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: #04aa6d;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  width: 30%;
+  color: white;
+}
+
+#post-button-div {
+  padding-top: 10px;
+}
+
+#post-review-button:hover {
+  background-color: #048857;
+  color: white;
+  transition: 0.2s;
+}
+
+#post-review-button:not(:hover) {
+  transition: 0.2s;
+}
+
+#create-review-stars {
+  /* border: 4px dashed blue; */
+}
+
+#five-stars {
+  /* border: 4px solid purple; */
+  padding-bottom: 10px;
+  color: #ff9529;
+  font-size: 25px;
+}

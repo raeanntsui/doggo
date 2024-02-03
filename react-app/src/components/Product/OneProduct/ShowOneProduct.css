@@ -1,0 +1,88 @@
+#product-information-parent {
+  /* border: 4px dashed green; */
+  /* max-width: 1024px; */
+  /* height: 100%; */
+  display: flex;
+  padding: 20px;
+  /* gap: 20px; */
+  width: fit-content;
+  min-width: 500px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+#reviews-for-this-item {
+  padding-top: 5px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+#product-image {
+  width: 100%;
+  margin: 0 auto;
+  /* height: 400px;
+  width: 400px; */
+  object-fit: cover;
+  /* border: 4px solid orange; */
+  border-radius: 10px;
+  max-height: 600px;
+}
+
+.fa-solid.fa-star.filled-stars,
+.fa-regular.fa-star.filled-stars {
+  font-size: 14px;
+  color: #ff9529;
+}
+
+#shop-and-stars {
+  display: flex;
+  margin-left: 0px;
+  justify-content: left;
+  gap: 5px;
+}
+
+#shop-and-stars > div {
+  margin: 0px;
+  padding: 0px;
+}
+
+#reviews {
+  /* border: dashed purple 4px; */
+  width: 400px;
+}
+
+#update-delete-review-parent-container {
+  gap: 10px;
+  display: flex;
+  /* padding-top: 20px; */
+  justify-content: left;
+  width: fit-content;
+}
+
+#update-delete-listing {
+  display: flex;
+  padding-top: 10px;
+  /* border: 4px solid red; */
+}
+
+#product-information-right-parent-container {
+  /* border: 10px solid red; */
+  position: sticky;
+  top: 20px;
+  height: fit-content;
+  width: 60%;
+}
+
+#product-information-right {
+  max-height: 400px;
+  /* width: 600px; */
+  padding: 0px 20px;
+  /* border: 5px solid brown; */
+}
+
+#product-image-container {
+  /* border: 4px solid green; */
+  width: 40%;
+  /* border-radius: 10px; */
+  padding: 10px;
+}

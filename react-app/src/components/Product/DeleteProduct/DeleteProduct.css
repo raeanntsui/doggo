@@ -1,0 +1,29 @@
+#delete-product-parent {
+  padding: 20px;
+}
+
+#top-button-delete {
+  padding: 10px;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+#top-button-delete:hover {
+  background-color: red;
+  color: white;
+}
+
+#bottom-button-cancel {
+  padding: 10px;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  background-color: gray;
+}
+
+#bottom-button-cancel:hover {
+  background-color: rgba(128, 128, 128, 0.257);
+}

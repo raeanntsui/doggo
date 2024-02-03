@@ -1,0 +1,49 @@
+#update-review-form {
+  /* border: 4px solid pink; */
+  padding: 20px;
+  border-radius: 10px;
+}
+
+#update-review-form > form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+#update-review-button {
+  padding: 7px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: #04aa6d;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+}
+
+#cancel-button {
+  padding: 7px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: #ebebeb;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+}
+
+#update-review-button:hover {
+  background-color: #038555;
+  color: white;
+  transition: 0.2s;
+}
+
+#cancel-button:hover {
+  background-color: #c70000;
+  color: white;
+  transition: 0.2s;
+}
+
+#cancel-button:not(:hover),
+#update-review-button:not(:hover) {
+  transition: 0.2s;
+}

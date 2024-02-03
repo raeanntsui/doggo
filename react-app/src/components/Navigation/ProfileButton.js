@@ -1,14 +1,18 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
+import { NavLink, useHistory } from "react-router-dom";
 import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import { useModal } from "../../context/Modal";
 
 function ProfileButton({ user }) {
+  const history = useHistory();
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
+  const { closeModal } = useModal();
 
   const openMenu = () => {
     if (showMenu) return;
@@ -25,45 +29,101 @@ function ProfileButton({ user }) {
     };
 
     document.addEventListener("click", closeMenu);
-
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
+    closeMenu();
+    history.push("/");
   };
 
+  const handleCreateNewListing = (e) => {
+    closeMenu();
+    history.push("/products/new");
+  };
+
+  // const handleManageProducts = (e) => {
+  //   closeMenu();
+  //   history.push("/products/mine");
+  // };
+
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
-  const closeMenu = () => setShowMenu(false);
+
+  const closeMenu = () => {
+    setShowMenu(false);
+    // closeModal();
+    // closeMenu();
+  };
 
   return (
     <>
-      <button onClick={openMenu}>
+      <button className="login-button" onClick={openMenu}>
         <i className="fas fa-user-circle" />
+        <i className="fa-solid fa-caret-down"></i>
+        {/* <i class="fa-solid fa-dog"></i> */}
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>{user.username}</li>
-            <li>{user.email}</li>
-            <li>
-              <button onClick={handleLogout}>Log Out</button>
+            <li
+              style={{
+                fontSize: "20px",
+                fontWeight: "600",
+                paddingBottom: "5px",
+              }}>
+              Welcome, {user.first_name}!
+            </li>
+            <li
+              style={{
+                paddingBottom: "5px",
+              }}>
+              <button
+                id="create-listing-dropdown-button"
+                onClick={handleCreateNewListing}>
+                Sell A New Product!
+              </button>
+            </li>
+            {/* <li
+              style={{
+                paddingBottom: "5px",
+              }}>
+              <button
+                id="create-listing-dropdown-button"
+                // onClick={handleManageProducts}
+                // Render all products created by user
+              >
+                Manage Store
+              </button>
+            </li> */}
+            <li
+              style={{
+                paddingBottom: "5px",
+              }}>
+              <button id="logout-dropdown-button" onClick={handleLogout}>
+                Log Out
+              </button>
             </li>
           </>
         ) : (
           <>
-            <OpenModalButton
-              buttonText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-            />
-
-            <OpenModalButton
-              buttonText="Sign Up"
-              onItemClick={closeMenu}
-              modalComponent={<SignupFormModal />}
-            />
+            <div id="login-signup-parent">
+              {/* <div id="open-modal-login"> */}
+              <OpenModalButton
+                buttonText="Log In"
+                onItemClick={closeMenu}
+                modalComponent={<LoginFormModal />}
+              />
+              {/* </div> */}
+              {/* <div id="open-modal-signup"> */}
+              <OpenModalButton
+                buttonText="Sign Up"
+                onItemClick={closeMenu}
+                modalComponent={<SignupFormModal />}
+              />
+              {/* </div> */}
+            </div>
           </>
         )}
       </ul>
