@@ -111,29 +111,29 @@ function GetAllReviews() {
             <div>
               <p>{renderStars(oneReview.rating)}</p>
             </div>
-          </div>
-          <div id="if-one-review-matches-currentSessionUser">
-            {oneReview.user.id === currentSessionUser?.id ? (
-              <div id="update-delete-review-parent-container">
-                <div>
-                  <OpenModalButton
-                    buttonText="Update Review"
-                    modalComponent={
-                      <UpdateReviewForm
-                        review={existingReview}
-                        product={product}
-                      />
-                    }></OpenModalButton>
+            <div id="if-one-review-matches-currentSessionUser">
+              {oneReview.user.id === currentSessionUser?.id ? (
+                <div id="update-delete-review-parent-container">
+                  <div>
+                    <OpenModalButton
+                      buttonText="Update Review"
+                      modalComponent={
+                        <UpdateReviewForm
+                          review={existingReview}
+                          product={product}
+                        />
+                      }></OpenModalButton>
+                  </div>
+                  <div>
+                    <OpenModalButton
+                      buttonText="Delete Review"
+                      modalComponent={
+                        <DeleteReview review={existingReview} />
+                      }></OpenModalButton>
+                  </div>
                 </div>
-                <div>
-                  <OpenModalButton
-                    buttonText="Delete Review"
-                    modalComponent={
-                      <DeleteReview review={existingReview} />
-                    }></OpenModalButton>
-                </div>
-              </div>
-            ) : null}
+              ) : null}
+            </div>
           </div>
           <p>{oneReview.review_description}</p>
           <div id="one-review-image">
