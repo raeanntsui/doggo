@@ -105,9 +105,9 @@ function ShowOneProduct() {
 
             <div id="reviews-for-this-item">
               <h1>Product Reviews</h1>
-            </div>
-            <div>
+              {/* <div> */}
               <GetAllReviews />
+              {/* </div> */}
             </div>
           </div>
           <div id="product-information-right-parent-container">

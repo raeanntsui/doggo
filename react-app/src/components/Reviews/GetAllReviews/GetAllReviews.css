@@ -6,9 +6,9 @@
 
 #one-review {
   padding: 10px 0px;
-  border: 2px solid #000dff;
+  /* border: 2px solid #000dff; */
   /* border-radius: 10px; */
-  border-bottom: 1px solid rgba(128, 128, 128, 0.523);
+  border-bottom: 1px dotted rgba(128, 128, 128, 0.523);
   line-height: 1.6;
   /* max-width: 400px; */
 }
