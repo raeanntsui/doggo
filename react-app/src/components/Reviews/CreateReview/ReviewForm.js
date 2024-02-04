@@ -148,16 +148,22 @@ function ReviewForm() {
               </div>
             </div>
             <p id="errors">{submit && errors.starRating}</p>
-            <div style={{ paddingBottom: "10px" }}>
+            <div id="image-container" style={{ paddingBottom: "10px" }}>
               <label style={{ fontWeight: "bold", fontSize: "20px" }}>
                 Image<span style={{ color: "#d3d3d3" }}> (optional)</span>
               </label>
-              <input
-                style={{ paddingLeft: "0px", padding: "5px 0px" }}
-                type="file"
-                accept="image/*"
-                onChange={(e) => setReviewImage(e.target.files[0])}
-              />
+              <div id="image-input">
+                <input
+                  style={{
+                    paddingLeft: "0px",
+                    padding: "5px 0px",
+                    width: "35%",
+                  }}
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => setReviewImage(e.target.files[0])}
+                />
+              </div>
               <div id="post-button-div">
                 <button
                   id="post-review-button"
